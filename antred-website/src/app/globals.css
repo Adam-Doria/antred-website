@@ -2,15 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  font-family : var(--font-montserrat);
 }
 
-
+h1, h2, h3, h4, h5, h6 {
+  font-family : var(--font-bontang);
+  color: red;
+}

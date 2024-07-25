@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import { Montserrat} from "next/font/google";
+import { montserrat,bontang} from "@/ui/typography/fonts/font";
 import "./globals.css";
 
-const montserrat = Montserrat({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "ANTRED",
@@ -17,7 +16,7 @@ export default function RootLayout({
   return (
     
     <html lang="en">
-      <body className={`${montserrat.className} antialiased`}>{children}</body>
+      <body className={`${montserrat.variable} ${bontang.variable}`}>{children}</body>
     </html>
   );
 }
