@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { montserrat,bontang} from "@/ui/typography/fonts/font";
+import { montserrat, bontang } from "@/components/system/typography/fonts/font";
 import "./globals.css";
 
 
@@ -14,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    
+
     <html lang="en">
       <body className={`${montserrat.variable} ${bontang.variable}`}>{children}</body>
     </html>
