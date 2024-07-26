@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { montserrat, bontang } from "@/components/system/typography/fonts/font";
-import "./globals.css";
+import { ThemeProvider } from "@/style/themes";
+import "../style/globals.css";
 
 
 export const metadata: Metadata = {
@@ -16,7 +17,17 @@ export default function RootLayout({
   return (
 
     <html lang="en">
-      <body className={`${montserrat.variable} ${bontang.variable}`}>{children}</body>
+      <body className={`${montserrat.variable} ${bontang.variable}`}>
+        <ThemeProvider
+        attribute="class"
+         defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+        >
+
+        {children}
+        </ThemeProvider>
+        </body>
     </html>
   );
 }

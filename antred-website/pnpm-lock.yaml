@@ -32,6 +32,9 @@ importers:
       next:
         specifier: 14.2.5
         version: 14.2.5(@babel/core@7.24.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      next-themes:
+        specifier: ^0.3.0
+        version: 0.3.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: ^18
         version: 18.3.1
@@ -68,7 +71,7 @@ importers:
         version: 8.2.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(storybook@8.2.6(@babel/preset-env@7.24.8(@babel/core@7.24.9)))
       '@storybook/nextjs':
         specifier: ^8.2.6
-        version: 8.2.6(esbuild@0.21.5)(next@14.2.5(@babel/core@7.24.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(storybook@8.2.6(@babel/preset-env@7.24.8(@babel/core@7.24.9)))(type-fest@0.20.2)(typescript@5.5.4)(webpack-hot-middleware@2.26.1)(webpack@5.93.0(esbuild@0.21.5))
+        version: 8.2.6(esbuild@0.21.5)(next@14.2.5(@babel/core@7.24.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(storybook@8.2.6(@babel/preset-env@7.24.8(@babel/core@7.24.9)))(type-fest@2.19.0)(typescript@5.5.4)(webpack-hot-middleware@2.26.1)(webpack@5.93.0(esbuild@0.21.5))
       '@storybook/react':
         specifier: ^8.2.6
         version: 8.2.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(storybook@8.2.6(@babel/preset-env@7.24.8(@babel/core@7.24.9)))(typescript@5.5.4)
@@ -3770,6 +3773,12 @@ packages:
   neo-async@2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
 
+  next-themes@0.3.0:
+    resolution: {integrity: sha512-/QHIrsYpd6Kfk7xakK4svpDI5mmXP0gfvCoJdGpZQ2TOrQZmsW0QxjaiLn8wbIKjtm4BTSqLoix4lxYYOnLJ/w==}
+    peerDependencies:
+      react: ^16.8 || ^17 || ^18
+      react-dom: ^16.8 || ^17 || ^18
+
   next@14.2.5:
     resolution: {integrity: sha512-0f8aRfBVL+mpzfBjYfQuLWh2WyAwtJXCRfkPF4UJ5qd2YwrHczsrSzXU4tRMV0OAxR8ZJZWPFn6uhSC56UTsLA==}
     engines: {node: '>=18.17.0'}
@@ -6314,7 +6323,7 @@ snapshots:
   '@pkgjs/parseargs@0.11.0':
     optional: true
 
-  '@pmmmwh/react-refresh-webpack-plugin@0.5.15(react-refresh@0.14.2)(type-fest@0.20.2)(webpack-hot-middleware@2.26.1)(webpack@5.93.0(esbuild@0.21.5))':
+  '@pmmmwh/react-refresh-webpack-plugin@0.5.15(react-refresh@0.14.2)(type-fest@2.19.0)(webpack-hot-middleware@2.26.1)(webpack@5.93.0(esbuild@0.21.5))':
     dependencies:
       ansi-html: 0.0.9
       core-js-pure: 3.37.1
@@ -6326,7 +6335,7 @@ snapshots:
       source-map: 0.7.4
       webpack: 5.93.0(esbuild@0.21.5)
     optionalDependencies:
-      type-fest: 0.20.2
+      type-fest: 2.19.0
       webpack-hot-middleware: 2.26.1
 
   '@radix-ui/react-compose-refs@1.1.0(@types/react@18.3.3)(react@18.3.1)':
@@ -6606,7 +6615,7 @@ snapshots:
     dependencies:
       storybook: 8.2.6(@babel/preset-env@7.24.8(@babel/core@7.24.9))
 
-  '@storybook/nextjs@8.2.6(esbuild@0.21.5)(next@14.2.5(@babel/core@7.24.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(storybook@8.2.6(@babel/preset-env@7.24.8(@babel/core@7.24.9)))(type-fest@0.20.2)(typescript@5.5.4)(webpack-hot-middleware@2.26.1)(webpack@5.93.0(esbuild@0.21.5))':
+  '@storybook/nextjs@8.2.6(esbuild@0.21.5)(next@14.2.5(@babel/core@7.24.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(storybook@8.2.6(@babel/preset-env@7.24.8(@babel/core@7.24.9)))(type-fest@2.19.0)(typescript@5.5.4)(webpack-hot-middleware@2.26.1)(webpack@5.93.0(esbuild@0.21.5))':
     dependencies:
       '@babel/core': 7.24.9
       '@babel/plugin-syntax-bigint': 7.8.3(@babel/core@7.24.9)
@@ -6621,7 +6630,7 @@ snapshots:
       '@babel/preset-react': 7.24.7(@babel/core@7.24.9)
       '@babel/preset-typescript': 7.24.7(@babel/core@7.24.9)
       '@babel/runtime': 7.24.8
-      '@pmmmwh/react-refresh-webpack-plugin': 0.5.15(react-refresh@0.14.2)(type-fest@0.20.2)(webpack-hot-middleware@2.26.1)(webpack@5.93.0(esbuild@0.21.5))
+      '@pmmmwh/react-refresh-webpack-plugin': 0.5.15(react-refresh@0.14.2)(type-fest@2.19.0)(webpack-hot-middleware@2.26.1)(webpack@5.93.0(esbuild@0.21.5))
       '@storybook/builder-webpack5': 8.2.6(esbuild@0.21.5)(storybook@8.2.6(@babel/preset-env@7.24.8(@babel/core@7.24.9)))(typescript@5.5.4)
       '@storybook/preset-react-webpack': 8.2.6(esbuild@0.21.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(storybook@8.2.6(@babel/preset-env@7.24.8(@babel/core@7.24.9)))(typescript@5.5.4)
       '@storybook/react': 8.2.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(storybook@8.2.6(@babel/preset-env@7.24.8(@babel/core@7.24.9)))(typescript@5.5.4)
@@ -9471,6 +9480,11 @@ snapshots:
   negotiator@0.6.3: {}
 
   neo-async@2.6.2: {}
+
+  next-themes@0.3.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+    dependencies:
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
 
   next@14.2.5(@babel/core@7.24.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
