@@ -7,15 +7,18 @@ const config: StorybookConfig = {
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@chromatic-com/storybook',
-    '@storybook/addon-interactions'
+    '@storybook/addon-interactions',
+    'storybook-dark-mode',
+    '@storybook/addon-themes',
+    '@storybook/addon-a11y', // handle accessibility
+    '@storybook/addon-storysource', // show story source code
   ],
   framework: {
     name: '@storybook/nextjs',
     options: {}
   },
-  docs : {
-    defaultName : 'Documentation',
-  },
-  staticDirs: ['src/app/components/system/typography/fonts']
+  docs: {
+    defaultName: 'Documentation'
+  }
 }
 export default config
