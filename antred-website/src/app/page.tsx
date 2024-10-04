@@ -1,5 +1,5 @@
 'use client'
-import { Button } from "@/components/system/Button";
+import { Button } from "@/components/system/button/Button";
 import { setUserLocale } from "@/locales/i18n";
 import { Locale } from "@/locales/localesConfig";
 import {  useTranslations } from "next-intl";

@@ -150,6 +150,9 @@ importers:
       storybook-dark-mode:
         specifier: ^4.0.2
         version: 4.0.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(storybook@8.2.6(@babel/preset-env@7.24.8(@babel/core@7.24.9)))
+      storybook-next-intl:
+        specifier: ^1.1.4
+        version: 1.1.4(next-intl@3.17.2(next@14.2.5(@babel/core@7.24.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1))
       supabase:
         specifier: ^1.187.3
         version: 1.187.3
@@ -4674,6 +4677,14 @@ packages:
 
   storybook-dark-mode@4.0.2:
     resolution: {integrity: sha512-zjcwwQ01R5t1VsakA6alc2JDIRVtavryW8J3E3eKLDIlAMcvsgtpxlelWkZs2cuNspk6Z10XzhQVrUWtYc3F0w==}
+
+  storybook-i18n@3.1.1:
+    resolution: {integrity: sha512-k1/lS+Rx6l5mJEYAHQWEgXuwU5IyWk7kjcJtm2FDIn1UqZwbEraGlrp/fEZKK2e/7+SXEQdKeCaTz7+63WTQxw==}
+
+  storybook-next-intl@1.1.4:
+    resolution: {integrity: sha512-7QoiYjxXMmCNMJQX5LIttRxkuIdRb+AL4Zk0DbRlz81kQD88RPwnj3PK3PlG0JJ/7/4VjuCi6j5O9gNVBGSfLA==}
+    peerDependencies:
+      next-intl: ^3
 
   storybook@8.2.6:
     resolution: {integrity: sha512-8j30wDxQmkcqI0fWcSYFsUCjErsY1yTWbTW+yjbwM8DyW18Cud6CwbFRCxjFsH+2M0CjP6Pqs/m1PGI0vcQscQ==}
@@ -10580,6 +10591,13 @@ snapshots:
       - react
       - react-dom
       - storybook
+
+  storybook-i18n@3.1.1: {}
+
+  storybook-next-intl@1.1.4(next-intl@3.17.2(next@14.2.5(@babel/core@7.24.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)):
+    dependencies:
+      next-intl: 3.17.2(next@14.2.5(@babel/core@7.24.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
+      storybook-i18n: 3.1.1
 
   storybook@8.2.6(@babel/preset-env@7.24.8(@babel/core@7.24.9)):
     dependencies:
