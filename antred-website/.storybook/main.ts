@@ -12,6 +12,7 @@ const config: StorybookConfig = {
     '@storybook/addon-themes',
     '@storybook/addon-a11y', // handle accessibility
     '@storybook/addon-storysource', // show story source code
+    'storybook-next-intl',
   ],
   framework: {
     name: '@storybook/nextjs',
