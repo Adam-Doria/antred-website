@@ -4,6 +4,7 @@ import { getLocale, getMessages } from 'next-intl/server';
 import { montserrat, bontang } from "@/components/system/typography/fonts/font";
 import { ThemeProvider } from "@/style/themes";
 import "../style/globals.css";
+import { DesktopNavbar } from "@/components/system/typography/fonts/Navbar/DesktopNavbar";
 
 
 export const metadata: Metadata = {
@@ -25,7 +26,7 @@ export default async function RootLayout({
   return (
 
     <html lang={locale}>
-      <body className={`${montserrat.variable} ${bontang.variable}`}>
+      <body className={`${montserrat.variable} ${bontang.variable}  max-w-`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -35,7 +36,9 @@ export default async function RootLayout({
           <NextIntlClientProvider
             messages={messages}
           >
+            <DesktopNavbar  />
             {children}
+            <footer>Footer</footer>
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>

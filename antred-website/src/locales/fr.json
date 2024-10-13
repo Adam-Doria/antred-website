@@ -1,4 +1,17 @@
 {
+    "common": {
+       "dark": "Sombre",
+       "light": "Clair"
+    },
+
+   "navigation": {
+    "home": "Accueil",
+    "our-mission": "L'ANTRED",
+    "practical-advice": "Conseils pratiques",
+    "disappearances": "Disparitions",
+    "help-us": "Nous aider"
+   },
+
   "homepage": {
     "hero": {
       "title": "Chaque année, 200 Français disparaissent à l’étranger et des dizaines de cas restent irrésolus.",

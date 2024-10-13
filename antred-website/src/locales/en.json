@@ -1,4 +1,16 @@
 {
+  "common": {
+    "dark": "Dark",
+    "light": "Light"
+  },
+  "navigation": {
+    "home": "Home",
+    "our-mission": "Antred's mission",
+    "disappearances": "Disappearances",
+    "practical-advice": "Practical advice",
+    "help-us": "Help us"
+  },
+
   "homepage": {
     "hero": {
       "title": "Every year, 200 French people disappear abroad and dozens of cases remain unresolved.",
