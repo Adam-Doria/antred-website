@@ -1,14 +1,15 @@
 {
   "common": {
     "dark": "Dark",
-    "light": "Light"
+    "light": "Light",
+    "toggleTheme": "Toggle Theme"
   },
   "navigation": {
     "home": "Home",
-    "our-mission": "Antred's mission",
+    "ourMission": "ANTRED",
     "disappearances": "Disappearances",
-    "practical-advice": "Practical advice",
-    "help-us": "Help us"
+    "practicalAdvice": "Practical advice",
+    "helpUs": "Help us"
   },
 
   "homepage": {

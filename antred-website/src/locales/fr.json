@@ -1,15 +1,16 @@
 {
     "common": {
        "dark": "Sombre",
-       "light": "Clair"
+       "light": "Clair",
+       "toggleTheme" : "Changer le thème"
     },
 
    "navigation": {
     "home": "Accueil",
-    "our-mission": "L'ANTRED",
-    "practical-advice": "Conseils pratiques",
+    "ourMission": "L'ANTRED",
+    "practicalAdvice": "Conseils pratiques",
     "disappearances": "Disparitions",
-    "help-us": "Nous aider"
+    "helpUs": "Nous aider"
    },
 
   "homepage": {
