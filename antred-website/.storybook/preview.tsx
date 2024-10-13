@@ -3,7 +3,7 @@ import { withThemeByClassName } from '@storybook/addon-themes';
 import type { Preview } from '@storybook/react'
 import nextIntl from './next-intl'
 import React from 'react';
-
+import {NextIntlClientProvider} from "next-intl"
 
 /** @type { import('@storybook/react').Preview } */
 const preview: Preview = {
@@ -32,13 +32,36 @@ const preview: Preview = {
       },
       defaultTheme: 'light',
     }),
-    (Story: any) => (
-      <div style={{ padding: "2rem" }}>
-        <Story />
-      </div>
-    )
-
+    (Story, context) => {
+      const locale = context.globals.locale;
+    console.log(context.globals)
+      return (
+        <NextIntlClientProvider
+          locale={locale}
+          messages={nextIntl.messagesByLocale[locale]}
+        >
+          <Story />
+        </NextIntlClientProvider>
+      );
+    }
+    
   ],
 }
 
 export default preview
+
+
+// export const globalTypes = {
+//   locale: {
+//     name: 'Locale',
+//     description: 'Internationalization locale',
+//     toolbar: {
+//       icon: 'globe',
+//       items: [
+//         { value: 'en', title: 'English' },
+//         { value: 'de', title: 'Deutsch' },
+//       ],
+//       showName: true,
+//     },
+//   },
+//  };
