@@ -57,8 +57,13 @@ const config = {
         xl: "calc(var(--radius) + 20px)",
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
-        
+        sm: "calc(var(--radius) - 4px)",        
+      },
+      fontSize: {
+        sm: ["1rem", { lineHeight: "1.5rem" }],  // text-sm
+        md: ["1.125rem", { lineHeight: "1.75rem" }],  // text-md
+        lg: ["1.25rem", { lineHeight: "1.75rem" }],  // text-lg
+        xl: ["1.5rem", { lineHeight: "2rem" }],  // text-xl
       },
       keyframes: {
         "accordion-down": {

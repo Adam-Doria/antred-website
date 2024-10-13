@@ -4,27 +4,37 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 	174 31% 19%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-    --radius: 0.5rem;
-    --chart-1: 12 76% 61%;
+    --background: 30 55% 97%; /* Fond général : #FFFAF7 */
+    --foreground:0 0% 26%; /* Texte principal : #434343 */
+
+    --card: 0 0% 100%; /* Fond des cartes : blanc */
+    --card-foreground: 0 0% 26%; /* Texte principal : #434343 */
+
+    --popover: 0 0% 100%; /* Popover : blanc */
+    --popover-foreground: 0 0% 26%; /* Texte principal : #434343 */
+
+    --primary: 162 27% 26%; /* Couleur principale : #30554E (vert foncé) */
+    --primary-foreground: 0 0% 100%; /* Texte en avant sur fond vert : blanc */
+
+    --secondary: 214 15% 91%; /* Couleur secondaire : gris clair pour bordures (#E0E0E0) */
+    --secondary-foreground: 0 0% 26%; /* Texte principal : #434343 */
+
+    --muted: 30 50% 96%; /* Couleur atténuée : #F2EDEB  */
+    --muted-foreground: 30 100% 97%; /* Texte atténué : #FEF9F6 */
+
+    --accent: 348 76% 55%; /* Accent : Rouge #E42E47 */
+    --accent-foreground: 0 0% 100%; /* Texte sur fond accent : blanc */
+
+    --destructive: 0 84.2% 60.2%; /* Rouge pour actions destructrices */
+    --destructive-foreground: 0 0% 100%; /* Texte sur rouge : blanc */
+
+    --border: 214.3 31.8% 91.4%; /* Bordures : gris clair (#E0E0E0) */
+    --input: 214.3 31.8% 91.4%; /* Inputs : gris clair */
+    --ring: 162 27% 26%; /* Anneau de focus (vert foncé) */
+
+    --radius: 0.5rem; /* Coins arrondis */
+
+    --chart-1: 12 76% 61%; /* Couleurs des graphiques (exemple) */
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
@@ -63,7 +73,41 @@
   * {
     @apply border-border;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
+  @layer base {
+    /* Appliquer la police Montserrat pour tous les paragraphes */
+    body {
+      @apply font-sans bg-background text-foreground max-w-[1240px] mx-auto p-1;
+      font-family: 'Montserrat', sans-serif; /* Texte par défaut en Montserrat */
+    }
+  
+    /* Titres en Botang */
+    h1 {
+      font-size: 3.125rem; /* 50px */
+      line-height: 3.75rem; /* 60px */
+      font-family: 'Botang', sans-serif; /* Police Botang pour h1 */
+      font-weight: bold; /* Gras pour le titre */
+    }
+  
+    h2 {
+      font-size: 2.5rem; /* 40px */
+      line-height: 3rem; /* 48px */
+      font-family: 'Botang', sans-serif; /* Police Botang pour h2 */
+      font-weight: bold; /* Gras pour le titre */
+    }
+  
+    h3 {
+      font-size: 2rem; /* 32px */
+      line-height: 2.5rem; /* 40px */
+      font-family: 'Botang', sans-serif; /* Police Botang pour h3 */
+      font-weight: bold; /* Gras pour le titre */
+    }
+  
+    h4 {
+      font-size: 1.25rem; /* 20px */
+      line-height: 1.5rem; /* 24px */
+      font-family: 'Botang', sans-serif; /* Police Botang pour h4 */
+      font-weight: bold; /* Gras pour le titre */
+    }
+}
+
 }
