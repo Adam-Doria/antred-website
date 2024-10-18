@@ -1,30 +1,29 @@
-import type { Metadata } from "next";
-import { NextIntlClientProvider } from 'next-intl';
-import { getLocale, getMessages } from 'next-intl/server';
-import { montserrat, bontang } from "@/components/system/typography/fonts/font";
-import { ThemeProvider } from "@/style/themes";
-import "../style/globals.css";
-import { DesktopNavbar } from "@/components/system/navbar/DesktopNavbar";
-
+import type { Metadata } from 'next'
+import { NextIntlClientProvider } from 'next-intl'
+import { getLocale, getMessages } from 'next-intl/server'
+import { montserrat, bontang } from '@/components/system/typography/fonts/font'
+import { ThemeProvider } from '@/style/themes'
+import '../style/globals.css'
+import { DesktopNavbar } from '@/components/system/navbar/DesktopNavbar'
 
 export const metadata: Metadata = {
-  title: "ANTRED",
-  description: "Association Nationale Tiphaine pour la Recherche à l'Étranger des",
-};
+  title: 'ANTRED',
+  description:
+    'Association Nationale Tiphaine pour la Recherche à l\'Étranger des'
+}
 
 export default async function RootLayout({
-  children,
+  children
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
-  const locale = await getLocale();
- 
+  const locale = await getLocale()
+
   // Providing all messages to the client
   // side is the easiest way to get started
-  const messages = await getMessages();
-  
-  return (
+  const messages = await getMessages()
 
+  return (
     <html lang={locale}>
       <body className={`${montserrat.variable} ${bontang.variable}  max-w-`}>
         <ThemeProvider
@@ -33,15 +32,13 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <NextIntlClientProvider
-            messages={messages}
-          >
-            <DesktopNavbar  />
+          <NextIntlClientProvider messages={messages}>
+            <DesktopNavbar />
             {children}
             <footer>Footer</footer>
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>
     </html>
-  );
+  )
 }
