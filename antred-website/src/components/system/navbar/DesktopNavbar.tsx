@@ -69,7 +69,7 @@ export const DesktopNavbar = () => {
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
-      <LocaleSwitch className="inline-flex items-center text-l" />
+      <LocaleSwitch />
       <ThemeToggle />
     </nav>
   )
