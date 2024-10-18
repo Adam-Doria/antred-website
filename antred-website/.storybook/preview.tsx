@@ -31,19 +31,19 @@ const preview: Preview = {
         dark: 'dark',
       },
       defaultTheme: 'light',
-    }),
-    (Story, context) => {
-      const locale = context.globals.locale;
-    console.log(context.globals)
-      return (
-        <NextIntlClientProvider
-          locale={locale}
-          messages={nextIntl.messagesByLocale[locale]}
-        >
-          <Story />
-        </NextIntlClientProvider>
-      );
-    }
+    })
+    // (Story, context) => {
+    //   const locale = context.globals.locale;
+    // console.log(context.globals)
+    //   return (
+    //     <NextIntlClientProvider
+    //       locale={locale}
+    //       messages={nextIntl.messagesByLocale[locale]}
+    //     >
+    //       <Story />
+    //     </NextIntlClientProvider>
+    //   );
+    // }
     
   ],
 }

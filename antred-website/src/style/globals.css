@@ -7,6 +7,7 @@
     --background: 30 55% 97%; /* Fond général : #FFFAF7 */
     --foreground:0 0% 26%; /* Texte principal : #434343 */
 
+
     --card: 0 0% 100%; /* Fond des cartes : blanc */
     --card-foreground: 0 0% 26%; /* Texte principal : #434343 */
 
@@ -76,7 +77,7 @@
   @layer base {
     /* Appliquer la police Montserrat pour tous les paragraphes */
     body {
-      @apply font-sans bg-background text-foreground max-w-[1240px] mx-auto p-1;
+      @apply font-sans bg-background text-foreground max-w-7xl mx-auto p-1;
       font-family: 'Montserrat', sans-serif; /* Texte par défaut en Montserrat */
     }
   

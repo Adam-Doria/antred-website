@@ -4,7 +4,7 @@ import { getLocale, getMessages } from 'next-intl/server';
 import { montserrat, bontang } from "@/components/system/typography/fonts/font";
 import { ThemeProvider } from "@/style/themes";
 import "../style/globals.css";
-import { DesktopNavbar } from "@/components/system/typography/fonts/Navbar/DesktopNavbar";
+import { DesktopNavbar } from "@/components/system/navbar/DesktopNavbar";
 
 
 export const metadata: Metadata = {
