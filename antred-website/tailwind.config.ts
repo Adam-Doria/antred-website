@@ -24,6 +24,7 @@ const config = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -60,6 +61,7 @@ const config = {
         sm: "calc(var(--radius) - 4px)",        
       },
       fontSize: {
+        xs : ["0.75rem", { lineHeight: "1.125rem" }],
         sm: ["1rem", { lineHeight: "1.5rem" }],  // text-sm
         md: ["1.125rem", { lineHeight: "1.75rem" }],  // text-md
         lg: ["1.25rem", { lineHeight: "1.75rem" }],  // text-lg

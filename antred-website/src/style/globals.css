@@ -5,8 +5,7 @@
 @layer base {
   :root {
     --background: 30 55% 97%; /* Fond général : #FFFAF7 */
-    --foreground:0 0% 26%; /* Texte principal : #434343 */
-
+    --foreground: 0 0% 26%; /* Texte principal : #434343 */
 
     --card: 0 0% 100%; /* Fond des cartes : blanc */
     --card-foreground: 0 0% 26%; /* Texte principal : #434343 */
@@ -40,36 +39,161 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
-  }
+    /************
+    /**PRIMARY**/
+    /************
+    /* Gray Colors */
+    --gray-25: #fcfcfd;
+    --gray-50: #f9fafb;
+    --gray-100: #f2f4f7;
+    --gray-200: #e4e7ec;
+    --gray-300: #d0d5dd;
+    --gray-400: #98a2b3;
+    --gray-500: #667085;
+    --gray-600: #475467;
+    --gray-700: #344054;
+    --gray-800: #1d2939;
+    --gray-900: #101828;
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    /* Brand Colors */
+    --brand-25: #f7f9f8;
+    --brand-50: #f4f9f7;
+    --brand-100: #dbece6;
+    --brand-200: #b7d8ce;
+    --brand-300: #88bdaf;
+    --brand-400: #639e90;
+    --brand-500: #498377;
+    --brand-600: #38695f;
+    --brand-700: #30554e;
+    --brand-800: #2a4541;
+    --brand-900: #12211f;
+
+    /* Error Colors */
+    --error-25: #fffbfa;
+    --error-50: #fef3f2;
+    --error-100: #fee4e2;
+    --error-200: #fecdca;
+    --error-300: #fda29b;
+    --error-400: #f97066;
+    --error-500: #f04438;
+    --error-600: #d92d20;
+    --error-700: #b42318;
+    --error-800: #912018;
+    --error-900: #7a271a;
+
+    /* Warning Colors */
+    --warning-25: #fffcf5;
+    --warning-50: #fffaeb;
+    --warning-100: #fef0c7;
+    --warning-200: #fedf89;
+    --warning-300: #fec84b;
+    --warning-400: #fdb022;
+    --warning-500: #f79009;
+    --warning-600: #dc6803;
+    --warning-700: #b54708;
+    --warning-800: #93370d;
+    --warning-900: #7a2e0e;
+
+    /* Success Colors */
+    --success-25: #f6fef9;
+    --success-50: #ecfdf3;
+    --success-100: #d1fadf;
+    --success-200: #a6f4c5;
+    --success-300: #6ce9a6;
+    --success-400: #32d583;
+    --success-500: #12b76a;
+    --success-600: #039855;
+    --success-700: #027a48;
+    --success-800: #05603a;
+    --success-900: #054f31;
+
+    /************
+    /**Secondary**/
+    /************
+    :root {
+  /* Red Ribbon Colors */
+    --red-ribbon-25: #fcfcfd;
+    --red-ribbon-50: #f8f9fc;
+    --red-ribbon-100: #fae1e5;
+    --red-ribbon-200: #d5d9eb;
+    --red-ribbon-300: #afb5d9;
+    --red-ribbon-400: #717bbc;
+    --red-ribbon-500: #4e5ba6;
+    --red-ribbon-600: #3e4784;
+    --red-ribbon-700: #363f72;
+    --red-ribbon-800: #293056;
+    --red-ribbon-900: #101323;
+
+    /* Aztec (Heading Text Color) */
+    --aztec-50: #f3faf8;
+    --aztec-100: #d5f2e7;
+    --aztec-200: #abe4ce;
+    --aztec-300: #79cfb1;
+    --aztec-400: #4eb394;
+    --aztec-500: #34987a;
+    --aztec-600: #277a62;
+    --aztec-700: #236251;
+    --aztec-800: #204f43;
+    --aztec-900: #1f4239;
+    --aztec-950: #091c18;
+
+    /* Bridesmaid (Cream) */
+    --bridesmaid-25: #f5faff;
+    --bridesmaid-50: #eff8ff;
+    --bridesmaid-100: #d1e9ff;
+    --bridesmaid-200: #b2ddff;
+    --bridesmaid-300: #84caff;
+    --bridesmaid-400: #53b1fd;
+    --bridesmaid-500: #2e90fa;
+    --bridesmaid-600: #1570ef;
+    --bridesmaid-700: #175cd3;
+    --bridesmaid-800: #1849a9;
+    --bridesmaid-900: #194185;
+
+    /* Gray Gradients */
+    --gray-gradient-600-500: linear-gradient(90deg, #475467, #667085);
+    --gray-gradient-600-700: linear-gradient(45deg, #475467, #344054);
+    --gray-gradient-700-800: linear-gradient(45deg, #344054, #1d2939);
+    --gray-gradient-800-900: linear-gradient(90deg, #1d2939, #101828);
+    --gray-gradient-800-700: linear-gradient(26.5deg, #1d2939, #344054);
+    --gray-gradient-900-600: linear-gradient(45deg, #101828, #475467);
+
+    /* Brand Gradients */
+    --brand-gradient-600-500: linear-gradient(90deg, #38695f, #498377);
+    --brand-gradient-600-700: linear-gradient(45deg, #38695f, #30554e);
+    --brand-gradient-700-800: linear-gradient(90deg, #30554e, #2a4541);
+    --brand-gradient-800-600: linear-gradient(45deg, #2a4541, #38695f);
+    --brand-gradient-800-900: linear-gradient(26.5deg, #2a4541, #12211f);
+    --brand-gradient-900-800: linear-gradient(45deg, #12211f, #2a4541);
+
+    .dark {
+      --background: 222.2 84% 4.9%;
+      --foreground: 210 40% 98%;
+      --card: 222.2 84% 4.9%;
+      --card-foreground: 210 40% 98%;
+      --popover: 222.2 84% 4.9%;
+      --popover-foreground: 210 40% 98%;
+      --primary: 210 40% 98%;
+      --primary-foreground: 222.2 47.4% 11.2%;
+      --secondary: 217.2 32.6% 17.5%;
+      --secondary-foreground: 210 40% 98%;
+      --muted: 217.2 32.6% 17.5%;
+      --muted-foreground: 215 20.2% 65.1%;
+      --accent: 217.2 32.6% 17.5%;
+      --accent-foreground: 210 40% 98%;
+      --destructive: 0 62.8% 30.6%;
+      --destructive-foreground: 210 40% 98%;
+      --border: 217.2 32.6% 17.5%;
+      --input: 217.2 32.6% 17.5%;
+      --ring: 212.7 26.8% 83.9%;
+      --chart-1: 220 70% 50%;
+      --chart-2: 160 60% 45%;
+      --chart-3: 30 80% 55%;
+      --chart-4: 280 65% 60%;
+      --chart-5: 340 75% 55%;
+    }
   }
 }
-
 @layer base {
   * {
     @apply border-border;
@@ -78,37 +202,58 @@
     /* Appliquer la police Montserrat pour tous les paragraphes */
     body {
       @apply font-sans bg-background text-foreground max-w-7xl mx-auto p-1;
-      font-family: 'Montserrat', sans-serif; /* Texte par défaut en Montserrat */
+      font-family: var(--font-Montserrat);
     }
-  
+
     /* Titres en Botang */
     h1 {
       font-size: 3.125rem; /* 50px */
       line-height: 3.75rem; /* 60px */
-      font-family: 'Botang', sans-serif; /* Police Botang pour h1 */
+      font-family: var(--font-Botang);
       font-weight: bold; /* Gras pour le titre */
     }
-  
+
     h2 {
       font-size: 2.5rem; /* 40px */
       line-height: 3rem; /* 48px */
-      font-family: 'Botang', sans-serif; /* Police Botang pour h2 */
+      font-family: var(--font-Botang), sans-serif; /* Police Botang pour h2 */
       font-weight: bold; /* Gras pour le titre */
     }
-  
+
     h3 {
       font-size: 2rem; /* 32px */
       line-height: 2.5rem; /* 40px */
-      font-family: 'Botang', sans-serif; /* Police Botang pour h3 */
+      font-family: var(--font-Botang), sans-serif; /* Police Botang pour h3 */
       font-weight: bold; /* Gras pour le titre */
     }
-  
+
     h4 {
       font-size: 1.25rem; /* 20px */
       line-height: 1.5rem; /* 24px */
-      font-family: 'Botang', sans-serif; /* Police Botang pour h4 */
+      font-family: var(--font-Botang), sans-serif; /* Police Botang pour h4 */
       font-weight: bold; /* Gras pour le titre */
     }
-}
 
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5rem; /* 40px */
+        line-height: 3rem; /* 48px */
+      }
+
+      h2 {
+        font-size: 2rem; /* 32px */
+        line-height: 2.5rem; /* 40px */
+      }
+
+      h3 {
+        font-size: 1.5rem; /* 24px */
+        line-height: 2rem; /* 32px */
+      }
+
+      h4 {
+        font-size: 1.125rem; /* 18px */
+        line-height: 1.375rem; /* 22px */
+      }
+    }
+  }
 }
