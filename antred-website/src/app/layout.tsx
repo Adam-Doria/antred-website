@@ -9,7 +9,7 @@ import { DesktopNavbar } from '@/components/system/navbar/DesktopNavbar'
 export const metadata: Metadata = {
   title: 'ANTRED',
   description:
-    'Association Nationale Tiphaine pour la Recherche à l\'Étranger des'
+    'Association Nationale Tiphaine pour la Recherche à l Étranger des'
 }
 
 export default async function RootLayout({

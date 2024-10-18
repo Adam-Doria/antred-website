@@ -1,14 +1,11 @@
-import React from 'react'
 import {
   NavigationMenu,
   NavigationMenuContent,
-  NavigationMenuIndicator,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-  NavigationMenuViewport
+  navigationMenuTriggerStyle
 } from '@/components/ui/navigation-menu'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -16,9 +13,8 @@ import { Heart } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { ThemeToggle } from '../themeToggle/ThemeToggle'
 import { LocaleSwitch } from '../localeSwitch/LocaleSwitch'
-type Props = {}
 
-export const DesktopNavbar = (props: Props) => {
+export const DesktopNavbar = () => {
   const t = useTranslations('navigation')
   return (
     <nav className="pt-4 fixed flex w-full max-w-7xl justify-evenly">
