@@ -34,8 +34,10 @@ export default async function RootLayout({
         >
           <NextIntlClientProvider messages={messages}>
             <DesktopNavbar />
-            {children}
-            <footer>Footer</footer>
+            <div className="max-w-7xl mx-auto ">
+              {children}
+              <footer>Footer</footer>
+            </div>
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>

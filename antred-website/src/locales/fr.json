@@ -8,11 +8,77 @@
    "navigation": {
     "home": "Accueil",
     "ourMission": "L'ANTRED",
-    "practicalAdvice": "Conseils pratiques",
-    "disappearances": "Disparitions",
-    "helpUs": "Nous aider"
-   },
-
+    "helpUs": "Nous aider",
+    "practicalAdvice": {
+      "title" : "Conseils pratiques",
+      "whatToDo": {
+        "title": "Que faire en cas de disparition ?",
+        "description": "Guide pour les premières démarches en cas de disparition."
+      },
+      "legalHelp": {
+        "title": "Aide juridique",
+        "description": "Informations sur les recours juridiques en cas de disparition."
+      },
+      "createMissingNotice": {
+        "title": "Créer un avis de disparition",
+        "description": "Instructions pour créer et diffuser un avis de disparition."
+      },
+      "fundraising": {
+        "title": "Lever des fonds",
+        "description": "Solutions et plateformes pour lever des fonds en cas de besoin."
+      },
+      "usefulLinks": {
+        "title": "Liens utiles",
+        "description": "Ressources et liens pour obtenir de l'aide dans les recherches."
+      },
+      "resources": {
+        "title": "Ressources",
+        "description": "Matériel et documentation utiles en cas de disparition."
+      }
+    },
+    "disappearances": {
+      "title": "Disparition",
+      "theyDisappeared": {
+        "title": "Ils ont disparu",
+        "description": "Liste des personnes actuellement disparues."
+      },
+      "searchByCountry": {
+        "title": "Recherche par pays",
+        "description": "Effectuez des recherches spécifiques par pays."
+      },
+      "familyNews": {
+        "title": "Actualités des familles",
+        "description": "Mises à jour et nouvelles des familles de disparus."
+      },
+      "expertAdvice": {
+        "title": "Conseils d'experts",
+        "description": "Recommandations et conseils d'experts en cas de disparition."
+      }
+    },
+    "mission": {
+      "antred": {
+        "title": "L'Antred",
+        "description": "Association dédiée à la recherche de personnes disparues à l’étranger."
+      },
+      "whoWeAre": {
+        "title": "Qui sommes-nous ?",
+        "description": "Découvrez notre histoire, nos valeurs et notre engagement quotidien."
+      },
+      "ourMission": {
+        "title": "Notre Mission",
+        "description": "Soutenir les familles dans la recherche de leurs proches disparus."
+      },
+      "team": {
+        "title": "Bureau et conseil d'administration",
+        "description": "Rencontrez notre équipe de bénévoles et administrateurs engagés."
+      },
+      "network": {
+        "title": "Notre réseau",
+        "description": "Nos partenaires essentiels dans la recherche de disparus à l’étranger."
+      }
+    }
+  },
+   
   "homepage": {
     "hero": {
       "title": "Chaque année, 200 Français disparaissent à l’étranger et des dizaines de cas restent irrésolus.",

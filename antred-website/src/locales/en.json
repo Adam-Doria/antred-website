@@ -4,19 +4,86 @@
     "light": "Light",
     "toggleTheme": "Toggle Theme"
   },
+
   "navigation": {
     "home": "Home",
     "ourMission": "ANTRED",
-    "disappearances": "Disappearances",
-    "practicalAdvice": "Practical advice",
-    "helpUs": "Help us"
+    "helpUs": "Help Us",
+    "practicalAdvice": {
+      "title": "Practical Advice",
+      "whatToDo": {
+        "title": "What to do in case of a disappearance?",
+        "description": "Guide for the first steps to take in case of a disappearance."
+      },
+      "legalHelp": {
+        "title": "Legal Help",
+        "description": "Information on legal recourse in case of a disappearance."
+      },
+      "createMissingNotice": {
+        "title": "Create a Missing Notice",
+        "description": "Instructions to create and distribute a missing notice."
+      },
+      "fundraising": {
+        "title": "Fundraising",
+        "description": "Solutions and platforms to raise funds if needed."
+      },
+      "usefulLinks": {
+        "title": "Useful Links",
+        "description": "Resources and links to help in the search."
+      },
+      "resources": {
+        "title": "Resources",
+        "description": "Material and documentation useful in case of a disappearance."
+      }
+    },
+    "disappearances": {
+      "title": "Disappearances",
+      "theyDisappeared": {
+        "title": "They Disappeared",
+        "description": "List of currently missing persons."
+      },
+      "searchByCountry": {
+        "title": "Search by Country",
+        "description": "Perform specific searches by country."
+      },
+      "familyNews": {
+        "title": "Family News",
+        "description": "Updates and news from families of the missing."
+      },
+      "expertAdvice": {
+        "title": "Expert Advice",
+        "description": "Recommendations and advice from experts in case of a disappearance."
+      }
+    },
+    "mission": {
+      "antred": {
+        "title": "ANTRED",
+        "description": "Association dedicated to the search for missing persons abroad."
+      },
+      "whoWeAre": {
+        "title": "Who We Are",
+        "description": "Learn about our history, values, and daily commitment."
+      },
+      "ourMission": {
+        "title": "Our Mission",
+        "description": "Supporting families in the search for their missing loved ones."
+      },
+      "team": {
+        "title": "Board and Administration",
+        "description": "Meet our team of committed volunteers and administrators."
+      },
+      "network": {
+        "title": "Our Network",
+        "description": "Our essential partners in the search for missing persons abroad."
+      }
+    }
   },
 
   "homepage": {
     "hero": {
-      "title": "Every year, 200 French people disappear abroad and dozens of cases remain unresolved.",
-      "description": "ANTRED's mission is to support families in their quest for truth.",
-      "button": "Help us"
+      "title": "Each year, 200 French citizens disappear abroad, and dozens of cases remain unresolved.",
+      "description": "ANTRED’s mission is to support families in their quest for truth.",
+      "button": "Help Us"
     }
   }
 }
