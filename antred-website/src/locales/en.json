@@ -76,6 +76,41 @@
         "title": "Our Network",
         "description": "Our essential partners in the search for missing persons abroad."
       }
+    },
+    "footer": {
+      "developper": "Made with ❤️ by",
+      "legal": " Antred - Non-profit organization",
+      "mentions": "Legal notice",
+      "practicalAdvice": {
+        "title": "Practical Advice",
+        "whatToDo": "What to do in case of disappearance",
+        "legalHelp": "Legal Help",
+        "createMissingNotice": "Create a Missing Notice",
+        "fundraising": "Fundraising",
+        "usefulLinks": "Useful Links",
+        "resources": "Resources"
+      },
+      "aboutUs": {
+        "title": "About ANTRED",
+        "whoWeAre": "Who We Are",
+        "ourMission": "Our Mission",
+        "team": "The Team",
+        "partners": "Our Partners"
+      },
+      "disappearances": {
+        "title": "Disappearances",
+        "theyDisappeared": "They Disappeared",
+        "searchByCountry": "Search by Country",
+        "familyNews": "Family News",
+        "expertAdvice": "Expert Advice"
+      },
+      "helpUs": {
+        "title": "Help Us",
+        "button": "Help Us",
+        "donate": "Make a Donation",
+        "joinUs": "Join Us",
+        "volonteer": "Become a Volunteer"
+      }
     }
   },
 

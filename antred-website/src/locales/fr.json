@@ -1,16 +1,16 @@
 {
-    "common": {
-       "dark": "Sombre",
-       "light": "Clair",
-       "toggleTheme" : "Changer le thème"
-    },
+  "common": {
+    "dark": "Sombre",
+    "light": "Clair",
+    "toggleTheme": "Changer le thème"
+  },
 
-   "navigation": {
+  "navigation": {
     "home": "Accueil",
     "ourMission": "L'ANTRED",
     "helpUs": "Nous aider",
     "practicalAdvice": {
-      "title" : "Conseils pratiques",
+      "title": "Conseils pratiques",
       "whatToDo": {
         "title": "Que faire en cas de disparition ?",
         "description": "Guide pour les premières démarches en cas de disparition."
@@ -78,7 +78,43 @@
       }
     }
   },
-   
+
+  "footer": {
+    "developper": "Site réalisé avec ❤️ par",
+    "legal": " Antred - Association loi 1901",
+    "mentions": "Mentions légales",
+    "practicalAdvice": {
+      "title":"Conseils pratiques",
+      "whatToDo": "Que faire en cas de disparition",
+      "legalHelp": "Aide juridique",
+      "createMissingNotice": "Créer un avis de disparition",
+      "fundraising": "Lever des fonds",
+      "usefulLinks": "Liens utiles",
+      "resources": "Ressources"
+    },
+    "aboutUs": {
+      "title":"L'Antred",
+      "whoWeAre": "Qui sommes-nous",
+      "ourMission": "Notre mission",
+      "team": "L'équipe",
+      "partners": "Nos partenaires"
+    },
+    "disappearances": {
+      "title": "Disparition",
+      "theyDisappeared": "Ils ont disparu",
+      "searchByCountry": "Recherche par pays",
+      "familyNews": "Actualités des familles",
+      "expertAdvice": "Conseils d'experts"
+    },
+    "helpUs": {
+      "title":"Nous aider",
+      "button": "Nous aider",
+      "donate": "Faire un don",
+      "joinUs": "Nous rejoindre",
+      "volonteer": "Devenir bénévole"
+    }
+  },
+
   "homepage": {
     "hero": {
       "title": "Chaque année, 200 Français disparaissent à l’étranger et des dizaines de cas restent irrésolus.",

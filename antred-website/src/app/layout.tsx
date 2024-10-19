@@ -5,11 +5,12 @@ import { montserrat, bontang } from '@/components/system/typography/fonts/font'
 import { ThemeProvider } from '@/style/themes'
 import '../style/globals.css'
 import { Navbar } from '@/components/system/navbar/NavBar'
+import { Footer } from '@/components/footer/Footer'
 
 export const metadata: Metadata = {
   title: 'ANTRED',
   description:
-    'Association Nationale Tiphaine pour la Recherche à l Étranger des'
+    'Association Nationale Tiphaine pour la Recherche à l Étranger des Disparus'
 }
 
 export default async function RootLayout({
@@ -36,7 +37,7 @@ export default async function RootLayout({
             <Navbar />
             <div className="max-w-7xl mx-auto ">
               {children}
-              <footer>Footer</footer>
+              <Footer />
             </div>
           </NextIntlClientProvider>
         </ThemeProvider>

@@ -201,9 +201,8 @@
   @layer base {
     /* Appliquer la police Montserrat pour tous les paragraphes */
     body {
-     
       font-family: var(--font-Montserrat);
-      @apply bg-background text-foreground 
+      @apply bg-background text-foreground;
     }
 
     /* Titres en Botang */

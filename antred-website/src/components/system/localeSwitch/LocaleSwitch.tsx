@@ -9,13 +9,17 @@ import {
   SelectValue
 } from '@/components/ui/select'
 
-export const LocaleSwitch = () => {
+type LocaleSwitchProps = {
+  class?: string
+}
+
+export const LocaleSwitch = (props: LocaleSwitchProps) => {
   const onSelectChange = (value: string) => setUserLocale(value as Locale)
   const locales = { fr: 'FR 🇫🇷', en: 'EN 🏴󠁧󠁢󠁥󠁮󠁧󠁿' }
 
   return (
     <Select onValueChange={onSelectChange}>
-      <SelectTrigger className="w-[100px] border-none ml-2">
+      <SelectTrigger className={`w-[100px] border-none ml-2 ${props.class}`}>
         <SelectValue placeholder={locales.fr} />
       </SelectTrigger>
       <SelectContent>
