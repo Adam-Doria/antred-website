@@ -4,7 +4,7 @@ import { getLocale, getMessages } from 'next-intl/server'
 import { montserrat, bontang } from '@/components/system/typography/fonts/font'
 import { ThemeProvider } from '@/style/themes'
 import '../style/globals.css'
-import { DesktopNavbar } from '@/components/system/navbar/DesktopNavbar'
+import { Navbar } from '@/components/system/navbar/NavBar'
 
 export const metadata: Metadata = {
   title: 'ANTRED',
@@ -33,7 +33,7 @@ export default async function RootLayout({
           disableTransitionOnChange
         >
           <NextIntlClientProvider messages={messages}>
-            <DesktopNavbar />
+            <Navbar />
             <div className="max-w-7xl mx-auto ">
               {children}
               <footer>Footer</footer>

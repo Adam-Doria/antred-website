@@ -19,7 +19,10 @@
     {
       "files": ["**/components/**/*.tsx"],
       "rules": {
-        "react/prop-types": [2, { "ignore": ["className","position","title"] }],
+        "react/prop-types": [
+          2,
+          { "ignore": ["className", "position", "title"] }
+        ],
         "react-refresh/only-export-components": "off"
       }
     }
