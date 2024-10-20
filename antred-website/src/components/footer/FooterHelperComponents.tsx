@@ -15,8 +15,8 @@ type FooterSection = {
 type FooterMenuProps = {
   sections: FooterSection[]
 }
-//@TODO remplacer toutes les adresses et faire un fichier de ref pour les adresses
-export const PRACTICAL_ADVICE = [
+
+export const PRACTICAL_ADVICE: MenuItem[] = [
   {
     title: 'practicalAdvice.whatToDo',
     href: '/conseils-pratiques/que-faire-en-cas-de-disparition'
@@ -43,14 +43,14 @@ export const PRACTICAL_ADVICE = [
   }
 ]
 
-export const ABOUT_US = [
+export const ABOUT_US: MenuItem[] = [
   { title: 'aboutUs.whoWeAre', href: '/qui-sommes-nous' },
   { title: 'aboutUs.ourMission', href: '/notre-mission' },
   { title: 'aboutUs.team', href: '/equipe' },
   { title: 'aboutUs.partners', href: '/partenaires' }
 ]
 
-export const DISAPPEARANCES = [
+export const DISAPPEARANCES: MenuItem[] = [
   {
     title: 'disappearances.theyDisappeared',
     href: '/disparitions/ils-ont-disparu'
@@ -69,7 +69,7 @@ export const DISAPPEARANCES = [
   }
 ]
 
-export const HELP_US = [
+export const HELP_US: MenuItem[] = [
   { title: 'helpUs.donate', href: '/faire-un-don' },
   { title: 'helpUs.joinUs', href: '/nous-rejoindre' },
   { title: 'helpUs.volonteer', href: '/nous-aider#devenir-benevole' }
@@ -86,8 +86,7 @@ export const SECTIONS: FooterSection[] = [
     title: 'disappearances.title',
     items: DISAPPEARANCES,
     href: '/disparitions'
-  },
-  { title: 'helpUs.title', items: HELP_US, href: '/nous-aider' }
+  }
 ]
 
 export const FooterMenu: React.FC<FooterMenuProps> = ({
@@ -95,16 +94,16 @@ export const FooterMenu: React.FC<FooterMenuProps> = ({
 }: FooterMenuProps) => {
   const t = useTranslations('footer')
   return (
-    <div className=" w-4/5 pl-2 grid grid-cols-1  md:grid-cols-2 lg:grid-cols-4">
+    <div className="mx-auto w-4/5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
       {sections.map((section) => (
         <div key={section.title}>
           <Link
             href={section.href}
             className="text-gray-200 hover:text-gray-300"
           >
-            <h5 className="font-bold mt-4 mb-2 ">{t(section.title)}</h5>{' '}
+            <h5 className="font-bold mt-4 mb-2">{t(section.title)}</h5>
           </Link>
-          <ul className="space-y-2 ">
+          <ul>
             {section.items.map((item) => (
               <li key={item.href}>
                 <Link
@@ -122,10 +121,37 @@ export const FooterMenu: React.FC<FooterMenuProps> = ({
   )
 }
 
-export const FooterSection = () => {
+export const FooterSection: React.FC = () => {
+  const t = useTranslations('footer')
   return (
-    <div className="w-full inline-flex justify-center px-2 pl-16 text-white text-sm">
-      <FooterMenu sections={SECTIONS} />
+    <div className=" w-full">
+      <div className=" mx-auto  pb-4 text-white text-sm">
+        <FooterMenu sections={SECTIONS} />
+      </div>
+      <div className="px-4 flex flex-col items-center  border-t border-gray-200">
+        <Link
+          href={'/nous-aider'}
+          className="text-gray-200 hover:text-gray-300"
+        >
+          <h5 className="font-bold mb-4 pt-2 text-gray-200 hover:text-gray-300">
+            {t('helpUs.title')}
+          </h5>
+        </Link>
+        <ul className="inline-flex space-x-4">
+          {HELP_US.map((item) => (
+            <li key={item.href}>
+              <Link
+                href={item.href}
+                className="text-gray-200 hover:text-gray-400"
+              >
+                {t(item.title)}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   )
 }
+
+export default FooterSection

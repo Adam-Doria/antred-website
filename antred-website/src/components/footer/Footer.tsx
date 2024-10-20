@@ -14,8 +14,8 @@ export const Footer = () => {
   const t = useTranslations('footer')
   return (
     <>
-      <div className=" w-full rounded-lg bg-primary p-4">
-        <div className=" w-full flex justify-between p-1 mb-8 sm:p-2">
+      <div className=" w-full rounded-lg bg-brand-radial p-4">
+        <div className=" w-full flex justify-between p-1  sm:p-2">
           <LocaleSwitch class="hidden sm:flex sm:text-white sm:bg-primary" />
           <Link href="/" className="relative w-[100px] ">
             <Logo />
