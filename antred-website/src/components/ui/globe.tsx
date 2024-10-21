@@ -6,6 +6,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 import { useEffect, useRef, useState } from 'react'
+// @ts-expect-error:ignore import
 import { Color, Scene, Fog, PerspectiveCamera, Vector3 } from 'three'
 import ThreeGlobe from 'three-globe'
 import { useThree, Object3DNode, Canvas, extend } from '@react-three/fiber'
