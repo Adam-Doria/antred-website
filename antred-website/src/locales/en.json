@@ -120,6 +120,13 @@
       "title": "Each year, 200 French citizens disappear abroad, and dozens of cases remain unresolved.",
       "description": "ANTRED’s mission is to support families in their quest for truth.",
       "button": "Help Us"
+    },
+    "contact" : {
+      "title":" A loved one is missing?",
+      "subtitle":" ANTRED is here to guide you through the process!",
+      "text":" If you're not sure exactly what support to ask for, a first contact with ANTRED could help you see more clearly.",
+      "email":"contact.antred@gmail.com",
+      "phone": "Emergency number: 06.10.44.67.20"
     }
   }
 }

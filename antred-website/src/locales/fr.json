@@ -120,6 +120,13 @@
       "title": "Chaque année, 200 Français disparaissent à l’étranger et des dizaines de cas restent irrésolus.",
       "description": "L’ANTRED a pour mission de soutenir les familles dans leur quête de vérité.",
       "button": "Notre histoire"
+    },
+    "contact" : {
+      "title":" Un proche est porté disparu ?",
+      "subtitle":" L'antred est là, pour vous guider dans vos démarches !",
+      "text":" Si vous ne savez pas exactement quel soutien demander, un premier contact avec l’ANTRED pourrait vous permettre d’y voir plus clair.",
+      "email":"contact.antred@gmail.com",
+      "phone": "Numéro d'urgence : 06.10.44.67.20"
     }
   }
 }

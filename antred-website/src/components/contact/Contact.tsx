@@ -14,7 +14,7 @@ export const SOCIAL_MEDIAS: MediaItems[] = [
   {
     name: 'Facebook',
     logo: 'facebook.svg',
-    href: 'https://www.facebook.fr/antred'
+    href: 'https://www.facebook.com/people/Association-nationale-Tiphaine-pour-la-Recherche-%C3%A0-lEtranger-des-Disparus/61563721569699/?_rdr'
   },
   {
     name: 'Instagram',
@@ -24,12 +24,12 @@ export const SOCIAL_MEDIAS: MediaItems[] = [
   {
     name: 'Telegram',
     logo: 'telegram.svg',
-    href: 'https://t.me/antred'
+    href: 'https://t.me/+330610446720'
   },
   {
     name: 'WhatsApp',
     logo: 'whatsapp.svg',
-    href: 'https://wa.me/+33660995499/?text=Bonjour%je%vous%contact%a%props%de%lAntred'
+    href: 'https://wa.me/+330610446720/?text=Bonjour%je%vous%contact%a%props%de%lAntred'
   },
   {
     name: 'YouTube',
