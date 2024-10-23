@@ -1,5 +1,6 @@
 import { ContactUs } from './ContactUs'
 import { Hero } from './Hero'
+import { PressAndPartner } from './PressPartner'
 
 export default function Home() {
   return (
@@ -12,7 +13,7 @@ export default function Home() {
         since there is actually no news{' '}
       </div>
       <ContactUs />
-      <div> TODO ADD medias and sponsor logos</div>
+      <PressAndPartner />
     </main>
   )
 }

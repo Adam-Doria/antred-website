@@ -15,8 +15,8 @@ export const ContactUs = () => {
       <div className="text-gray-300 text-md pt-2  pb-6 text-pretty md:text-lg md:w-4/5 md:mx-auto">
         {t('text')}
       </div>
-      <div className="flex  text-primary-foreground flex-col w-full space-around text-md md:flex-row md:text-lg md:items-center md:w-4/5 md:justify-around md:mx-auto">
-        <div className="inline-flex lg:items-center ">
+      <div className="flex  text-primary-foreground tet-bold flex-col w-full space-around text-md md:flex-row md:text-lg md:items-center md:w-4/5 md:justify-around md:mx-auto">
+        <div className="inline-flex  lg:items-center ">
           {' '}
           <PhoneCallIcon className="mx-2 " />
           {t('phone')}
