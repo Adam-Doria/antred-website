@@ -76,7 +76,9 @@
         "title": "Our Network",
         "description": "Our essential partners in the search for missing persons abroad."
       }
-    },
+    }
+  },
+    
     "footer": {
       "developper": "Made with ❤️ by",
       "legal": " Antred - Non-profit organization",
@@ -111,8 +113,7 @@
         "joinUs": "Join Us",
         "volonteer": "Become a Volunteer"
       }
-    }
-  },
+    },
 
   "homepage": {
     "hero": {
