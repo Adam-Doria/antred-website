@@ -127,6 +127,11 @@
       "text":" If you're not sure exactly what support to ask for, a first contact with ANTRED could help you see more clearly.",
       "email":"contact.antred@gmail.com",
       "phone": "Emergency number: 06.10.44.67.20"
+    },
+    "pressAndPartner" :{
+      "pressTitle" : "Media that talk about us",
+      "partnerTitle":"Our partners",
+      "partnerSubtitle": "We appreciate their support in our endeavors"
     }
   }
 }

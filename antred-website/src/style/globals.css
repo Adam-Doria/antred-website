@@ -201,36 +201,36 @@
   @layer base {
     /* Appliquer la police Montserrat pour tous les paragraphes */
     body {
-      font-family: var(--font-Montserrat);
+      font-family: var(--font-montserrat);
       @apply bg-background text-foreground;
     }
 
-    /* Titres en Botang */
+    /* Titres en --font-bontang */
     h1 {
       font-size: 3.125rem; /* 50px */
       line-height: 3.75rem; /* 60px */
-      font-family: var(--font-Botang);
+      font-family: var(--font-bontang);
       font-weight: bold; /* Gras pour le titre */
     }
 
     h2 {
       font-size: 2.5rem; /* 40px */
       line-height: 3rem; /* 48px */
-      font-family: var(--font-Botang), sans-serif; /* Police Botang pour h2 */
+      font-family: var(--font-bontang), sans-serif; /* Police --font-bontang pour h2 */
       font-weight: bold; /* Gras pour le titre */
     }
 
     h3 {
       font-size: 2rem; /* 32px */
       line-height: 2.5rem; /* 40px */
-      font-family: var(--font-Botang), sans-serif; /* Police Botang pour h3 */
+      font-family: var(--font-bontang), sans-serif; /* Police --font-bontang pour h3 */
       font-weight: bold; /* Gras pour le titre */
     }
 
     h4 {
       font-size: 1.25rem; /* 20px */
       line-height: 1.5rem; /* 24px */
-      font-family: var(--font-Botang), sans-serif; /* Police Botang pour h4 */
+      font-family: var(--font-bontang), sans-serif; /* Police --font-bontang pour h4 */
       font-weight: bold; /* Gras pour le titre */
     }
 

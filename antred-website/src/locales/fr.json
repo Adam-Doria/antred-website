@@ -127,6 +127,11 @@
       "text":" Si vous ne savez pas exactement quel soutien demander, un premier contact avec l’ANTRED pourrait vous permettre d’y voir plus clair.",
       "email":"contact.antred@gmail.com",
       "phone": "Numéro d'urgence : 06.10.44.67.20"
+    },
+    "pressAndPartner" :{
+      "pressTitle" : "Les médias qui parlent de nous",
+      "partnerTitle":"Nos partenaires",
+      "partnerSubtitle": "Merci à eux pour leur soutiens lors de nos actions"
     }
   }
 }
