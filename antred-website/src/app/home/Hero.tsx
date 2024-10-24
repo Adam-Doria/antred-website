@@ -7,7 +7,7 @@ import { Globe } from './Globe'
 export const Hero = () => {
   const t = useTranslations('homepage')
   return (
-    <div className="container flex p-0 flex-col w-full bg-brand-radial rounded-sm lg:flex-row lg:h-[500px]">
+    <div className="container flex p-0 flex-col w-full bg-brand-radial rounded-sm lg:flex-row lg:h-[500px] lg:rounded-xl">
       <div className="px-8  lg:pt-8 lg:w-1/2 lg:flex lg:flex-col lg:justify-center lg:space-y-4">
         <h2 className="text-primary-foreground font-normal  pt-6 lg:pt-0 ">
           {t('hero.title').toUpperCase()}
@@ -18,7 +18,7 @@ export const Hero = () => {
         <Link href={'/antred'}>
           <Button
             variant={'outline'}
-            className="rounded-xl text-black hover:bg-primary/90 hover:text-accent-foreground my-4"
+            className="rounded-xl text-black font-bold hover:bg-primary/90 hover:text-accent-foreground my-4"
           >
             {t('hero.button')}
             <ArrowUpRight />
