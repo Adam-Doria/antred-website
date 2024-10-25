@@ -3,9 +3,9 @@
     "dark": "Sombre",
     "light": "Clair",
     "toggleTheme": "Changer le thème",
-    "readMore" : "En savoir plus",
-    "readArticle" : "Lire l'article",
-    "readStory" : "Découvrir son histoire"
+    "readMore": "En savoir plus",
+    "readArticle": "Lire l'article",
+    "readStory": "Découvrir son histoire"
   },
 
   "navigation": {
@@ -87,7 +87,7 @@
     "legal": " Antred - Association loi 1901",
     "mentions": "Mentions légales",
     "practicalAdvice": {
-      "title":"Conseils pratiques",
+      "title": "Conseils pratiques",
       "whatToDo": "Que faire en cas de disparition",
       "legalHelp": "Aide juridique",
       "createMissingNotice": "Créer un avis de disparition",
@@ -96,7 +96,7 @@
       "resources": "Ressources"
     },
     "aboutUs": {
-      "title":"L'Antred",
+      "title": "L'Antred",
       "whoWeAre": "Qui sommes-nous",
       "ourMission": "Notre mission",
       "team": "L'équipe",
@@ -110,7 +110,7 @@
       "expertAdvice": "Conseils d'experts"
     },
     "helpUs": {
-      "title":"Nous aider",
+      "title": "Nous aider",
       "button": "Nous aider",
       "donate": "Faire un don",
       "joinUs": "Nous rejoindre",
@@ -124,23 +124,65 @@
       "description": "L’ANTRED a pour mission de soutenir les familles dans leur quête de vérité.",
       "button": "Notre histoire"
     },
-    "contact" : {
-      "title":" Un proche est porté disparu ?",
-      "subtitle":" L'antred est là, pour vous guider dans vos démarches !",
-      "text":" Si vous ne savez pas exactement quel soutien demander, un premier contact avec l’ANTRED pourrait vous permettre d’y voir plus clair.",
-      "email":"contact.antred@gmail.com",
+    "contact": {
+      "title": " Un proche est porté disparu ?",
+      "subtitle": " L'antred est là, pour vous guider dans vos démarches !",
+      "text": " Si vous ne savez pas exactement quel soutien demander, un premier contact avec l’ANTRED pourrait vous permettre d’y voir plus clair.",
+      "email": "contact.antred@gmail.com",
       "phone": "Numéro d'urgence : 06.10.44.67.20"
     },
-    "pressAndPartner" :{
-      "pressTitle" : "Les médias qui parlent de nous",
-      "partnerTitle":"Nos partenaires",
+    "pressAndPartner": {
+      "pressTitle": "Les médias qui parlent de nous",
+      "partnerTitle": "Nos partenaires",
       "partnerSubtitle": "Merci à eux pour leur soutiens lors de nos actions"
     },
-    "tabs" : {
-      "lastNews" : "Dernières actualités",
-      "missing" : "Appel à témoins",
-      "firstAction" : "Premières actions",
-      "disappearance" : "Disparition"
+    "tabs": {
+      "lastNews": "Dernières actualités",
+      "missing": "Appel à témoins",
+      "firstAction": "Premières actions",
+      "disappearance": "Disparition"
     }
+  },
+  "antredPage": {
+    "hero": {
+      "title": "L’ANTRED apporte son assistance aux Français victimes d’une disparition inquiétante dans le monde",
+      "description": "Soutien aux familles, mobilisation d'experts, et actions concrètes pour retrouver nos proches disparus à l’étranger.",
+      "button": "Contactez-nous"
+    },
+    "story": {
+      "title": "Notre histoire",
+      "paragraph1": "A l’origine de l’ANTRED, il y a la famille de Tiphaine Véron. Cette touriste française a disparu à l’âge de 36 ans au cours d’un voyage au Japon en juillet 2018. Depuis le début, la famille de Tiphaine se démène pour découvrir la vérité « à l’autre bout du monde » aussi bien au Japon qu’en France où le dossier a échappé de justesse à un non-lieu. Une enquête est actuellement menée par le pôle des cold cases de Nanterre pour « enlèvement et séquestration » et le Comité des disparitions forcées de l’ONU est mobilisé pour obtenir des réponses auprès des autorités japonaises.",
+      "paragraph2": "En 2024, pour atténuer les souffrances des familles traversant une épreuve similaire, pour ne pas les laisser affronter seules une disparition à l’étranger, pour fournir une aide concrète, les proches de Tiphaine ont décidé de fonder une association d’intérêt général.",
+      "paragraph3": "Le constat était sans appel : un combat judiciaire est une épreuve en soi, la dimension internationale ajoute de la douleur à la douleur. Et jusqu’ici en France, aucune association, aucune fondation, aucun réseau d’entraide n’était prévu pour faire face à pareille situation.",
+      "paragraph4": "L’ANTRED a pour vocation de combler ce vide par tous les moyens utiles aux Français victimes d’une disparition à l’étranger et hors métropole. Partage d’expériences et mises en relation avec des experts compétents, diffusion d’avis de recherche ou d’annonces sur les réseaux sociaux, outils pour lever des fonds, conseils pour médiatiser une affaire, soutien psychologique… Les missions de l’ANTRED sont multiples, au service des familles en quête de vérité."
+    },
+    "mission": {
+      "title": "Notre mission",
+      "paragraph1": "La mission de l’ANTRED est d’apporter son assistance aux Français victimes d’une disparition inquiétante (accident, enlèvement, homicide, incarcération…) à l’étranger et hors métropole.",
+      "paragraph2": "L’association rassemble autour de cette cause celles et ceux qui souhaitent mettre des compétences et des moyens au service du combat de ces familles. Cette aide se traduit sous plusieurs formes selon les besoins des familles concernées.",
+      "examples": {
+        "legalAdvice": "Conseils juridiques",
+        "professionalConnections": "Mises en relation avec des professionnels (avocats, traducteurs, interprètes, enquêteurs, maîtres-chiens, scientifiques…)",
+        "socialMedia": "Diffusion des avis de recherche sur les réseaux sociaux",
+        "mediaTraining": "Media training",
+        "supportOnLocation": "Accompagnement lors de rendez-vous, ou sur place si nécessaire",
+        "fundraising": "Création d’une page de levée de fonds",
+        "moralSupport": "Soutien moral"
+      },
+      "paragraph3": "Pour toute autre forme d’assistance, n’hésitez pas à nous contacter. L’ANTRED s’adapte au maximum à vos besoins."
+    },
+    "board": {
+      "title": "Conseil d'administration et Membres du bureaux"
+    },
+    "volunteers": {
+      "title": "Nos bénévoles"
+    },
+    "partners": {
+      "title": "Nos partenaires"
+    },
+    "contact": {
+      "title": "Contactez-Nous",
+      "text" :"Vous êtes journaliste ? Pour toute demande, veuillez mentionner 'Demande de presse' dans l’objet de votre email."
+    } 
   }
 }

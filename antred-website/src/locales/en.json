@@ -139,5 +139,46 @@
       "firstAction" : "First Actions",
       "disappearance" : "Missing"
     }
+  },
+   "antredPage":{
+    "hero": {
+      "title": "ANTRED provides assistance to French victims of a worrying disappearance in the world",
+      "description": "Support for families, mobilization of experts, and concrete actions to find our missing loved ones abroad.",
+      "button": "Contact us"
+    },
+    "story": {
+      "title": "Our Story",
+      "paragraph1": "ANTRED was founded by the family of Tiphaine Véron. This French tourist disappeared at the age of 36 during a trip to Japan in July 2018. From the beginning, Tiphaine's family has been striving to uncover the truth 'on the other side of the world,' both in Japan and in France, where the case narrowly avoided being closed without resolution. An investigation is currently being conducted by the Cold Case Unit in Nanterre for 'kidnapping and detention,' and the UN Committee on Enforced Disappearances is mobilized to seek answers from Japanese authorities.",
+      "paragraph2": "In 2024, to alleviate the suffering of families going through a similar ordeal and to prevent them from facing a disappearance abroad alone, Tiphaine’s relatives decided to establish a public-interest association.",
+      "paragraph3": "The finding was clear: a legal battle is a challenge in itself, and the international dimension adds pain upon pain. Until now, in France, no association, foundation, or support network was equipped to address such a situation.",
+      "paragraph4": "ANTRED aims to fill this gap by providing any useful resources to French nationals facing a disappearance abroad and outside the mainland. Sharing experiences and connecting families with qualified experts, publishing alerts and announcements on social networks, tools to raise funds, guidance to publicize a case, psychological support… ANTRED’s missions are diverse, dedicated to families in search of truth."
+    },
+    "mission": {
+      "title": "Our Mission",
+      "paragraph1": "ANTRED's mission is to assist French nationals who are victims of troubling disappearances (accident, abduction, homicide, incarceration…) abroad and outside the mainland.",
+      "paragraph2": "The association brings together those who wish to contribute their skills and resources to support these families’ efforts. This assistance takes various forms according to the needs of the families involved.",
+      "examples": {
+        "legalAdvice": "Legal advice",
+        "professionalConnections": "Connections with professionals (lawyers, translators, interpreters, investigators, dog handlers, scientists…)",
+        "socialMedia": "Broadcasting search notices on social networks",
+        "mediaTraining": "Media training",
+        "supportOnLocation": "Support during appointments, or on-site if necessary",
+        "fundraising": "Creation of a fundraising page",
+        "moralSupport": "Moral support"
+      },
+      "paragraph3": "For any other form of assistance, please do not hesitate to contact us. ANTRED will adapt as much as possible to your needs."
+    },
+    "board": {
+      "title": "Board of Directors and Office Members"
+    },
+    "volunteers": {
+      "title": "Our Volunteers"
+    },
+    "partners": {
+      "title": "Our Partners"
+    },
+    "contact": {
+      "title": "Contact Us"
+    }
   }
 }

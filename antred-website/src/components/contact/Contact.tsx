@@ -45,7 +45,12 @@ export const SOCIAL_MEDIAS: MediaItems[] = [
 
 const MediaLink = ({ name, logo, href }: MediaItems) => {
   return (
-    <a href={href} className=" relative w-full h-full">
+    <a
+      href={href}
+      target="_blank"
+      className=" relative w-full h-full"
+      rel="noopener noreferrer"
+    >
       <Image
         alt={name}
         src={`/logos/socialMedias/${logo}`}
