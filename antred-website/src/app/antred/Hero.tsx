@@ -10,7 +10,7 @@ export const Hero = () => {
     <div className="container flex p-0 flex-col w-full bg-brand-radial rounded-sm lg:flex-row lg:h-[500px] lg:rounded-xl">
       <div className="px-8  lg:pt-8 lg:w-1/2 lg:flex lg:flex-col lg:justify-center lg:space-y-4">
         <h2 className="text-primary-foreground font-normal  pt-6 lg:pt-0 ">
-          {t('hero.title').toUpperCase()}
+          {t('hero.title')}
         </h2>
         <div className="text-gray-300 text-xl pt-2">
           {t('hero.description')}
@@ -31,7 +31,7 @@ export const Hero = () => {
             src={'/logos/whiteIcon.png'}
             fill
             alt="logo de antred association Nationale Tiphaine pour la Recherche à l Etranger des Disparus"
-            objectFit="cover"
+            objectFit="contain"
           />
         </div>
       </div>
