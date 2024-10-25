@@ -132,6 +132,12 @@
       "pressTitle" : "Media that talk about us",
       "partnerTitle":"Our partners",
       "partnerSubtitle": "We appreciate their support in our endeavors"
+    },
+    "tabs" : {
+      "lastNews" : "Latest News",
+      "missing" : "Call for Witnesses",
+      "firstAction" : "First Actions",
+      "disappearance" : "Missing"
     }
   }
 }

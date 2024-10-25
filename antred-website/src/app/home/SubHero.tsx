@@ -4,6 +4,7 @@ import { ArrowUpRight } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { useTranslations } from 'next-intl'
 
 const lorem10 =
   'orem ipsum dolor sit amet, consectetur adipisicing elit. Illum reiciendis iure in corporis hic molestias ipsam quaerat suscipit. Accusamus voluptatibus sequi suscipit quae accusantium libero odit minima animi officiis nulla. L'
@@ -13,7 +14,7 @@ const lorem50 =
 const tabs = [
   {
     value: 'lastNews',
-    label: 'Dernières actualités',
+    label: 'lastNews',
     date: '21 juillet 2024',
     title: lorem10,
     description: lorem50,
@@ -23,7 +24,7 @@ const tabs = [
   {
     value: 'Missing',
     date: '13 septembre 2024',
-    label: 'Appel à témoins',
+    label: 'missing',
     title:
       'Etats-Unis : Un Français de 76 ans disparaît dans un parc de l’Utah, sa famille « désespérée » lance un appel à témoins',
     description: `Francis Userovici, 76 ans, a été vu la dernière fois le 16 août 2024 au volant de sa voiture alors qu'il entrait dans le parc national d’Arches, dans l’Utah`,
@@ -35,7 +36,7 @@ const tabs = [
   },
   {
     value: 'FirstAction',
-    label: 'Premières actions',
+    label: 'firstAction',
     date: ' 1er octobre 2024',
     title: 'Que faire en cas de disparition d’un proche à l’étranger ? ',
     description:
@@ -47,7 +48,7 @@ const tabs = [
   },
   {
     value: 'Disappearance',
-    label: 'Disparitions',
+    label: 'disappearance',
     date: '17 juillet 2024',
     title: 'Pétition pour ELOI ROLLAND disparu en Nouvelle-Zélande ',
     description: `Les autorités néo-zélandaises veulent le déclarer mort... alors que la famille réclame l'ouverture d'une enquête criminelle depuis des années ! 
@@ -81,11 +82,13 @@ export const SubHeroCard: FC<SubHeroProps> = ({
   imageAlt
 }) => {
   return (
-    <div className="container flex my-4 p-0 flex-col-reverse w-full bg-white rounded-sm lg:flex-row lg:h-[500px]">
-      <div className="px-8 py-2 lg:pt-8 lg:w-[55%] lg:flex lg:flex-col lg:justify-center lg:space-y-4">
+    <div className="container flex my-4 p-0  flex-col-reverse w-full bg-white rounded-sm lg:flex-row lg:h-[500px]">
+      <div className="px-8 py-4 lg:pt-8 lg:w-[55%] lg:flex lg:flex-col lg:justify-center lg:space-y-4">
         <div>{date}</div>
         <h3 className="font-normal pt-6 lg:pt-0">{title}</h3>
-        <div className="text-md text-gray-600 pt-2">{description}</div>
+        <div className="text-md text-gray-600 py-2 text-ellipsis">
+          {description}
+        </div>
         {buttonText && buttonLink && (
           <Link href={buttonLink}>
             <Button className="rounded-xl bg-brand-700 text-background font-bold hover:bg-primary/90 hover:text-accent-foreground my-4">
@@ -111,18 +114,19 @@ export const SubHeroCard: FC<SubHeroProps> = ({
 }
 
 export const SubHero = () => {
+  const t = useTranslations('homepage.tabs')
   return (
-    <Tabs defaultValue="lastNews" className="my-8 w-full">
-      <TabsList className="flex flex-wrap ">
+    <Tabs defaultValue="lastNews" className="my-8 w-full flex flex-col">
+      <TabsList className="grid grid-cols-2 gap-x-2 gap-y-2 h-full md:flex md:gap-x-6 md:w-3/5 md:mx-auto">
         {tabs.map((tab, index) => {
           return (
             <TabsTrigger
               key={tab.value + index}
               value={tab.value}
-              className="text-sm font-medium  px-6 py-4  rounded-full border border-brand-700 data-[state=active]:bg-brand-700 data-[state=active]:text-white data-[state=active]:border-brand-700 data-[state=inactive]:text-brand-700 data-[state=inactive]:bg-transparent"
+              className="w-full  grid-cols-2 text-xs font-medium  px-2 py-2 md:text-sm md:px-6 md:py-4 rounded-full border hover:scale-110 border-brand-700 data-[state=active]:bg-brand-700 data-[state=active]:text-white data-[state=active]:border-brand-700 data-[state=inactive]:text-brand-700 data-[state=inactive]:bg-transparent"
             >
               {' '}
-              {tab.label}
+              {t(tab.label)}
             </TabsTrigger>
           )
         })}

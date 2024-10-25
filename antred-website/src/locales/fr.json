@@ -2,7 +2,10 @@
   "common": {
     "dark": "Sombre",
     "light": "Clair",
-    "toggleTheme": "Changer le thème"
+    "toggleTheme": "Changer le thème",
+    "readMore" : "En savoir plus",
+    "readArticle" : "Lire l'article",
+    "readStory" : "Découvrir son histoire"
   },
 
   "navigation": {
@@ -132,6 +135,12 @@
       "pressTitle" : "Les médias qui parlent de nous",
       "partnerTitle":"Nos partenaires",
       "partnerSubtitle": "Merci à eux pour leur soutiens lors de nos actions"
+    },
+    "tabs" : {
+      "lastNews" : "Dernières actualités",
+      "missing" : "Appel à témoins",
+      "firstAction" : "Premières actions",
+      "disappearance" : "Disparition"
     }
   }
 }
