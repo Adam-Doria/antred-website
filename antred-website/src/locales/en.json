@@ -113,8 +113,11 @@
         "joinUs": "Join Us",
         "volonteer": "Become a Volunteer"
       }
+    }, 
+     "notFound":{
+      "text":"Oops! The page you are requesting does not exist." ,
+      "button" :"Return to homepage"
     },
-
   "homepage": {
     "hero": {
       "title": "Each year, 200 French citizens disappear abroad, and dozens of cases remain unresolved.",
@@ -178,7 +181,8 @@
       "title": "Our Partners"
     },
     "contact": {
-      "title": "Contact Us"
+      "title": "Contact Us",
+      "text" :"Are you a reporter? For any request, please mention 'Press Inquiry' in the subject of your email."
     }
   }
 }

@@ -117,7 +117,10 @@
       "volonteer": "Devenir bénévole"
     }
   },
-
+  "notFound":{
+    "text":"Oups ! La page que vous demandez n'existe pas.",
+    "button": "Retour à l'accueil"
+  },
   "homepage": {
     "hero": {
       "title": "Chaque année, 200 Français disparaissent à l’étranger et des dizaines de cas restent irrésolus.",
