@@ -35,6 +35,8 @@ export const Footer = () => {
           {t('developper')}{' '}
           <a
             href="https://www.linkedin.com/in/adam-drici/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="font-medium ml-1"
           >
             Adam Drici

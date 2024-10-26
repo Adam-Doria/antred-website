@@ -55,7 +55,7 @@ const ReviewCardDeux = ({
   src?: string
 }) => {
   return (
-    <a href={src}>
+    <a href={src} target="_blank" rel="noopener noreferrer">
       <figure
         className={cn(
           'relative w-64 cursor-pointer overflow-hidden rounded-xl border p-4 ',

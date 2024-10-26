@@ -55,7 +55,7 @@ export const DesktopNavbar: React.FC = () => {
               <MenuContent items={DISAPPEARANCES} />
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <MenuLink href="/helpUs">
+              <MenuLink href="/nous-aider">
                 <span className="inline-flex items-center text-accent">
                   {t('helpUs')}
                   <Heart className="mx-2 h-4 w-4 text-accent fill-accent" />

@@ -48,8 +48,8 @@ const MediaLink = ({ name, logo, href }: MediaItems) => {
     <a
       href={href}
       target="_blank"
-      className=" relative w-full h-full"
       rel="noopener noreferrer"
+      className=" relative w-full h-full"
     >
       <Image
         alt={name}

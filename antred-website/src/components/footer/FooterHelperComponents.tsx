@@ -70,8 +70,8 @@ export const DISAPPEARANCES: MenuItem[] = [
 ]
 
 export const HELP_US: MenuItem[] = [
-  { title: 'helpUs.donate', href: '/faire-un-don' },
-  { title: 'helpUs.joinUs', href: '/nous-rejoindre' },
+  { title: 'helpUs.donate', href: '/nous-aider#faire-un-don' },
+  { title: 'helpUs.joinUs', href: 'nous-aider#nous-rejoindre' },
   { title: 'helpUs.volonteer', href: '/nous-aider#devenir-benevole' }
 ]
 
