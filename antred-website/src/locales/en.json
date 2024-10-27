@@ -78,72 +78,72 @@
       }
     }
   },
-    
-    "footer": {
-      "developper": "Made with ❤️ by",
-      "legal": " Antred - Non-profit organization",
-      "mentions": "Legal notice",
-      "practicalAdvice": {
-        "title": "Practical Advice",
-        "whatToDo": "What to do in case of disappearance",
-        "legalHelp": "Legal Help",
-        "createMissingNotice": "Create a Missing Notice",
-        "fundraising": "Fundraising",
-        "usefulLinks": "Useful Links",
-        "resources": "Resources"
-      },
-      "aboutUs": {
-        "title": "About ANTRED",
-        "whoWeAre": "Who We Are",
-        "ourMission": "Our Mission",
-        "team": "The Team",
-        "partners": "Our Partners"
-      },
-      "disappearances": {
-        "title": "Disappearances",
-        "theyDisappeared": "They Disappeared",
-        "searchByCountry": "Search by Country",
-        "familyNews": "Family News",
-        "expertAdvice": "Expert Advice"
-      },
-      "helpUs": {
-        "title": "Help Us",
-        "button": "Help Us",
-        "donate": "Make a Donation",
-        "joinUs": "Join Us",
-        "volonteer": "Become a Volunteer"
-      }
-    }, 
-     "notFound":{
-      "text":"Oops! The page you are requesting does not exist." ,
-      "button" :"Return to homepage"
+
+  "footer": {
+    "developper": "Made with ❤️ by",
+    "legal": " Antred - Non-profit organization",
+    "mentions": "Legal notice",
+    "practicalAdvice": {
+      "title": "Practical Advice",
+      "whatToDo": "What to do in case of disappearance",
+      "legalHelp": "Legal Help",
+      "createMissingNotice": "Create a Missing Notice",
+      "fundraising": "Fundraising",
+      "usefulLinks": "Useful Links",
+      "resources": "Resources"
     },
+    "aboutUs": {
+      "title": "About ANTRED",
+      "whoWeAre": "Who We Are",
+      "ourMission": "Our Mission",
+      "team": "The Team",
+      "partners": "Our Partners"
+    },
+    "disappearances": {
+      "title": "Disappearances",
+      "theyDisappeared": "They Disappeared",
+      "searchByCountry": "Search by Country",
+      "familyNews": "Family News",
+      "expertAdvice": "Expert Advice"
+    },
+    "helpUs": {
+      "title": "Help Us",
+      "button": "Help Us",
+      "donate": "Make a Donation",
+      "joinUs": "Join Us",
+      "volonteer": "Become a Volunteer"
+    }
+  },
+  "notFound": {
+    "text": "Oops! The page you are requesting does not exist.",
+    "button": "Return to homepage"
+  },
   "homepage": {
     "hero": {
       "title": "Each year, 200 French citizens disappear abroad, and dozens of cases remain unresolved.",
       "description": "ANTRED’s mission is to support families in their quest for truth.",
       "button": "Help Us"
     },
-    "contact" : {
-      "title":" A loved one is missing?",
-      "subtitle":" ANTRED is here to guide you through the process!",
-      "text":" If you're not sure exactly what support to ask for, a first contact with ANTRED could help you see more clearly.",
-      "email":"contact.antred@gmail.com",
+    "contact": {
+      "title": " A loved one is missing?",
+      "subtitle": " ANTRED is here to guide you through the process!",
+      "text": " If you're not sure exactly what support to ask for, a first contact with ANTRED could help you see more clearly.",
+      "email": "contact.antred@gmail.com",
       "phone": "Emergency number: 06.10.44.67.20"
     },
-    "pressAndPartner" :{
-      "pressTitle" : "Media that talk about us",
-      "partnerTitle":"Our partners",
+    "pressAndPartner": {
+      "pressTitle": "Media that talk about us",
+      "partnerTitle": "Our partners",
       "partnerSubtitle": "We appreciate their support in our endeavors"
     },
-    "tabs" : {
-      "lastNews" : "Latest News",
-      "missing" : "Call for Witnesses",
-      "firstAction" : "First Actions",
-      "disappearance" : "Missing"
+    "tabs": {
+      "lastNews": "Latest News",
+      "missing": "Call for Witnesses",
+      "firstAction": "First Actions",
+      "disappearance": "Missing"
     }
   },
-   "antredPage":{
+  "antredPage": {
     "hero": {
       "title": "ANTRED provides assistance to French victims of a worrying disappearance in the world",
       "description": "Support for families, mobilization of experts, and concrete actions to find our missing loved ones abroad.",
@@ -182,18 +182,22 @@
     },
     "contact": {
       "title": "Contact Us",
-      "text" :"Are you a reporter? For any request, please mention 'Press Inquiry' in the subject of your email."
+      "text": "Are you a reporter? For any request, please mention 'Press Inquiry' in the subject of your email."
     }
   },
-  "practicalAdvice":{
-    "title" :"Discover our articles <br/> and expert advice",
+  "practicalAdvice": {
+    "title": "Discover our articles <br/> and expert advice",
     "subtitle": "Analysis, recommendations, and resources to act effectively in case of disappearance abroad.",
     "firstSection": {
-      "title" :"All our articles"
+      "title": "All our articles"
     },
-    "secondSection":  {
-    "title" : "Expert Insights"
-  }
-
+    "secondSection": {
+      "title": "Expert Insights"
+    }
+  },
+  "disappearance" : {
+    "title" : "A Solidarity Network to Give More Chances to Searches.",
+    "subtitle" : "Each search notice is a hope for families facing the disappearance of a loved one far from home. This page groups these notices to raise awareness and mobilize each of us. By sharing these alerts, you directly contribute to the searches and support for families in this ordeal. Together, let's do everything possible to bring these people back to those who are waiting for them. To go further, a donation can help finance the searches and support families in their quest for truth.",
+    "button": "Help Us"
   }
 }

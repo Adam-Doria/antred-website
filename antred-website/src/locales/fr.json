@@ -197,5 +197,22 @@
     "secondSection": {
       "title": "Paroles d'Expert"
     }
+  },
+  "disappearance" : {
+    "title" : "Un réseau solidaire pour donner une chance de plus aux recherches.",
+    "subtitle" : "Chaque avis de recherche est un espoir pour les familles confrontées à la disparition d’un proche loin de chez eux. Cette page regroupe ces avis pour sensibiliser et mobiliser chacun d’entre nous. En partageant ces alertes, vous contribuez directement aux recherches et au soutien des familles dans cette épreuve. Ensemble, faisons tout notre possible pour ramener ces personnes près de ceux qui les attendent.Pour aller plus loin, un don peut aider à financer les recherches et soutenir les familles dans leur quête de vérité.",
+    "button": "Nous aider"
+  },
+  "helpUs":{
+    "title" : "Aidez-nous à agir",
+    "subtitle": "Vos dons font avancer les recherches et renforcent le soutien aux familles.",
+    "description":"Grâce à votre aide, l'ANTRED peut financer des actions concrètes : diffusion des avis de recherche, soutien juridique, et logistique sur le terrain. Avec vous, nous pouvons offrir plus d’espoir aux familles dans l’attente.",
+    "donate": "Faites un don",
+    "joinUs" : "Adhérez à l'association",
+    "contact": {
+      "title" : "Devenez bénévole",
+      "text": "Juristes, interprètes, développeurs… pour proposer vos compétences et les mettre au service des victimes"
+    },
+    "faq":"Foire aux questions"
   }
 }
