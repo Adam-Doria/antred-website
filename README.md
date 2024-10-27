@@ -13,9 +13,9 @@ ANTRED is an association dedicated to the search and support of families of miss
 ## Tech Stack
 
 - **Frontend:** Next.js for server-side rendering and a fast, interactive user experience.
-- **Backend:** Node.js used for managing backend interactions and API.
-- **Database:** Supabase for simplified PostgreSQL management with authentication features.
-- **Docker** for containerization and deployment simplification.
+- **Backend:** Next while needing a true backend.
+- **Database:** Supabase for simplified PostgreSQL management with authentication feature, use kisely as query builder
+
 
 ## Installing Dependencies
 
@@ -33,14 +33,6 @@ To start the development server:
 pnpm run dev:all
 ```
 
-## Dockerization
-
-<!-- To build the Docker image and run the container:
-
-```bash
-docker-compose up --build
-``` -->
-
 ## Tests
 
 <!-- To run the tests:
@@ -51,7 +43,7 @@ pnpm run test
 
 ## Deployment
 
-<!-- @todo => GCP -->
+Vercel Deployment.
 
 ## Contribution
 
