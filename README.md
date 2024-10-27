@@ -2,7 +2,7 @@
 
 ## Project Description
 
-ANTRED is an association dedicated to the search and support of families of missing persons abroad. This project aims to provide a comprehensive platform that facilitates communication, information, and support for affected families. The website offers features such as posting missing person notices, accessing information about missing persons, and managing donations and fundraising campaigns.
+ANTRED is a french association dedicated to the search and support of families of missing persons abroad. This project aims to provide a comprehensive platform that facilitates communication, information, and support for affected families. The website offers features such as posting missing person notices, accessing information about missing persons, and managing donations and fundraising campaigns.
 
 ## Objectives
 
