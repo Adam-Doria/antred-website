@@ -117,8 +117,8 @@
       "volonteer": "Devenir bénévole"
     }
   },
-  "notFound":{
-    "text":"Oups ! La page que vous demandez n'existe pas.",
+  "notFound": {
+    "text": "Oups ! La page que vous demandez n'existe pas.",
     "button": "Retour à l'accueil"
   },
   "homepage": {
@@ -185,7 +185,17 @@
     },
     "contact": {
       "title": "Contactez-Nous",
-      "text" :"Vous êtes journaliste ? Pour toute demande, veuillez mentionner 'Demande de presse' dans l’objet de votre email."
-    } 
+      "text": "Vous êtes journaliste ? Pour toute demande, veuillez mentionner 'Demande de presse' dans l’objet de votre email."
+    }
+  },
+  "practicalAdvice": {
+    "title": "Découvrez nos articles <br/> et les conseils de nos experts",
+    "subtitle": "Analyses, recommandations et ressources pour agir efficacement en cas de disparition à l’étranger.",
+    "firstSection": {
+      "title": "Tous nos articles"
+    },
+    "secondSection": {
+      "title": "Paroles d'Expert"
+    }
   }
 }

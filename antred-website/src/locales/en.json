@@ -184,5 +184,16 @@
       "title": "Contact Us",
       "text" :"Are you a reporter? For any request, please mention 'Press Inquiry' in the subject of your email."
     }
+  },
+  "practicalAdvice":{
+    "title" :"Discover our articles <br/> and expert advice",
+    "subtitle": "Analysis, recommendations, and resources to act effectively in case of disappearance abroad.",
+    "firstSection": {
+      "title" :"All our articles"
+    },
+    "secondSection":  {
+    "title" : "Expert Insights"
+  }
+
   }
 }
