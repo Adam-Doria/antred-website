@@ -30,9 +30,9 @@ const reviews = [
   },
   {
     name: 'press2',
-    body: 'Unis pour Tiphaine et l’ANTRED pour la recherche de Français disparus à l’étranger ',
-    img: 'lesfrancais.webp',
-    src: 'https://lesfrancais.press/unis-pour-tiphaine-et-lantred-pour-la-recherche-de-francais-disparus-a-letranger/'
+    body: 'Vienne : une nouvelle association créée pour aider les familles de disparus',
+    img: 'lanouvellerepublique.svg',
+    src: 'https://www.lanouvellerepublique.fr/poitiers/vienne-une-nouvelle-association-creee-pour-aider-les-familles-de-disparus'
   },
   {
     name: 'press3',

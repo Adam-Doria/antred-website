@@ -19,60 +19,61 @@ type FooterMenuProps = {
 export const PRACTICAL_ADVICE: MenuItem[] = [
   {
     title: 'practicalAdvice.whatToDo',
-    href: '/conseils-pratiques/que-faire-en-cas-de-disparition'
+    href: '/conseils-pratiques/1/Que%20faire%20en%20cas%20de%20disparition%20d’un%20proche%20à%20l’étranger%20'
   },
   {
     title: 'practicalAdvice.legalHelp',
-    href: '/conseils-pratiques/aide-juridique'
+    href: '/conseils-pratiques'
   },
   {
     title: 'practicalAdvice.createMissingNotice',
-    href: '/conseils-pratiques/creer-un-avis-de-disparition'
+    href: '/conseils-pratiques'
   },
   {
     title: 'practicalAdvice.fundraising',
-    href: '/conseils-pratiques/lever-des-fonds'
+    href: '/conseils-pratiques'
   },
   {
     title: 'practicalAdvice.usefulLinks',
-    href: '/conseils-pratiques/liens-utiles'
+    href: '/conseils-pratiques'
   },
   {
     title: 'practicalAdvice.resources',
-    href: '/conseils-pratiques/ressources'
+    href: '/conseils-pratiques'
   }
 ]
 
 export const ABOUT_US: MenuItem[] = [
-  { title: 'aboutUs.whoWeAre', href: '/qui-sommes-nous' },
-  { title: 'aboutUs.ourMission', href: '/notre-mission' },
-  { title: 'aboutUs.team', href: '/equipe' },
-  { title: 'aboutUs.partners', href: '/partenaires' }
+  { title: 'aboutUs.whoWeAre', href: '/antred#qui-sommes-nous' },
+  { title: 'aboutUs.ourMission', href: '/antred#mission' },
+  { title: 'aboutUs.team', href: '/antred#equipe' },
+  { title: 'aboutUs.partners', href: '/antred#partenaires' }
 ]
 
 export const DISAPPEARANCES: MenuItem[] = [
   {
     title: 'disappearances.theyDisappeared',
-    href: '/disparitions/ils-ont-disparu'
+    href: '/disparitions'
   },
   {
     title: 'disappearances.searchByCountry',
-    href: '/disparitions/recherche-par-pays'
+    href: '/disparitions'
   },
   {
     title: 'disappearances.familyNews',
-    href: '/disparitions/actualites-familles'
+    href: '/disparitions'
   },
   {
     title: 'disappearances.expertAdvice',
-    href: '/disparitions/conseils-experts'
+    href: '/disparitions'
   }
 ]
 
 export const HELP_US: MenuItem[] = [
   { title: 'helpUs.donate', href: '/nous-aider#faire-un-don' },
   { title: 'helpUs.joinUs', href: 'nous-aider#nous-rejoindre' },
-  { title: 'helpUs.volonteer', href: '/nous-aider#devenir-benevole' }
+  { title: 'helpUs.volonteer', href: '/nous-aider#devenir-benevole' },
+  { title: 'helpUs.faq', href: '/nous-aider#faq' }
 ]
 
 export const SECTIONS: FooterSection[] = [

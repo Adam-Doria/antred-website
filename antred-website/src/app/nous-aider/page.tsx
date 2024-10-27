@@ -88,7 +88,7 @@ export default function Page() {
           </div>
         </div>
       </div>
-      <section className="w-full">
+      <section className="w-full" id="donate">
         <h2 className="inline-flex">
           {t('donate')}
           <GoHeartFill className="mx-4 text-accent" />
@@ -110,7 +110,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="text-center w-full my-4" id="contact">
+      <section className="text-center w-full my-4" id="volunteer">
         <div className="container  p-4 lg:p-6  w-full  bg-brand-radial rounded-sm lg:flex-row space-y-4">
           <h2 className="text-primary-foreground font-normal text-center text-pretty ">
             {t('contact.title')}
@@ -133,7 +133,7 @@ export default function Page() {
           <Contact class="w-4/5 space-x-2  md:h-10 md:space-x-2 md:w-2/5" />
         </div>
       </section>
-      <section className="w-full">
+      <section className="w-full" id="faq">
         <h2>{t('faq')}</h2>
         <FAQ />
       </section>

@@ -111,7 +111,8 @@
       "button": "Help Us",
       "donate": "Make a Donation",
       "joinUs": "Join Us",
-      "volonteer": "Become a Volunteer"
+      "volonteer": "Become a Volunteer",
+      "faq": "F.A.Q"
     }
   },
   "notFound": {
@@ -195,9 +196,21 @@
       "title": "Expert Insights"
     }
   },
-  "disappearance" : {
-    "title" : "A Solidarity Network to Give More Chances to Searches.",
-    "subtitle" : "Each search notice is a hope for families facing the disappearance of a loved one far from home. This page groups these notices to raise awareness and mobilize each of us. By sharing these alerts, you directly contribute to the searches and support for families in this ordeal. Together, let's do everything possible to bring these people back to those who are waiting for them. To go further, a donation can help finance the searches and support families in their quest for truth.",
+  "disappearance": {
+    "title": "A Solidarity Network to Give More Chances to Searches.",
+    "subtitle": "Each search notice is a hope for families facing the disappearance of a loved one far from home. This page groups these notices to raise awareness and mobilize each of us. By sharing these alerts, you directly contribute to the searches and support for families in this ordeal. Together, let's do everything possible to bring these people back to those who are waiting for them. To go further, a donation can help finance the searches and support families in their quest for truth.",
     "button": "Help Us"
+  },
+  "helpUs": {
+    "title": "Help Us Take Action",
+    "subtitle": "Your donations advance the searches and strengthen support for families.",
+    "description": "Thanks to your help, ANTRED can fund concrete actions: disseminating search notices, providing legal support, and logistical support on the ground. With you, we can offer more hope to families in waiting.",
+    "donate": "Make a Donation",
+    "joinUs": "Join the Association",
+    "contact": {
+      "title": "Become a Volunteer",
+      "text": "Lawyers, interpreters, developers… to offer your skills and put them at the service of victims"
+    },
+    "faq": "Frequently Asked Questions"
   }
 }

@@ -19,32 +19,32 @@ export type MenuItem = {
 export const PRACTICAL_ADVICE: MenuItem[] = [
   {
     title: 'navigation.practicalAdvice.whatToDo.title',
-    href: '/conseils-pratiques/que-faire-en-cas-de-disparition',
+    href: '/conseils-pratiques/1/Que%20faire%20en%20cas%20de%20disparition%20d’un%20proche%20à%20l’étranger%20',
     description: 'navigation.practicalAdvice.whatToDo.description'
   },
   {
     title: 'navigation.practicalAdvice.legalHelp.title',
-    href: '/conseils-pratiques/aide-juridique',
+    href: '/conseils-pratiques',
     description: 'navigation.practicalAdvice.legalHelp.description'
   },
   {
     title: 'navigation.practicalAdvice.createMissingNotice.title',
-    href: '/conseils-pratiques/creer-un-avis-de-disparition',
+    href: '/conseils-pratiques',
     description: 'navigation.practicalAdvice.createMissingNotice.description'
   },
   {
     title: 'navigation.practicalAdvice.fundraising.title',
-    href: '/conseils-pratiques/lever-des-fonds',
+    href: '/conseils-pratiques',
     description: 'navigation.practicalAdvice.fundraising.description'
   },
   {
     title: 'navigation.practicalAdvice.usefulLinks.title',
-    href: '/conseils-pratiques/liens-utiles',
+    href: '/conseils-pratiques',
     description: 'navigation.practicalAdvice.usefulLinks.description'
   },
   {
     title: 'navigation.practicalAdvice.resources.title',
-    href: '/conseils-pratiques/ressources',
+    href: '/conseils-pratiques',
     description: 'navigation.practicalAdvice.resources.description'
   }
 ]
@@ -52,22 +52,22 @@ export const PRACTICAL_ADVICE: MenuItem[] = [
 export const DISAPPEARANCES: MenuItem[] = [
   {
     title: 'navigation.disappearances.theyDisappeared.title',
-    href: '/disparitions/ils-ont-disparu',
+    href: '/disparitions',
     description: 'navigation.disappearances.theyDisappeared.description'
   },
   {
     title: 'navigation.disappearances.searchByCountry.title',
-    href: '/disparitions/recherche-par-pays',
+    href: '/disparitions',
     description: 'navigation.disappearances.searchByCountry.description'
   },
   {
     title: 'navigation.disappearances.familyNews.title',
-    href: '/disparitions/actualites-familles',
+    href: '/disparitions',
     description: 'navigation.disappearances.familyNews.description'
   },
   {
     title: 'navigation.disappearances.expertAdvice.title',
-    href: '/disparitions/conseils-experts',
+    href: '/disparitions',
     description: 'navigation.disappearances.expertAdvice.description'
   }
 ]
