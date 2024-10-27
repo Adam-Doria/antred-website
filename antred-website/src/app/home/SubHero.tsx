@@ -42,7 +42,8 @@ const tabs = [
     description:
       'Dès les premiers instants de la disparition, le compte à rebours est lancé. La vie de la personne disparue est en jeu. Le démarrage d’une enquête au plus tôt est crucial. Quels sont les premiers gestes d’urgence à accomplir ? Voici nos conseils :',
     buttonText: `Lire l'article`,
-    buttonLink: '/images/presse/notfound',
+    buttonLink:
+      '/conseils-pratiques/1/Que%20faire%20en%20cas%20de%20disparition%20d’un%20proche%20à%20l’étranger%20',
     imageUrl: '/images/presse/emergency.jpg',
     imageAlt: 'Première actions à mener'
   },
@@ -90,7 +91,7 @@ export const SubHeroCard: FC<SubHeroProps> = ({
           {description}
         </div>
         {buttonText && buttonLink && (
-          <Link href={buttonLink}>
+          <Link href={buttonLink} target="_blank" rel="noopener noreferrer">
             <Button className="rounded-xl bg-brand-700 text-background font-bold hover:bg-primary/90 hover:text-accent-foreground my-4">
               {buttonText}
               <ArrowUpRight />

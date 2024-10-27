@@ -144,15 +144,13 @@ export const parolesExpert: Article[] = [
   {
     id: '3',
     tag: 'Expertise Légale',
-    title:
-      "L'importance du conseiller forensique dans les affaires de disparition",
-    summary:
-      "Dans les affaires de disparition, l'expertise d'un conseiller forensique peut faire la différence entre une enquête réussie et une impasse. Découvrez pourquoi son rôle est essentiel.",
+    title: `L'importance du conseiller forensique dans les affaires de disparition`,
+    summary: `Dans les affaires de disparition, l'expertise d'un conseiller forensique peut faire la différence entre une enquête réussie et une impasse. Découvrez pourquoi son rôle est essentiel.`,
     author: 'Sébastien Aguilar',
-    date: "aujourd'hui",
+    date: `aujourd'hui`,
     cover: {
       src: '/images/presse/forenseekcover.jpg',
-      alt: "Image symbolisant l'enquête en cas de disparition"
+      alt: `Image symbolisant l'enquête en cas de disparition`
     },
     content: {
       firstPart: `
@@ -192,7 +190,7 @@ export const parolesExpert: Article[] = [
     images: [
       {
         src: '/images/presse/forenseek2.jpeg',
-        alt: "Image symbolisant l'enquête en cas de disparition"
+        alt: `Image symbolisant l'enquête en cas de disparition`
       }
     ]
   }
