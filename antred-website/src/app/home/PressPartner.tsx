@@ -36,9 +36,9 @@ const reviews = [
   },
   {
     name: 'press3',
-    body: 'Unis pour Tiphaine et l’ANTRED pour la recherche de Français disparus à l’étranger ',
-    img: 'lesfrancais.webp',
-    src: 'https://lesfrancais.press/unis-pour-tiphaine-et-lantred-pour-la-recherche-de-francais-disparus-a-letranger/'
+    body: `Les proches de Tiphaine Veron lancent une association pour aider les familles de disparus à l'étranger`,
+    img: 'RFI.svg',
+    src: 'https://www.rfi.fr/fr/france/20230729-les-proches-de-tiphaine-veron-lancent-une-association-pour-aider-les-familles-de-disparus-%C3%A0-l-%C3%A9tranger'
   }
 ]
 
@@ -65,14 +65,20 @@ const ReviewCardDeux = ({
           'dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]'
         )}
       >
-        <div className="flex flex-col items-center justify-center h-[180px]">
-          <Image
-            height={32}
-            width={281}
-            src={`/images/presse/${img}`}
-            alt={`logo de ${img}`}
-          />
-          <blockquote className="m-2 text-sm text-pretty">{body}</blockquote>
+        <div className="flex flex-col items-center justify-center overflow-hidden relative h-[180px]">
+          <div className="h-1/2 w-full relative">
+            <Image
+              src={`/images/presse/${img}`}
+              alt={`logo de ${img}`}
+              layout="fill"
+              className="object-contain"
+            />
+          </div>
+          <div className="flex-1 mt-4  text-center text-ellipsis">
+            <blockquote className="text-base italic font-light text-gray-700 dark:text-gray-300 leading-relaxed">
+              {body}
+            </blockquote>
+          </div>
         </div>
       </figure>
     </a>
