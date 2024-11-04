@@ -32,7 +32,24 @@ export const metadata: Metadata = {
     { name: 'Forenseek', url: 'https://www.forenseek.fr' },
     { name: 'Adam DRICI', url: 'https://www.forenseek.fr' },
     { name: 'Sébastien Aguilar', url: 'https://www.forenseek.fr' }
-  ]
+  ],
+  metadataBase: new URL('https://www.antred.fr'),
+  alternates: {
+    canonical: '/'
+  },
+  openGraph: {
+    title: `ANTRED - Association pour la Recherche des Français Disparus à l'Étranger`,
+    description: `L'Association Nationale Tiphaine pour la Recherche à l'Étranger des Disparus (ANTRED) apporte son soutien aux familles de Français disparus à l'étranger, en les aidant dans les démarches administratives, les recherches internationales et la sensibilisation des autorités pour une meilleure gestion de ces situations critiques.`,
+    url: 'https://www.antred.fr',
+    siteName: 'antred.fr',
+    type: 'website',
+    images: '/opengraph-image.jpg'
+  },
+  twitter: {
+    title: `ANTRED - Association pour la Recherche des Français Disparus à l'Étranger`,
+    description: `L'Association Nationale Tiphaine pour la Recherche à l'Étranger des Disparus (ANTRED) apporte son soutien aux familles de Français disparus à l'étranger, en les aidant dans les démarches administratives, les recherches internationales et la sensibilisation des autorités pour une meilleure gestion de ces situations critiques.`,
+    images: '/twitter-image.jpg'
+  }
 }
 
 export default async function RootLayout({
