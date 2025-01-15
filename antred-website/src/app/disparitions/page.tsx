@@ -32,11 +32,11 @@ function MissingCard(props: CardProps) {
       />
 
       <div className="  pointer-events-none filter-none relative z-10 flex flex-col justify-end h-96 p-4 bg-transparent">
-        <div className="text-primary-foreground">
-          <h3 className="font-bold w-fit text-primary-foreground bg-primary/55 rounded-lg px-2  group-hover:bg-foreground/55">
+        <div className="text-dark-foreground">
+          <h3 className="font-bold w-fit rounded-lg px-2  ">
             {`${props?.name} ${props?.lastname}`}
           </h3>
-          <p className="font-bold text-base w-fit bg-accent/55 rounded-lg px-2 text-gray-50 my-4">
+          <p className="font-bold text-base w-fit bg-accent/55 rounded-lg px-2 my-4">
             {props?.country}
           </p>
         </div>
@@ -53,13 +53,13 @@ export default function Page() {
         <div className="relative w-full flex flex-col ">
           <h2
             dangerouslySetInnerHTML={{ __html: t.raw('title') }}
-            className="text-primary-foreground   mb-4 text-center"
+            className="text-dark-foreground   mb-4 text-center"
           />
-          <p className="text-lg text-primary-foreground text-pretty  mb-4  mx-auto">
+          <p className="text-lg text-dark-secondaryForeground text-pretty  mb-4  mx-auto">
             {t('subtitle')}
           </p>
           <Link href={'/nous-aider'} className=" mx-auto">
-            <Button className="rounded-xl text-lg p-8 bg-accent  border-none mx-auto font-bold hover:bg-accent/70 my-4">
+            <Button className="rounded-xl text-lg text-white p-8 bg-accent  border-none mx-auto font-bold hover:bg-accent/70 my-4">
               {t('button')}
               <ArrowUpRight />
             </Button>

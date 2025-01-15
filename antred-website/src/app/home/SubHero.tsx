@@ -92,8 +92,7 @@ export const SubHeroCard: FC<SubHeroProps> = ({
         </div>
         {buttonText && buttonLink && (
           <Link href={buttonLink} target="_blank" rel="noopener noreferrer">
-            <Button
-              className="rounded-xl  font-bold   my-4">
+            <Button className="rounded-xl  font-bold   my-4">
               {buttonText}
               <ArrowUpRight />
             </Button>

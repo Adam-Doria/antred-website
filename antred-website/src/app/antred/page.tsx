@@ -41,7 +41,7 @@ export default function Page() {
 
       <section className="pt-10" id="qui-sommes-nous">
         <h2 className="text-center">{t('story.title')}</h2>
-        <div className="text-md text-gray-600 text-pretty pt-4 space-y-4">
+        <div className="text-md text-foreground text-pretty pt-4 space-y-4">
           <p>{t('story.paragraph1')}</p>
           <p>{t('story.paragraph2')}</p>
           <p>{t('story.paragraph3')}</p>
@@ -62,7 +62,7 @@ export default function Page() {
 
       <section id="notre-mission">
         <h2 className="text-center">{t('mission.title')}</h2>
-        <div className="text-md text-gray-600 text-pretty py-4 space-y-4">
+        <div className="text-md text-foreground text-pretty py-4 space-y-4">
           <p>{t('mission.paragraph1')}</p>
           <p>{t('mission.paragraph2')}</p>
           <ul className="list-inside list-disc px-6 space-y-2">
@@ -94,14 +94,14 @@ export default function Page() {
 
       <section className="text-center w-full my-4" id="contact">
         <div className="container  p-4 lg:p-6  w-full  bg-brand-radial rounded-sm lg:flex-row space-y-4">
-          <h2 className="text-primary-foreground font-normal text-center text-pretty ">
+          <h2 className="text-dark-foreground font-normal text-center text-pretty ">
             {t('contact.title')}
           </h2>
 
-          <div className="text-gray-300 text-md  text-pretty md:text-lg md:w-4/5 md:mx-auto">
+          <div className="text-dark-secondaryForeground text-md  text-pretty md:text-lg md:w-4/5 md:mx-auto">
             {t('contact.text')}
           </div>
-          <div className="flex  text-primary-foreground tet-bold flex-col w-full space-around text-md md:flex-row md:text-lg md:items-center md:w-4/5 md:justify-around md:mx-auto">
+          <div className="flex  text-dark-secondaryForeground tet-bold flex-col w-full space-around text-md md:flex-row md:text-lg md:items-center md:w-4/5 md:justify-around md:mx-auto">
             <a
               href="mailto:contact@antred.fr"
               className="inline-flex lg:items-center mb-4 "
