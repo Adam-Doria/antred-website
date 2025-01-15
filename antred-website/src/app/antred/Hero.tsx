@@ -16,10 +16,7 @@ export const Hero = () => {
           {t('hero.description')}
         </div>
         <Link href={'/antred#contact'}>
-          <Button
-            variant={'outline'}
-            className="rounded-xl text-black font-bold hover:bg-primary/90 hover:text-accent-foreground my-4"
-          >
+          <Button variant={'light'}>
             {t('hero.button')}
             <ArrowDownRight />
           </Button>

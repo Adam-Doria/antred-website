@@ -18,7 +18,7 @@ const tabs = [
     date: '21 juillet 2024',
     title: lorem10,
     description: lorem50,
-    imageUrl: '/logos/colored-icon.png',
+    imageUrl: '/logos/colored-icon-white.png',
     imageAlt: `logo de l'anted`
   },
   {
@@ -83,30 +83,31 @@ export const SubHeroCard: FC<SubHeroProps> = ({
   imageAlt
 }) => {
   return (
-    <div className="container flex my-4 p-0  flex-col-reverse w-full bg-white rounded-sm lg:flex-row lg:h-[500px]">
+    <div className="container  flex my-4 p-0  flex-col-reverse w-full bg-secondaryBackground rounded-sm lg:flex-row lg:h-[500px]">
       <div className="px-8 py-4 lg:pt-8 lg:w-[55%] lg:flex lg:flex-col lg:justify-center lg:space-y-4">
         <div>{date}</div>
         <h3 className="font-normal pt-6 lg:pt-0">{title}</h3>
-        <div className="text-md text-gray-600 py-2 text-ellipsis">
+        <div className="text-md text-secondaryForeground py-2 text-ellipsis">
           {description}
         </div>
         {buttonText && buttonLink && (
           <Link href={buttonLink} target="_blank" rel="noopener noreferrer">
-            <Button className="rounded-xl bg-brand-700 text-background font-bold hover:bg-primary/90 hover:text-accent-foreground my-4">
+            <Button
+              className="rounded-xl  font-bold   my-4">
               {buttonText}
               <ArrowUpRight />
             </Button>
           </Link>
         )}
       </div>
-      <div className="w-full h-56 lg:h-full rounded-xl lg:w-[45%]   relative overflow-hidden">
-        <div className="absolute inset-0 h-full rounded-xl  lg:h-full lg:w-full">
+      <div className="w-full h-56  lg:w-[45%] lg:h-full relative  ">
+        <div className=" absolute inset-0 h-full  ">
           <Image
             src={imageUrl}
             fill
             alt={imageAlt}
             objectFit="cover"
-            className="p-4 rounded-xl "
+            className="rounded-lg p-4 "
           />
         </div>
       </div>
@@ -124,7 +125,7 @@ export const SubHero = () => {
             <TabsTrigger
               key={tab.value + index}
               value={tab.value}
-              className="w-full  grid-cols-2 text-xs font-medium  px-2 py-2 md:text-sm md:px-6 md:py-4 rounded-full border hover:scale-110 border-brand-700 data-[state=active]:bg-brand-700 data-[state=active]:text-white data-[state=active]:border-brand-700 data-[state=inactive]:text-brand-700 data-[state=inactive]:bg-transparent"
+              className="w-full  grid-cols-2 text-xs font-bold  px-2 py-2 md:text-sm md:px-6 md:py-4 rounded-full border border-brand hover:scale-110  data-[state=active]:bg-brand data-[state=active]:border-brand data-[state=inactive]:text-brand data-[state=inactive]:bg-transparent"
             >
               {' '}
               {t(tab.label)}
