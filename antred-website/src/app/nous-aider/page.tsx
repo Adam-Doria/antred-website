@@ -71,7 +71,7 @@ export default function Page() {
     <main className="flex min-h-screen flex-col items-center overflow-hidden justify-between pt-24 px-4 my-4 space-y-8">
       <div className="container flex p-0 flex-col w-full bg-brand-radial rounded-sm lg:flex-row lg:h-[500px] lg:rounded-xl">
         <div className="px-8  lg:pt-8 lg:w-1/2 lg:flex lg:flex-col lg:justify-center lg:space-y-4">
-          <h2 className="text-primary-foreground font-normal  pt-6 lg:pt-0 ">
+          <h2 className="text-dark-foreground font-normal  pt-6 lg:pt-0 ">
             {t('title')}
           </h2>
           <h3 className="text-dark-foreground   mb-4 "> {t('subtitle')} </h3>
@@ -114,14 +114,14 @@ export default function Page() {
 
       <section className="text-center w-full my-4" id="volunteer">
         <div className="container  p-4 lg:p-6  w-full  bg-brand-radial rounded-sm lg:flex-row space-y-4">
-          <h2 className="text-primary-foreground font-normal text-center text-pretty ">
+          <h2 className="text-dark-foreground font-normal text-center text-pretty ">
             {t('contact.title')}
           </h2>
 
-          <div className="text-gray-300 text-md  text-pretty md:text-lg md:w-4/5 md:mx-auto">
+          <div className="text-dark-secondaryForeground 0 text-md  text-pretty md:text-lg md:w-4/5 md:mx-auto">
             {t('contact.text')}
           </div>
-          <div className="flex  text-primary-foreground tet-bold flex-col w-full space-around text-md md:flex-row md:text-lg md:items-center md:w-4/5 md:justify-around md:mx-auto">
+          <div className="flex  text-dark-secondaryForeground  text-bold flex-col w-full space-around text-md md:flex-row md:text-lg md:items-center md:w-4/5 md:justify-around md:mx-auto">
             <a
               href="mailto:contact@antred.fr"
               className="inline-flex lg:items-center mb-4 "

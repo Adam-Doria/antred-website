@@ -58,11 +58,11 @@ const ReviewCardDeux = ({
     <a href={src} target="_blank" rel="noopener noreferrer">
       <figure
         className={cn(
-          'relative w-64 cursor-pointer overflow-hidden rounded-xl border p-4 ',
+          'relative w-64 cursor-pointer overflow-hidden rounded-xl border p-4 bg-background ',
           // light styles
-          'border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]',
+          'border-gray-950/[.1]  hover:bg-gray-950/[.05]',
           // dark styles
-          'dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]'
+          'dark:border-green-950 dark:hover:bg-secondaryBackground'
         )}
       >
         <div className="flex flex-col items-center justify-center overflow-hidden relative h-[180px]">
@@ -92,13 +92,13 @@ export function PressAndPartner() {
       <h2 className="mt-4"> {t('partnerTitle')} </h2>
       <h4> {t('partnerSubtitle')}</h4>
       <div className="relative flex h-[250] w-full flex-col items-center justify-center overflow-hidden my-8">
-        <Marquee pauseOnHover className="[--duration:40s]">
+        <Marquee pauseOnHover className=" [--duration:40s]">
           {Partner.map((review) => (
             <ReviewCardDeux key={review.name} {...review} />
           ))}
         </Marquee>
-        <div className="pointer-events-none md:absolute md:inset-y-0 md:left-0 md:w-1/12 md:bg-gradient-to-r md:from-background/90 dark:from-background"></div>
-        <div className="pointer-events-none md:absolute md:inset-y-0 md:right-0 md:w-1/12 md:bg-gradient-to-l md:from-background/90 dark:from-background"></div>
+        <div className="pointer-events-none md:absolute md:inset-y-0 md:left-0 md:w-1/12 md:bg-gradient-to-r md:from-background"></div>
+        <div className="pointer-events-none md:absolute md:inset-y-0 md:right-0 md:w-1/12 md:bg-gradient-to-l md:from-background"></div>
       </div>
 
       <h2> {t('pressTitle')} </h2>
@@ -108,8 +108,8 @@ export function PressAndPartner() {
             <ReviewCardDeux key={review.name} {...review} />
           ))}
         </Marquee>
-        <div className="pointer-events-none md:absolute md:inset-y-0 md:left-0 md:w-1/12 md:bg-gradient-to-r md:from-background/90 dark:from-background"></div>
-        <div className="pointer-events-none md:absolute md:inset-y-0 md:right-0 md:w-1/12 md:bg-gradient-to-l md:from-background/90 dark:from-background"></div>
+        <div className="pointer-events-none md:absolute md:inset-y-0 md:left-0 md:w-1/12 md:bg-gradient-to-r md:from-background"></div>
+        <div className="pointer-events-none md:absolute md:inset-y-0 md:right-0 md:w-1/12 md:bg-gradient-to-l md:from-background"></div>
       </div>
     </>
   )

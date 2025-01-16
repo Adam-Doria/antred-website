@@ -16,7 +16,7 @@ export const Footer = () => {
     <>
       <div className=" w-full rounded-lg bg-brand-radial p-4">
         <div className=" w-full flex justify-between p-1  sm:p-2">
-          <LocaleSwitch class="hidden sm:flex sm:text-white sm:bg-primary" />
+          <LocaleSwitch class="hidden sm:flex sm:text-white sm:bg-dark-background text-brand" />
           <Link href="/" className="relative w-[100px] ">
             <Logo />
           </Link>

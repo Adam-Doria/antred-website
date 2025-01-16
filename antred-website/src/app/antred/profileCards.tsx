@@ -17,7 +17,7 @@ export default function ProfileCard({
   facebookUrl
 }: CardProps) {
   return (
-    <div className="w-full max-w-sm my-4 rounded-lg overflow-hidden shadow-lg p-4 bg-white">
+    <div className="w-full max-w-sm my-4 rounded-lg overflow-hidden shadow-lg p-4 bg-white dark:bg-dark-background">
       <div className="relative rounded-lg h-64 w-full bg-background">
         <Image
           src={imageUrl}
@@ -27,8 +27,8 @@ export default function ProfileCard({
         />
       </div>
       <div className="px-6 pt-4">
-        <div className="font-bold text-xl mb-2">{name}</div>
-        <p className="bg-brand-700 rounded-full px-3 pt-1 text-sm font-semibold text-gray-100 inline-block">
+        <div className="font-bold text-xl text-foreground mb-2">{name}</div>
+        <p className="bg-brand-700 rounded-full px-3 pt-1 text-sm font-semibold text-secondaryForeground inline-block">
           {title}
         </p>
       </div>

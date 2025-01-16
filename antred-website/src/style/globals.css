@@ -4,11 +4,51 @@
 
 @layer base {
   :root {
-    --background: 30 55% 97%; /* Fond général : #FFFAF7 */
-    --foreground: 0 0% 26%; /* Texte principal : #434343 */
+    /* **General** */
+    --background: 30 55% 97%;
+    --background-secondary: 0 0% 100%;
+    --fixed-background-dark: 169 28% 26%;
+    --fixed-background-light: 0 0% 100%;
 
+    /* **Actions** */
+    --action-background: 169 28% 26%; /* #30554E */
+    --action-background-hover: 168 30% 31%; /*hsl(168 30.40% 31.60%) */
+    --action-background-disabled: 162 8% 78%; /* #B7D8CE */
+    --action-foreground: 19 100% 96%; /* #FFF2EC */
+    --action-foreground-hover: 19 100% 96%; /* #FFFFFF */
+    --action-foreground-disabled: 169 28% 26%; /* #FFFFFF */
+
+    --fixed-action-background-light: 0 0% 100%; /* #FFFFFF */
+    --fixed-action-background-light-hover: 0 0% 90%; /* #d0d5dd */
+    --fixed-action-background-light-disabled: 0 0% 100%; /* #FFFFFF */
+    --fixed-action-foreground-light: 167 51% 7% ; /* ##091C18 */
+    --fixed-action-foreground-light-disabled: 216 3% 84%; /* #d0d5dd */
+
+    --fixed-action-background-alert: 352 77% 54%; /* #E42E47 */
+    --fixed-action-background-alert-hover: 4 6% 94%; /* #FEE4E2 */
+    --fixed-action-foreground-alert: 0 0% 100%; /* #FFFFFF */
+
+    /* **Cards** */
     --card: 0 0% 100%; /* Fond des cartes : blanc */
     --card-foreground: 0 0% 26%; /* Texte principal : #434343 */
+
+    /* **TEXT & ICONS***  */
+    --text-primary: 167 51% 7% 1; /* #091C18 */
+    --text-secondary: 216 18% 34%; /* #475467*/
+    --fixed-text-light: 0 0% 100%; /* #FFFFFF */
+    --fixed-text-light-secondary: 19 100% 96%; /*#fff2ec */
+    --fixed-text-dark-primary: 167 51% 7%; /* #091C18 */
+    --fixed-text-dark-secondary: 216 19% 34%; /* #475467 */
+    --text-brand: 162 27% 26%; /* #30554E */
+    --fixed-text-error: 4 77% 40%; /* #B42318 */
+
+    /* **STROKE**  */
+    --border: 214.3 31.8% 91.4%; /* Bordures : gris clair (#E0E0E0) */
+    --border-error: 352 77% 54%; /* #E42E47 */
+    --border-dark: 132 28% 26%; /* #30554E */
+
+    /* TODO SUPPRESS UNSUED COLORS */
+    --foreground: 0 0% 26%; /* Texte principal : #434343 */
 
     --popover: 0 0% 100%; /* Popover : blanc */
     --popover-foreground: 0 0% 26%; /* Texte principal : #434343 */
@@ -32,13 +72,8 @@
     --input: 214.3 31.8% 91.4%; /* Inputs : gris clair */
     --ring: 162 27% 26%; /* Anneau de focus (vert foncé) */
 
-    --radius: 1rem; /* Coins arrondis */
+    --radius: 1.5rem; /* Coins arrondis */
 
-    --chart-1: 12 76% 61%; /* Couleurs des graphiques (exemple) */
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
     /************
     /**PRIMARY**/
     /************
@@ -110,8 +145,7 @@
     /************
     /**Secondary**/
     /************
-    :root {
-  /* Red Ribbon Colors */
+     /* Red Ribbon Colors */
     --red-ribbon-25: #fcfcfd;
     --red-ribbon-50: #f8f9fc;
     --red-ribbon-100: #fae1e5;
@@ -157,44 +191,41 @@
     --gray-gradient-800-900: linear-gradient(90deg, #1d2939, #101828);
     --gray-gradient-800-700: linear-gradient(26.5deg, #1d2939, #344054);
     --gray-gradient-900-600: linear-gradient(45deg, #101828, #475467);
-
   }
-  /*.dark {
-    --background: 168 52% 7%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 348 76% 55%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
-  }*/
+}
+.dark {
+  /* **General** */
+  --background: 167 51% 7%;
+  --background-secondary: 169 28% 26%;
+
+  /* **Actions** */
+  --action-background: 0 0% 100%;
+  --action-background-hover: 0 0% 90%;
+  --action-background-disabled: 0 0% 100%;
+  --action-foreground: 169 28% 26%;
+  --action-foreground-hover: 132 28% 26%;
+  --action-foreground-disabled: 216 16% 84%;
+
+  /* **Cards** */
+  --card: 132 28% 26%; /* #091C18 */
+  --card-foreground: 0 0% 100%; /* #FFFFFF */
+
+  /* **TEXT & ICONS***  */
+  --text-primary: 19 100% 96%; /* #091C18 */
+  --text-secondary: 0 0% 100%; /* #475467*/
+  --text-brand: 19 100% 96% /* #FFF2EC */;
+
+  /* **STROKE**  */
+  --border: 214.3 31.8% 91.4%; /* Bordures : gris clair (#E0E0E0) */
+  --border-error: 352 77% 54%; /* #E42E47 */
+  --border-dark: 132 28% 26%; /* #30554E */
 }
 @layer base {
-  * {
-    @apply border-border;
-  }
   @layer base {
     /* Appliquer la police Montserrat pour tous les paragraphes */
     body {
       font-family: var(--font-montserrat);
-      @apply bg-background text-foreground;
+      @apply bg-background;
     }
 
     /* Titres en --font-bontang */

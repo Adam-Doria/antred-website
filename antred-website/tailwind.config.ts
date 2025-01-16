@@ -19,19 +19,51 @@ const config = {
     },
     extend: {
       colors: {
-        border: 'hsl(var(--border))',
+        /******** */
+        /* **  LIGHT/DARK COLORS ** */
+        /****** */
+
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
+        brand: 'hsl(var(--text-brand))',
         gradient: 'var(--brand-gradient-600-700)',
-        primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))'
+        background: 'hsl(var(--background))',
+        secondaryBackground: 'hsl(var(--background-secondary))',
+        foreground: 'hsl(var(--text-primary))',
+        secondaryForeground: 'hsl(var(--text-secondary))',
+        action: {
+          background: 'hsl(var(--action-background))',
+          hover: 'hsl(var(--action-background-hover))',
+          foreground: 'hsl(var(--action-foreground))',
+          hoverForeground: 'hsl(var(--action-foreground-hover))',
+          disabledForeground: 'hsl(var(--action-foreground-disabled))',
+          disabled: ' hsl(var(--action-background-disabled)'
         },
-        secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
-          foreground: 'hsl(var(--secondary-foreground))'
+        /******** */
+        /* ** FIXED COLOR ELEMENTS ** */
+        /****** */
+
+        alert: {
+          background: 'hsl(var(---fixed-action-background-alert))',
+          foreground: 'hsl(var(---fixed-action-foreground-alert))',
+          backgroundHover: 'hsl(var(---fixed-action-background-alert-hover))'
+        },
+        light: {
+          foreground: 'hsl(var(--fixed-text-dark))',
+          secondaryForeground: 'hsl(var(--fixed-text-dark-secondary))',
+          action: {
+            background: 'hsl(var(--fixed-action-background-light))',
+            hover: 'hsl(var(--fixed-action-background-light-hover))',
+            foreground: 'hsl(var(--fixed-action-foreground-light))',
+            disabledForeground:
+              'hsl(var(--fixed-action-foreground-light-disabled))',
+            disabled: ' hsl(var(--fixed-action-background-light-disabled)'
+          }
+        },
+        dark: {
+          background: 'hsl(var(--fixed-background-dark))',
+          foreground: 'hsl(var(--fixed-text-light))',
+          secondaryForeground: 'hsl(var(--fixed-text-light-secondary))'
         },
         destructive: {
           DEFAULT: 'hsl(var(--destructive))',
@@ -66,7 +98,7 @@ const config = {
           '800': 'var(--gray-800)',
           '900': 'var(--gray-900)'
         },
-        brand: {
+        green: {
           '25': 'var(--brand-25)',
           '50': 'var(--brand-50)',
           '100': 'var(--brand-100)',
@@ -118,19 +150,6 @@ const config = {
           '800': 'var(--success-800)',
           '900': 'var(--success-900)'
         },
-        'red-ribbon': {
-          '25': 'var(--red-ribbon-25)',
-          '50': 'var(--red-ribbon-50)',
-          '100': 'var(--red-ribbon-100)',
-          '200': 'var(--red-ribbon-200)',
-          '300': 'var(--red-ribbon-300)',
-          '400': 'var(--red-ribbon-400)',
-          '500': 'var(--red-ribbon-500)',
-          '600': 'var(--red-ribbon-600)',
-          '700': 'var(--red-ribbon-700)',
-          '800': 'var(--red-ribbon-800)',
-          '900': 'var(--red-ribbon-900)'
-        },
         aztec: {
           '50': 'var(--aztec-50)',
           '100': 'var(--aztec-100)',
@@ -156,27 +175,27 @@ const config = {
           '700': 'var(--bridesmaid-700)',
           '800': 'var(--bridesmaid-800)',
           '900': 'var(--bridesmaid-900)'
+        },
+        redRibbon: {
+          '25': 'var(--red-ribbon-25)',
+          '50': 'var(--red-ribbon-50)',
+          '100': 'var(--red-ribbon-100)',
+          '200': 'var(--red-ribbon-200)',
+          '300': 'var(--red-ribbon-300)',
+          '400': 'var(--red-ribbon-400)',
+          '500': 'var(--red-ribbon-500)',
+          '600': 'var(--red-ribbon-600)',
+          '700': 'var(--red-ribbon-700)',
+          '800': 'var(--red-ribbon-800)',
+          '900': 'var(--red-ribbon-900)'
         }
       },
-      gradientColorStops: {
-        'gray-gradient-600-500': 'var(--gray-gradient-600-500)',
-        'gray-gradient-600-700': 'var(--gray-gradient-600-700)',
-        'gray-gradient-700-800': 'var(--gray-gradient-700-800)',
-        'gray-gradient-800-900': 'var(--gray-gradient-800-900)',
-        'gray-gradient-800-700': 'var(--gray-gradient-800-700)',
-        'gray-gradient-900-600': 'var(--gray-gradient-900-600)',
-        'brand-gradient-600-500': 'var(--brand-gradient-600-500)',
-        'brand-gradient-600-700': 'var(--brand-gradient-600-700)',
-        'brand-gradient-700-800': 'var(--brand-gradient-700-800)',
-        'brand-gradient-800-600': 'var(--brand-gradient-800-600)',
-        'brand-gradient-800-900': 'var(--brand-gradient-800-900)',
-        'brand-gradient-900-800': 'var(--brand-gradient-900-800)'
-      },
+
       borderRadius: {
-        xl: 'calc(var(--radius) + 20px)',
+        xl: 'calc(var(--radius) + 1rem)',
         lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)'
+        md: 'calc(var(--radius) - 0.25rem)',
+        sm: 'calc(var(--radius) - 0.5rem)'
       },
       backgroundImage: {
         'brand-radial':
