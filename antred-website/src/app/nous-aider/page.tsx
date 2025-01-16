@@ -74,8 +74,10 @@ export default function Page() {
           <h2 className="text-primary-foreground font-normal  pt-6 lg:pt-0 ">
             {t('title')}
           </h2>
-          <h3 className="text-gray-300   mb-4 ">{t('subtitle')}</h3>
-          <div className="text-gray-300 text-xl pt-2">{t('description')}</div>
+          <h3 className="text-dark-foreground   mb-4 "> {t('subtitle')} </h3>
+          <div className="text-dark-secondaryForeground text-xl pt-2">
+            {t('description')}
+          </div>
         </div>
         <div className="w-full h-56 lg:h-full lg:w-1/2 relative overflow-hidden">
           <div className="absolute inset-0 h-[200%] lg:h-full lg:w-full">
