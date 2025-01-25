@@ -38,9 +38,6 @@ importers:
       '@storybook/addon-storysource':
         specifier: ^8.3.5
         version: 8.3.5(storybook@8.3.5)
-      '@supabase/ssr':
-        specifier: ^0.4.1
-        version: 0.4.1(@supabase/supabase-js@2.45.4)
       '@supabase/supabase-js':
         specifier: ^2.45.4
         version: 2.45.4
@@ -144,6 +141,9 @@ importers:
       '@storybook/test':
         specifier: ^8.3.5
         version: 8.3.5(storybook@8.3.5)
+      '@supabase/ssr':
+        specifier: ^0.4.1
+        version: 0.4.1(@supabase/supabase-js@2.45.4)
       '@types/eslint__js':
         specifier: ^8.42.3
         version: 8.42.3
@@ -6458,6 +6458,7 @@ packages:
 
   sudo-prompt@9.2.1:
     resolution: {integrity: sha512-Mu7R0g4ig9TUuGSxJavny5Rv0egCEtpZRNMrZaYS1vxkiIxGiGUwoezU3LazIQ+KE04hTrTfNPgxU5gzi7F5Pw==}
+    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
 
   supabase@1.204.3:
     resolution: {integrity: sha512-uO09eyAw7TZAX/7wPeieQBWrl4QAJ0WLF+HTkFy35GWBmQULP5nkJR93LcuhSyooYiqwEUKlChEF/PGAEmTCKw==}

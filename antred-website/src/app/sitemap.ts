@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next'
-import { articles } from './conseils-pratiques/article'
+import { articles } from './(public)/conseils-pratiques/article'
 console.log(articles)
 
 const dynamicPaths: MetadataRoute.Sitemap = articles.map((item) => {
