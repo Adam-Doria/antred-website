@@ -212,5 +212,13 @@
       "text": "Lawyers, interpreters, developers… to offer your skills and put them at the service of victims"
     },
     "faq": "Frequently Asked Questions"
+  },
+  "auth": {
+    "form": {
+      "errors": {
+        "invalidEmail": "Invalid email",
+        "passwordLength": "Password must be at least 6 characters long"
+      }
+    }
   }
 }
