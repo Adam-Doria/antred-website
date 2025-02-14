@@ -74,7 +74,7 @@ export default async function RootLayout({
         >
           <NextIntlClientProvider messages={messages}>
             <Navbar />
-            <div className="max-w-7xl mx-auto ">
+            <div className="max-w-screen-2xl mx-auto ">
               {children}
               <Footer />
             </div>

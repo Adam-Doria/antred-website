@@ -9,6 +9,7 @@ import { Mail } from 'lucide-react'
 import { Contact } from '@/components/contact/Contact'
 import { GoHeartFill } from 'react-icons/go'
 import Image from 'next/image'
+import { HelloAssoWidget } from './helloAssoWidget'
 
 function FAQ() {
   const faqItems = [
@@ -68,8 +69,8 @@ function FAQ() {
 export default function Page() {
   const t = useTranslations('helpUs')
   return (
-    <main className="flex min-h-screen flex-col items-center overflow-hidden justify-between pt-24 px-4 my-4 space-y-8">
-      <div className="container flex p-0 flex-col w-full bg-brand-radial rounded-sm lg:flex-row lg:h-[500px] lg:rounded-xl">
+    <main className="flex w-full min-h-screen flex-col items-center overflow-hidden justify-between pt-24 px-4 my-4 space-y-8">
+      <div className="flex p-0 flex-col w-full bg-brand-radial rounded-sm lg:flex-row lg:h-[500px] lg:rounded-xl">
         <div className="px-8  lg:pt-8 lg:w-1/2 lg:flex lg:flex-col lg:justify-center lg:space-y-4">
           <h2 className="text-dark-foreground font-normal  pt-6 lg:pt-0 ">
             {t('title')}
@@ -95,25 +96,22 @@ export default function Page() {
           {t('donate')}
           <GoHeartFill className="mx-4 text-accent" />
         </h2>
-        <div>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Provident
-          nesciunt laboriosam fugiat quasi debitis voluptate? Consectetur magni
-          impedit aspernatur, corporis ducimus similique incidunt aliquid totam.
-          Maxime, possimus. Eaque, ullam nihil?
-        </div>
+        <HelloAssoWidget
+          height="1100px"
+          className="h-[1100px]"
+          src="https://www.helloasso.com/associations/antred/formulaires/1/widget"
+        />
       </section>
       <section className="w-full">
-        <h2>{t('joinUs')}</h2>
-        <div>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Provident
-          nesciunt laboriosam fugiat quasi debitis voluptate? Consectetur magni
-          impedit aspernatur, corporis ducimus similique incidunt aliquid totam.
-          Maxime, possimus. Eaque, ullam nihil?
-        </div>
+        <h2 className="pb-4">{t('joinUs')}</h2>
+        <HelloAssoWidget
+          className="h-[650px]"
+          src="https://www.helloasso.com/associations/antred/adhesions/votre-engagement-compte-adherez-a-l-antred-des-aujourd-hui/widget"
+        />
       </section>
 
       <section className="text-center w-full my-4" id="volunteer">
-        <div className="container  p-4 lg:p-6  w-full  bg-brand-radial rounded-sm lg:flex-row space-y-4">
+        <div className="p-4 lg:p-6  w-full  bg-brand-radial rounded-sm lg:flex-row space-y-4">
           <h2 className="text-dark-foreground font-normal text-center text-pretty ">
             {t('contact.title')}
           </h2>
