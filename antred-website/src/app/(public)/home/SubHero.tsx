@@ -6,11 +6,6 @@ import Image from 'next/image'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { useTranslations } from 'next-intl'
 
-const lorem10 =
-  'orem ipsum dolor sit amet, consectetur adipisicing elit. Illum reiciendis iure in corporis hic molestias ipsam quaerat suscipit. Accusamus voluptatibus sequi suscipit quae accusantium libero odit minima animi officiis nulla. L'
-const lorem50 =
-  'Lorem ipsum dolor sit amet consectetur adipisicing elit. At cupiditate  magni blanditiis, consequuntur architecto eligendi. Rem dolorum,  praesentium ratione explicabo nostrum dolores, illum molestiae officia  dolorem nobis voluptate recusandae? Velit, saepe architecto. Dolore  tempora dolor cumque quae dolores eum officiis reprehenderit earum  harum, exercitationem ea obcaecati saepe natus ex animi!'
-
 const tabs = [
   {
     value: 'lastNews',
@@ -21,6 +16,7 @@ const tabs = [
     imageUrl: '/images/presse/ag-antred.jpg',
     imageAlt: `logo de l'anted`
   },
+
   {
     value: 'Missing',
     date: '13 septembre 2024',
