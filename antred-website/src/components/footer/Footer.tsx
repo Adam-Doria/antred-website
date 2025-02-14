@@ -46,13 +46,15 @@ export const Footer = () => {
           href="/files/status_antred.pdf"
           target="_blank"
           rel="noopener noreferrer"
+          className="hover:underline"
         >
           {t('legal')}
         </a>
         <a
-          href="/files/réglement_intérieur.pdf"
+          href="/files/règlement_intérieur.pdf"
           target="_blank"
           rel="noopener noreferrer"
+          className="hover:underline"
         >
           {t('mentions')}
         </a>

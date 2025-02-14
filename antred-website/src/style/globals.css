@@ -21,7 +21,7 @@
     --fixed-action-background-light: 0 0% 100%; /* #FFFFFF */
     --fixed-action-background-light-hover: 0 0% 90%; /* #d0d5dd */
     --fixed-action-background-light-disabled: 0 0% 100%; /* #FFFFFF */
-    --fixed-action-foreground-light: 167 51% 7% ; /* ##091C18 */
+    --fixed-action-foreground-light: 167 51% 7%; /* ##091C18 */
     --fixed-action-foreground-light-disabled: 216 3% 84%; /* #d0d5dd */
 
     --fixed-action-background-alert: 352 77% 54%; /* #E42E47 */
@@ -239,21 +239,24 @@
     h2 {
       font-size: 2.5rem; /* 40px */
       line-height: 3rem; /* 48px */
-      font-family: var(--font-bontang), sans-serif; /* Police --font-bontang pour h2 */
+      font-family:
+        var(--font-bontang), sans-serif; /* Police --font-bontang pour h2 */
       font-weight: bold; /* Gras pour le titre */
     }
 
     h3 {
       font-size: 2rem; /* 32px */
       line-height: 2.5rem; /* 40px */
-      font-family: var(--font-bontang), sans-serif; /* Police --font-bontang pour h3 */
+      font-family:
+        var(--font-bontang), sans-serif; /* Police --font-bontang pour h3 */
       font-weight: bold; /* Gras pour le titre */
     }
 
     h4 {
       font-size: 1.25rem; /* 20px */
       line-height: 1.5rem; /* 24px */
-      font-family: var(--font-bontang), sans-serif; /* Police --font-bontang pour h4 */
+      font-family:
+        var(--font-bontang), sans-serif; /* Police --font-bontang pour h4 */
       font-weight: bold; /* Gras pour le titre */
     }
 
