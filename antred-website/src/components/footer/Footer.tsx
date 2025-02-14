@@ -42,8 +42,20 @@ export const Footer = () => {
             Adam Drici
           </a>
         </div>
-        <div>{t('legal')}</div>
-        <div>{t('mentions')}</div>
+        <a
+          href="/files/status_antred.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {t('legal')}
+        </a>
+        <a
+          href="/files/réglement_intérieur.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {t('mentions')}
+        </a>
       </div>
     </>
   )
