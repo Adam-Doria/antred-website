@@ -15,10 +15,10 @@ const tabs = [
   {
     value: 'lastNews',
     label: 'lastNews',
-    date: '21 juillet 2024',
-    title: lorem10,
-    description: lorem50,
-    imageUrl: '/logos/colored-icon-white.png',
+    date: '1er février 2025',
+    title: 'Assemblée Générale d’Unis pour Tiphaine : l’Antred mise en lumière',
+    description: `Ce samedi 1er février, l’association Unis pour Tiphaine a tenu son assemblée générale à la librairie-café Aux bavardages, située au 158, Grand’Rue, à Poitiers. Les membres présents ont pu dresser le bilan des actions passées et définir les projets à venir, dans une ambiance conviviale et solidaire. À l’issue de la réunion, une présentation de l’Antred a eu lieu en présence de Sonya Lwu, marraine de l’association, et de Sébastien Aguilar, technicien en police scientifique. Ce moment d’échanges a permis de mieux comprendre le rôle et les missions de l’Antred, renforçant ainsi la coopération entre les différents acteurs engagés dans la recherche de personnes disparues à l’étranger.`,
+    imageUrl: '/images/presse/ag-antred.jpg',
     imageAlt: `logo de l'anted`
   },
   {
