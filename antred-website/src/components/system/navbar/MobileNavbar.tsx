@@ -75,7 +75,10 @@ export const MobileNavbar: React.FC = () => {
           <Logo />
         </div>
         <div className="flex items-center gap-4 ">
-          <Link href="/helpUs" className="text-md font-semibold text-accent">
+          <Link
+            href="/nous-aider"
+            className="text-md font-semibold text-accent"
+          >
             <span className="inline-flex items-center">
               {t('helpUs')}
               <Heart className="ml-2 h-4 w-4 text-accent fill-accent" />

@@ -20,7 +20,7 @@ export const Footer = () => {
           <Link href="/" className="relative w-[100px] ">
             <Logo />
           </Link>
-          <Link href="/helpUs">
+          <Link href="/nous-aider">
             <span className="inline-flex items-center text-white bg-accent font-bold p-1 px-2 rounded-sm text-sm hover:bg-accent/75 sm:text-md">
               {t('helpUs.button')}
               <Heart className="m-1 h-4 w-4 text-white fill-white" />
