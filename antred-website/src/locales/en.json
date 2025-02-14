@@ -172,8 +172,11 @@
       },
       "paragraph3": "For any other form of assistance, please do not hesitate to contact us. ANTRED will adapt as much as possible to your needs."
     },
+   "committee": {
+      "title": "Committee member"
+    },
     "board": {
-      "title": "Board of Directors and Office Members"
+      "title": "Board and administration"
     },
     "volunteers": {
       "title": "Our Volunteers"
@@ -185,6 +188,9 @@
       "title": "Contact Us",
       "text": "Are you a reporter? For any request, please mention 'Press Inquiry' in the subject of your email."
     }
+  },
+  "profileCard":{
+    "founder" : "Founder"
   },
   "practicalAdvice": {
     "title": "Discover our articles <br/> and expert advice",

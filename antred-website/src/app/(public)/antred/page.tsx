@@ -5,32 +5,108 @@ import ProfileCard from './profileCards'
 import { Mail } from 'lucide-react'
 import { Contact } from '@/components/contact/Contact'
 
-const board = [
+const commiteeMembers = [
   {
-    id: 1,
+    id: 'commitee/1',
     name: 'Damien Véron',
     title: 'Président',
-    imageUrl: '/images/bureau/damienV.png',
-    facebookUrl: 'fb',
-    linkedinUrl: 'link'
+    imageUrl: '/images/bureau/damienV.png'
   },
   {
-    id: 2,
+    id: 'commitee/2',
     name: 'Céline Mendes',
     title: 'Secrétaire générale',
-    imageUrl: '/images/bureau/celineM.png',
-    facebookUrl: 'fb',
-    linkedinUrl: 'link'
+    imageUrl: '/images/bureau/celineM.png'
   },
   {
-    id: 3,
+    id: 'commitee/3',
     name: 'Pierre-Olivier Lassalle',
     title: 'Trésorier',
-    imageUrl: '/images/bureau/pierreO.png',
-    facebookUrl: 'fb',
-    linkedinUrl: 'link'
+    imageUrl: '/images/bureau/pierreO.png'
+  },
+  {
+    id: 'commitee/4',
+    name: 'Sibylle Véron',
+    title: 'Vice-Secrétaire',
+    imageUrl: '/images/bureau/sibylleV.png'
   }
 ]
+
+const board = [
+  {
+    id: 'board/1',
+    name: 'Damien Véron',
+    imageUrl: '/images/bureau/damienV.png',
+    employment: 'Paysagiste',
+    isFounder: true
+  },
+  {
+    id: 'board/5',
+    name: 'Anne Desert',
+    imageUrl: '/images/bureau/anneD.png',
+    employment: 'Formatrice',
+    isFounder: true
+  },
+  {
+    id: 'board/6',
+    name: 'Stanislas Véron',
+    imageUrl: '/images/bureau/stanislasV.png',
+    employment: 'Consulstant en stratégie des entreprise',
+    isFounder: true
+  },
+  {
+    id: 'board/7',
+    name: 'François Vergnaud',
+    imageUrl: '/images/bureau/francoisV.png',
+    employment: 'Mandataire judiciaire à la protection des majeurs',
+    isFounder: false
+  },
+  {
+    id: 'board/8',
+    name: 'Laurent Véron',
+    imageUrl: '/images/bureau/laurentV.png',
+    employment: 'Directeur de Bovis Poitiers / Manutention lourde',
+    isFounder: false
+  },
+  {
+    id: 'board/2',
+    name: 'Céline Mendes',
+    title: 'Ressources humaines',
+    imageUrl: '/images/bureau/celineM.png',
+    isFounder: false
+  },
+  {
+    id: 'board/3',
+    name: 'Pierre-Olivier Lassalle',
+    title: 'Directeur comptable',
+    imageUrl: '/images/bureau/pierreO.png',
+    isFounder: false
+  },
+  {
+    id: 'board/4',
+    name: 'Sibylle Véron',
+    title: 'Journaliste',
+    imageUrl: '/images/bureau/sibylleV.png',
+    isFounder: true
+  }
+]
+
+// const partner = [
+//   {
+//     id: 'partner/1',
+//     name: 'Sonya Lwu',
+//     title: `Marraine de l'association`,
+//     imageUrl: '/images/bureau/sibylleV.png',
+//     link: 'https://www.youtube.com/@SonyaLwu'
+//   },
+//   {
+//     id: 'partner/2',
+//     name: 'Sébastien Aguilar',
+//     title: `Conseiller forensique - CEO Forenseek`,
+//     imageUrl: '/images/bureau/sibylleV.png',
+//     link: 'https://www.forenseek.fr'
+//   }
+// ]
 
 export default function Page() {
   const t = useTranslations('antredPage')
@@ -48,7 +124,6 @@ export default function Page() {
           <p>{t('story.paragraph4')}</p>
         </div>
       </section>
-
       <section className="relative w-full md:pb-[56%] my-8">
         <video
           width="100%"
@@ -78,19 +153,33 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="text-center w-full " id="equipe">
-        <h2>{t('board.title')}</h2>
-        <div className="flex w-full flex-wrap justify-around ">
-          {board.map((member) => (
-            <ProfileCard key={member.id} {...member} />
-          ))}
+      <section className="text-center w-full" id="equipe">
+        <h2>{t('committee.title')}</h2>
+        <div className="flex w-full flex-wrap justify-around">
+          {commiteeMembers
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .map((member) => (
+              <ProfileCard key={member.id} {...member} />
+            ))}
         </div>
-        <h2>{t('volunteers.title')}</h2>
+        <h2>{t('board.title')}</h2>
+        <div className="flex w-full flex-wrap justify-around">
+          {board
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .map((member) => (
+              <ProfileCard key={member.id} {...member} />
+            ))}
+        </div>
       </section>
 
-      <section id="partenaires" className="text-center">
+      {/* <section id="partenaires" className="text-center">
         <h2>{t('partners.title')}</h2>
-      </section>
+        <div className="flex w-full flex-wrap justify-around">
+          {partner.map((member) => (
+            <ProfileCard key={member.id} {...member} />
+          ))}
+        </div> 
+      </section>*/}
 
       <section className="text-center w-full my-4" id="contact">
         <div className="container  p-4 lg:p-6  w-full  bg-brand-radial rounded-sm lg:flex-row space-y-4">

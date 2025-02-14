@@ -72,7 +72,7 @@
     --input: 214.3 31.8% 91.4%; /* Inputs : gris clair */
     --ring: 162 27% 26%; /* Anneau de focus (vert foncé) */
 
-    --radius: 1.5rem; /* Coins arrondis */
+    --radius: 0.5rem; /* Coins arrondis */
 
     /************
     /**PRIMARY**/

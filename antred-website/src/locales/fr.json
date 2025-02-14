@@ -175,19 +175,22 @@
       },
       "paragraph3": "Pour toute autre forme d’assistance, n’hésitez pas à nous contacter. L’ANTRED s’adapte au maximum à vos besoins."
     },
-    "board": {
-      "title": "Conseil d'administration et Membres du bureaux"
+    "committee": {
+      "title": "Membres du bureaux"
     },
-    "volunteers": {
-      "title": "Nos bénévoles"
+    "board": {
+      "title": "Conseil d'administration"
     },
     "partners": {
-      "title": "Nos partenaires"
+      "title": "Ils nous soutiennent"
     },
     "contact": {
       "title": "Contactez-Nous",
       "text": "Vous êtes journaliste ? Pour toute demande, veuillez mentionner 'Demande de presse' dans l’objet de votre email."
     }
+  },
+  "profileCard":{
+    "founder" : "Fondateur"
   },
   "practicalAdvice": {
     "title": "Découvrez nos articles <br/> et les conseils de nos experts",

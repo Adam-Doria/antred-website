@@ -19,10 +19,6 @@ const config = {
     },
     extend: {
       colors: {
-        /******** */
-        /* **  LIGHT/DARK COLORS ** */
-        /****** */
-
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
         brand: 'hsl(var(--text-brand))',
@@ -39,10 +35,6 @@ const config = {
           disabledForeground: 'hsl(var(--action-foreground-disabled))',
           disabled: ' hsl(var(--action-background-disabled)'
         },
-        /******** */
-        /* ** FIXED COLOR ELEMENTS ** */
-        /****** */
-
         alert: {
           background: 'hsl(var(---fixed-action-background-alert))',
           foreground: 'hsl(var(---fixed-action-foreground-alert))',
@@ -190,24 +182,53 @@ const config = {
           '900': 'var(--red-ribbon-900)'
         }
       },
-
       borderRadius: {
         xl: 'calc(var(--radius) + 1rem)',
         lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 0.25rem)',
-        sm: 'calc(var(--radius) - 0.5rem)'
+        md: 'calc(var(--radius) - 2px)',
+        sm: 'calc(var(--radius) - 4px)'
       },
       backgroundImage: {
         'brand-radial':
           'radial-gradient(circle, var(--brand-700) 10%, var(--brand-800) 90%)'
       },
       fontSize: {
-        xxs: ['0.5rem', { lineHeight: '1rem' }],
-        xs: ['0.75rem', { lineHeight: '1.125rem' }],
-        sm: ['1rem', { lineHeight: '1.5rem' }],
-        md: ['1.125rem', { lineHeight: '1.75rem' }],
-        lg: ['1.25rem', { lineHeight: '1.75rem' }],
-        xl: ['1.5rem', { lineHeight: '2rem' }]
+        xxs: [
+          '0.5rem',
+          {
+            lineHeight: '1rem'
+          }
+        ],
+        xs: [
+          '0.75rem',
+          {
+            lineHeight: '1.125rem'
+          }
+        ],
+        sm: [
+          '1rem',
+          {
+            lineHeight: '1.5rem'
+          }
+        ],
+        md: [
+          '1.125rem',
+          {
+            lineHeight: '1.75rem'
+          }
+        ],
+        lg: [
+          '1.25rem',
+          {
+            lineHeight: '1.75rem'
+          }
+        ],
+        xl: [
+          '1.5rem',
+          {
+            lineHeight: '2rem'
+          }
+        ]
       },
       keyframes: {
         'accordion-down': {
