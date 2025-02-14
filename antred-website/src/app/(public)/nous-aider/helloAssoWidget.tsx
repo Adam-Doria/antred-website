@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 interface HelloAssoWidgetProps {
   height?: string
@@ -9,6 +9,21 @@ interface HelloAssoWidgetProps {
 
 export const HelloAssoWidget = ({ className, src }: HelloAssoWidgetProps) => {
   const [isLoading, setIsLoading] = useState(true)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 768px)')
+
+    setIsMobile(mediaQuery.matches)
+
+    const handleResize = (e: MediaQueryListEvent) => {
+      setIsMobile(e.matches)
+    }
+
+    mediaQuery.addEventListener('change', handleResize)
+    // Nettoyage à la destruction du composant
+    return () => mediaQuery.removeEventListener('change', handleResize)
+  }, [])
 
   const handleLoad = () => {
     setIsLoading(false)
@@ -27,7 +42,7 @@ export const HelloAssoWidget = ({ className, src }: HelloAssoWidgetProps) => {
         title="Formulaire de don HelloAsso"
         src={src}
         onLoad={handleLoad}
-        scrolling="no"
+        scrolling={isMobile ? 'auto' : 'no'}
         className={`w-full min-h-full transition-opacity duration-300 overflow-y-scroll [-ms-overflow-style:'none' [scrollbar-width:'none'] after:[&::-webkit-scrollbar]:hidden   ${className}`}
       />
     </div>

@@ -24,12 +24,12 @@ export const SOCIAL_MEDIAS: MediaItems[] = [
   {
     name: 'Telegram',
     logo: 'telegram.svg',
-    href: 'https://t.me/?text=Bonjour%2C%20je%20vous%20contact%20%C3%A0%20propos%20de%20l%27antred.%0ASeriez%20vous%20disponible%20pour%20%C3%A9changer%3F'
+    href: 'https://t.me/+33766311610?text=Bonjour%2C%20je%20vous%20contact%20%C3%A0%20propos%20de%20l%27antred.%0ASeriez%20vous%20disponible%20pour%20%C3%A9changer%3F'
   },
   {
     name: 'WhatsApp',
     logo: 'whatsapp.svg',
-    href: 'https://wa.me/?text=Bonjour%2C%20je%20vous%20contact%20%C3%A0%20propos%20de%20l%27antred.%0ASeriez%20vous%20disponible%20pour%20%C3%A9changer%3F'
+    href: 'https://wa.me/+33766311610?text=Bonjour%2C%20je%20vous%20contact%20%C3%A0%20propos%20de%20l%27antred.%0ASeriez%20vous%20disponible%20pour%20%C3%A9changer%3F'
   },
   {
     name: 'YouTube',
