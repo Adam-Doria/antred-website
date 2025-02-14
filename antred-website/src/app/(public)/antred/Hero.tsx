@@ -7,7 +7,7 @@ import Image from 'next/image'
 export const Hero = () => {
   const t = useTranslations('antredPage')
   return (
-    <div className="container flex p-0 flex-col w-full bg-brand-radial rounded-sm lg:flex-row lg:h-[500px] lg:rounded-xl">
+    <div className=" flex p-0 flex-col w-full bg-brand-radial rounded-sm lg:flex-row lg:h-[500px] lg:rounded-xl">
       <div className="px-8  lg:pt-8 lg:w-1/2 lg:flex lg:flex-col lg:justify-center lg:space-y-4">
         <h2 className="text-dark-foreground font-normal  pt-6 lg:pt-0 ">
           {t('hero.title')}

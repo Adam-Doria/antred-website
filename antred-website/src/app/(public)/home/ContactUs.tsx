@@ -5,7 +5,7 @@ import { Mail, PhoneCallIcon } from 'lucide-react'
 export const ContactUs = () => {
   const t = useTranslations('homepage.contact')
   return (
-    <div className="container  p-4 lg:p-8  w-full text-dark-secondaryForeground bg-brand-radial rounded-sm lg:flex-row my-2 ">
+    <div className="  p-4 lg:p-8  w-full text-dark-secondaryForeground bg-brand-radial rounded-sm lg:flex-row my-2 ">
       <h2 className="text-dark-foreground font-normal text-center pt-4 text-pretty ">
         {t('title').toUpperCase()}
       </h2>

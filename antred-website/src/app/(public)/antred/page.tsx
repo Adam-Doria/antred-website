@@ -182,7 +182,7 @@ export default function Page() {
       </section>*/}
 
       <section className="text-center w-full my-4" id="contact">
-        <div className="container  p-4 lg:p-6  w-full  bg-brand-radial rounded-sm lg:flex-row space-y-4">
+        <div className="  p-4 lg:p-6  w-full  bg-brand-radial rounded-sm lg:flex-row space-y-4">
           <h2 className="text-dark-foreground font-normal text-center text-pretty ">
             {t('contact.title')}
           </h2>
