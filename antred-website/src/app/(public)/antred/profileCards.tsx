@@ -20,8 +20,8 @@ export default function ProfileCard({
 }: CardProps) {
   const t = useTranslations('profileCard')
   return (
-    <div className="w-full max-w-sm my-4 rounded-lg overflow-hidden shadow-lg p-4 bg-white dark:bg-dark-background">
-      <div className="relative rounded-lg h-64 w-full bg-background">
+    <div className=" w-full h-full rounded-lg overflow-hidden shadow-lg   bg-white dark:bg-dark-background">
+      <div className="relative rounded-lg h-56  w-full bg-background">
         <Image
           src={imageUrl}
           alt={`Photo de ${name}`}
