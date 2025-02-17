@@ -22,7 +22,10 @@ export const MobileNavbar: React.FC = () => {
       <div className="flex items-center justify-between p-4">
         <div className="flex items-center gap-4">
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
-            <SheetTrigger asChild className="bg-[#e9e8e6] rounded-md ">
+            <SheetTrigger
+              asChild
+              className="bg-dark-background text-dark-foreground hover:bg-secondaryForeground rounded-md "
+            >
               <Button variant="outline" size="icon">
                 <Menu className="h-6 w-6" />
                 <span className="sr-only">Open menu</span>
@@ -72,7 +75,9 @@ export const MobileNavbar: React.FC = () => {
               </nav>
             </SheetContent>
           </Sheet>
-          <Logo />
+          <Link href={'/'}>
+            <Logo />
+          </Link>
         </div>
         <div className="flex items-center gap-4 ">
           <Link
