@@ -154,20 +154,30 @@ export default function Page() {
       </section>
 
       <section className="text-center w-full" id="equipe">
-        <h2>{t('committee.title')}</h2>
-        <div className="flex w-full flex-wrap justify-around">
+        <h2 className="py-4">{t('committee.title')}</h2>
+        <div className="flex w-full flex-wrap justify-around gap-4">
           {commiteeMembers
             .sort((a, b) => a.name.localeCompare(b.name))
             .map((member) => (
-              <ProfileCard key={member.id} {...member} />
+              <div
+                key={member.id}
+                className=" flex-grow flex-shrink-0 basis-[24%] h-96 my-2 "
+              >
+                <ProfileCard {...member} />
+              </div>
             ))}
         </div>
-        <h2>{t('board.title')}</h2>
-        <div className="flex w-full flex-wrap justify-around">
+        <h2 className="py-4">{t('board.title')}</h2>
+        <div className="flex w-full flex-wrap justify-around gap-4">
           {board
             .sort((a, b) => a.name.localeCompare(b.name))
             .map((member) => (
-              <ProfileCard key={member.id} {...member} />
+              <div
+                key={member.id}
+                className="flex-grow flex-shrink-0 basis-[24%] h-96 my-2 "
+              >
+                <ProfileCard {...member} />
+              </div>
             ))}
         </div>
       </section>
