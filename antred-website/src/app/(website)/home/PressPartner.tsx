@@ -1,3 +1,4 @@
+import { PressAndPartnerCard } from '@/components/system/cards/PressAndPartnerCards'
 import Marquee from '@/components/ui/marquee'
 import { useTranslations } from 'next-intl'
 
@@ -52,7 +53,7 @@ export function PressAndPartner() {
       <div className="relative flex h-[250] w-full flex-col items-center justify-center overflow-hidden my-8">
         <Marquee pauseOnHover className=" [--duration:40s]">
           {Partner.map((review) => (
-            <PressAndPartner key={review.name} {...review} />
+            <PressAndPartnerCard key={review.name} {...review} />
           ))}
         </Marquee>
         <div className="pointer-events-none md:absolute md:inset-y-0 md:left-0 md:w-1/12 md:bg-gradient-to-r md:from-background"></div>
@@ -63,7 +64,7 @@ export function PressAndPartner() {
       <div className="relative flex h-[250] w-full flex-col items-center justify-center overflow-hidden my-8">
         <Marquee reverse pauseOnHover className="[--duration:40s]">
           {press.map((review) => (
-            <PressAndPartner key={review.name} {...review} />
+            <PressAndPartnerCard key={review.name} {...review} />
           ))}
         </Marquee>
         <div className="pointer-events-none md:absolute md:inset-y-0 md:left-0 md:w-1/12 md:bg-gradient-to-r md:from-background"></div>
