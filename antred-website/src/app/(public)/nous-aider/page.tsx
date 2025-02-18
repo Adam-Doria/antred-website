@@ -121,7 +121,7 @@ export default function Page() {
           </div>
           <div className="flex  text-dark-secondaryForeground  text-bold flex-col w-full space-around text-md md:flex-row md:text-lg md:items-center md:w-4/5 md:justify-around md:mx-auto">
             <a
-              href="mailto:contact@antred.fr"
+              href="mailto:contact.antred@gmail.com"
               className="inline-flex lg:items-center mb-4 "
             >
               {' '}
