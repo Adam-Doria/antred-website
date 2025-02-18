@@ -1,6 +1,4 @@
-import { cn } from '@/lib/utils'
 import Marquee from '@/components/ui/marquee'
-import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 
 const reviews = [
@@ -44,7 +42,6 @@ const reviews = [
 
 const Partner = reviews.slice(0, reviews.length / 2)
 const press = reviews.slice(reviews.length / 2)
-
 
 export function PressAndPartner() {
   const t = useTranslations('homepage.pressAndPartner')
