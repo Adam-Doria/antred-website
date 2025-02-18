@@ -11,7 +11,7 @@ export default function Page() {
           <h2
             dangerouslySetInnerHTML={{ __html: t.raw('title') }}
             className="text-dark-foreground mb-4 text-center"
-          ></h2>
+          />
           <p className="text-lg text-dark-secondaryForeground text-center mb-4 max-w-2xl mx-auto">
             {t('subtitle')}
           </p>
