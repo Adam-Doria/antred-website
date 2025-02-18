@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 import { Hero } from './Hero'
 import { useTranslations } from 'next-intl'
-import ProfileCard from './profileCards'
+import ProfileCard from '../../../components/system/cards/ProfileCards'
 import { Mail } from 'lucide-react'
 import { Contact } from '@/components/contact/Contact'
 
@@ -202,7 +202,7 @@ export default function Page() {
           </div>
           <div className="flex  text-dark-secondaryForeground tet-bold flex-col w-full space-around text-md md:flex-row md:text-lg md:items-center md:w-4/5 md:justify-around md:mx-auto">
             <a
-              href="mailto:contact@antred.fr"
+              href="mailto:contact.antred@gmail.com"
               className="inline-flex lg:items-center mb-4 "
             >
               {' '}
