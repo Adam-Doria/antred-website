@@ -70,7 +70,7 @@ const ReviewCardDeux = ({
             <Image
               src={`/images/presse/${img}`}
               alt={`logo de ${img}`}
-              layout="fill"
+              fill
               className="object-contain"
             />
           </div>

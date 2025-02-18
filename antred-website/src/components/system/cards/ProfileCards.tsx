@@ -25,7 +25,7 @@ export default function ProfileCard({
         <Image
           src={imageUrl}
           alt={`Photo de ${name}`}
-          layout="fill"
+          fill
           objectFit="contain"
         />
         {isFounder && (
