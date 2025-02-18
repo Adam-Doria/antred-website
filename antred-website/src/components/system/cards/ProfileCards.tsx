@@ -26,7 +26,10 @@ export default function ProfileCard({
           src={imageUrl}
           alt={`Photo de ${name}`}
           fill
-          objectFit="contain"
+          loading="lazy"
+          style={{
+            objectFit: 'contain'
+          }}
         />
         {isFounder && (
           <Badge variant="green" className="absolute top-3 right-2">

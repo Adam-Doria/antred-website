@@ -26,7 +26,10 @@ function MissingCard(props: CardProps) {
       <Image
         src={`/${imageSrc}`}
         alt={`${props?.name} ${props?.lastname}`}
-        objectFit="cover"
+        fill
+        style={{
+          objectFit: 'cover'
+        }}
         className=" transition-all duration-500 filter grayscale hover:filter-none "
       />
 

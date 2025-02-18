@@ -26,7 +26,9 @@ export default function ArticleCards(props: ArticleCardsProps) {
           alt={`${props?.cover?.alt}`}
           className="w-full h-auto rounded-lg"
           fill
-          objectFit="cover"
+          style={{
+            objectFit: 'cover'
+          }}
         />
         <Badge className="absolute top-4 right-4 bg-white/70 text-black">
           {props?.tag}

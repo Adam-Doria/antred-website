@@ -28,7 +28,9 @@ export const Hero = () => {
             src={'/logos/whiteIcon.png'}
             fill
             alt="logo de antred association Nationale Tiphaine pour la Recherche à l Etranger des Disparus"
-            objectFit="contain"
+            style={{
+              objectFit: 'contain'
+            }}
           />
         </div>
       </div>
