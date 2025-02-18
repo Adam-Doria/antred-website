@@ -22,7 +22,7 @@ export const TabCardsCard = ({
   imageAlt
 }: TabCardsProps) => {
   return (
-    <div className=" flex my-4 p-0  flex-col-reverse w-full bg-secondaryBackground rounded-sm lg:flex-row lg:h-[500px]">
+    <div className=" flex my-4 p-0  flex-col-reverse w-full bg-secondaryBackground rounded-lg lg:flex-row lg:h-[500px]">
       <div className="px-8 py-4 lg:pt-8 lg:w-[55%] lg:flex lg:flex-col lg:justify-center lg:space-y-4">
         <div>{date}</div>
         <h3 className="font-normal pt-6 lg:pt-0">{title}</h3>
@@ -44,8 +44,10 @@ export const TabCardsCard = ({
             src={imageUrl}
             fill
             alt={imageAlt}
-            objectFit="cover"
-            className="rounded-lg p-4 "
+            style={{
+              objectFit: 'cover'
+            }}
+            className="rounded-xl p-4 "
           />
         </div>
       </div>

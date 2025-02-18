@@ -44,46 +44,7 @@ const reviews = [
 
 const Partner = reviews.slice(0, reviews.length / 2)
 const press = reviews.slice(reviews.length / 2)
-const ReviewCardDeux = ({
-  img,
-  src,
-  body
-}: {
-  img: string
-  name: string
-  body: string
-  src?: string
-}) => {
-  return (
-    <a href={src} target="_blank" rel="noopener noreferrer">
-      <figure
-        className={cn(
-          'relative w-64 cursor-pointer overflow-hidden rounded-xl border p-4 bg-background ',
-          // light styles
-          'border-gray-950/[.1]  hover:bg-gray-950/[.05]',
-          // dark styles
-          'dark:border-green-950 dark:hover:bg-secondaryBackground'
-        )}
-      >
-        <div className="flex flex-col items-center justify-center overflow-hidden relative h-[180px]">
-          <div className="h-1/2 w-full relative">
-            <Image
-              src={`/images/presse/${img}`}
-              alt={`logo de ${img}`}
-              fill
-              className="object-contain"
-            />
-          </div>
-          <div className="flex-1 mt-4  text-center text-ellipsis">
-            <blockquote className="text-base italic font-light text-gray-700 dark:text-gray-300 leading-relaxed">
-              {body}
-            </blockquote>
-          </div>
-        </div>
-      </figure>
-    </a>
-  )
-}
+
 
 export function PressAndPartner() {
   const t = useTranslations('homepage.pressAndPartner')
@@ -94,7 +55,7 @@ export function PressAndPartner() {
       <div className="relative flex h-[250] w-full flex-col items-center justify-center overflow-hidden my-8">
         <Marquee pauseOnHover className=" [--duration:40s]">
           {Partner.map((review) => (
-            <ReviewCardDeux key={review.name} {...review} />
+            <PressAndPartner key={review.name} {...review} />
           ))}
         </Marquee>
         <div className="pointer-events-none md:absolute md:inset-y-0 md:left-0 md:w-1/12 md:bg-gradient-to-r md:from-background"></div>
@@ -105,7 +66,7 @@ export function PressAndPartner() {
       <div className="relative flex h-[250] w-full flex-col items-center justify-center overflow-hidden my-8">
         <Marquee reverse pauseOnHover className="[--duration:40s]">
           {press.map((review) => (
-            <ReviewCardDeux key={review.name} {...review} />
+            <PressAndPartner key={review.name} {...review} />
           ))}
         </Marquee>
         <div className="pointer-events-none md:absolute md:inset-y-0 md:left-0 md:w-1/12 md:bg-gradient-to-r md:from-background"></div>
