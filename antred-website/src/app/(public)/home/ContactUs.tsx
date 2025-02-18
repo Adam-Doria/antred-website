@@ -22,7 +22,7 @@ export const ContactUs = () => {
           {t('phone')}
         </div>
         <a
-          href="mailto:contact@antred.fr"
+          href="mailto:contact.antred@gmail.com"
           className="my-2 inline-flex lg:items-center "
         >
           {' '}
