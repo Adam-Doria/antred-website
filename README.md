@@ -13,7 +13,7 @@ ANTRED is a french association dedicated to the search and support of families o
 ## Tech Stack
 
 - **Frontend:** Next.js for server-side rendering and a fast, interactive user experience.
-- **Backend:** Next while needing a true backend.
+- **Backend:** Next while needing a dedicated backend.
 - **Database:** Supabase for simplified PostgreSQL management with authentication feature, use kisely as query builder
 
 
@@ -30,7 +30,7 @@ pnpm install
 To start the development server:
 
 ```bash
-pnpm run dev:all
+pnpm dev
 ```
 
 ## Tests
