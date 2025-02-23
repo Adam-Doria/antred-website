@@ -30,7 +30,7 @@
   "rules": {
     "prefer-const": "error",
     "semi": ["error", "never"],
-    "quotes": ["error", "single",{"allowTemplateLiterals": true}],
+    "quotes": ["error", "single", { "allowTemplateLiterals": true }],
     "indent": ["error", 2],
     "linebreak-style": ["error", "unix"],
     "@typescript-eslint/no-unused-vars": "error",

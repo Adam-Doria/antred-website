@@ -1,9 +1,9 @@
 import '../src/style/globals.css'
-import { withThemeByClassName } from '@storybook/addon-themes';
+import { withThemeByClassName } from '@storybook/addon-themes'
 import type { Preview } from '@storybook/react'
 import nextIntl from './next-intl'
-import React from 'react';
-import {NextIntlClientProvider} from "next-intl"
+import React from 'react'
+import { NextIntlClientProvider } from 'next-intl'
 
 /** @type { import('@storybook/react').Preview } */
 const preview: Preview = {
@@ -12,8 +12,8 @@ const preview: Preview = {
     locale: 'fr',
     locales: {
       en: 'English',
-      fr: 'Français',
-    },
+      fr: 'Français'
+    }
   },
   parameters: {
     nextIntl,
@@ -28,9 +28,9 @@ const preview: Preview = {
     withThemeByClassName({
       themes: {
         light: 'light',
-        dark: 'dark',
+        dark: 'dark'
       },
-      defaultTheme: 'light',
+      defaultTheme: 'light'
     })
     // (Story, context) => {
     //   const locale = context.globals.locale;
@@ -44,12 +44,10 @@ const preview: Preview = {
     //     </NextIntlClientProvider>
     //   );
     // }
-    
-  ],
+  ]
 }
 
 export default preview
-
 
 // export const globalTypes = {
 //   locale: {
