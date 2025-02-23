@@ -1,0 +1,21 @@
+name: Lint and Prettier
+
+on: push
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    container: node 20
+    steps:
+      - name: Install dependencies
+        run: pnpm i --frozen-lockfile
+      - name: run linter
+        run: pnpm lint
+  prettier:
+    runs-on: ubuntu-latest
+    container: node 20
+    steps:
+      - name: Install dependencies
+        run: pnpm i --frozen-lockfile
+      - name: run linter
+        run: pnpm lint
