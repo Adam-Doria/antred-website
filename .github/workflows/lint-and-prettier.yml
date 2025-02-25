@@ -7,7 +7,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        task: [lint, "prettier:check"]
+        task: [lint, 'prettier:check']
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4

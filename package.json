@@ -7,14 +7,17 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "lint:fix": "next lint --fix",
     "test": "echo  \"no test specified\"",
     "prettier:check": "prettier \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\" -c",
     "prettier:format": "prettier . --write",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "prepare": "husky"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
+    "@next/env": "^15.1.7",
     "@radix-ui/react-accordion": "^1.2.1",
     "@radix-ui/react-aspect-ratio": "^1.1.0",
     "@radix-ui/react-dialog": "^1.1.2",
@@ -79,6 +82,7 @@
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-storybook": "^0.8.0",
     "framer-motion": "^11.11.10",
+    "husky": "^9.1.7",
     "kysely-supabase": "^0.2.0",
     "postcss": "^8.4.47",
     "prettier": "^3.3.3",
