@@ -6,12 +6,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        
+
       - name: Setup Node.js et pnpm
         uses: ./.github/actions/setup-node-pnpm
         with:
           node-version: '20'
           pnpm-version: '10'
 
-      - name : Run test
-        run : pnpm run test   
+      - name: Run test
+        run: pnpm run test

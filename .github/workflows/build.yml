@@ -1,17 +1,17 @@
 name: Test
 on: [push]
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        
+
       - name: Setup Node.js et pnpm
         uses: ./.github/actions/setup-node-pnpm
         with:
           node-version: '20'
           pnpm-version: '10'
 
-      - name : Run build
-        run : pnpm build   
+      - name: Run build
+        run: pnpm build

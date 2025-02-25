@@ -4,14 +4,14 @@ on: [push]
 jobs:
   lint_and_prettier:
     runs-on: ubuntu-latest
-    strategy :
-      fail-fast : false
-      matrix :
-        task : [lint,prettier]
+    strategy:
+      fail-fast: false
+      matrix:
+        task: [lint, prettier:check]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        
+
       - name: Setup Node.js et pnpm
         uses: ./.github/actions/setup-node-pnpm
         with:
@@ -20,6 +20,3 @@ jobs:
 
       - name: Run ${{matrix.task}}
         run: pnpm ${{matrix.task}}
-
-
-    
