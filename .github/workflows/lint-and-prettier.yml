@@ -1,33 +1,25 @@
 name: Lint and Prettier
 on: [push]
+
 jobs:
-  lint_and_format:
+  lint_and_prettier:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        task: [lint, prettier:check]
-        node_version : ['20']
-        pnpm_version : ['10']
+    strategy :
+      fail-fast : false
+      matrix :
+        task : [lint,prettier]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
+        
+      - name: Setup Node.js et pnpm
+        uses: ./.github/actions/setup-node-pnpm
         with:
-          version: ${{matrix.pnpm_version}}
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{matrix.node_version}}
-          cache: 'pnpm'
-
-      - name: Install dependencies
-        run: pnpm i --frozen-lockfile
+          node-version: '20'
+          pnpm-version: '10'
 
       - name: Run ${{matrix.task}}
-        run : pnpm ${{matrix.task}}
- 
+        run: pnpm ${{matrix.task}}
+
+
     
