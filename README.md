@@ -16,7 +16,6 @@ ANTRED is a french association dedicated to the search and support of families o
 - **Backend:** Next while needing a dedicated backend.
 - **Database:** Supabase for simplified PostgreSQL management with authentication feature, use kisely as query builder
 
-
 ## Installing Dependencies
 
 Use `pnpm` to install project dependencies.
