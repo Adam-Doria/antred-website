@@ -202,12 +202,12 @@ export default function Page() {
           </div>
           <div className="flex  text-dark-secondaryForeground tet-bold flex-col w-full space-around text-md md:flex-row md:text-lg md:items-center md:w-4/5 md:justify-around md:mx-auto">
             <a
-              href="mailto:contact.antred@gmail.com"
+              href="mailto:medias@antred.org"
               className="inline-flex lg:items-center mb-4 "
             >
               {' '}
               <Mail className="mx-2" />
-              contact.antred@gmail.com
+              medias@antred.org
             </a>
           </div>
 

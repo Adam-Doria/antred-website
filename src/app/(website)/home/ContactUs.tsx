@@ -22,12 +22,12 @@ export const ContactUs = () => {
           {t('phone')}
         </div>
         <a
-          href="mailto:contact.antred@gmail.com"
+          href="mailto:urgence@antred.org"
           className="my-2 inline-flex lg:items-center "
         >
           {' '}
           <Mail className="mx-2" />
-          contact.antred@gmail.com
+          urgence@antred.org
         </a>
       </div>
 

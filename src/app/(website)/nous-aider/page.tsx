@@ -16,33 +16,23 @@ function FAQ() {
     {
       value: 'item-1',
       question: `Comment puis-je devenir bénévole pour l'ANTRED ?`,
-      answer:
-        'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae sunt et tempora voluptate adipisci? Sed excepturi expedita, tenetur, labore dolorem quos est, iusto repellat laboriosam enim eveniet magnam? Blanditiis inventore ipsam dolorum alias laborum tempore, doloremque, magnam itaque id officia similique. Omnis quia consequuntur accusamus animi quos qui a dolorem.'
+      answer: `Pour devenir bénévole à l'ANTRED, il vous suffit de nous contacter à benevolat@antred.org pour proposer vos compétences. Les besoins des familles varient en fonction des situations, et chaque contribution est précieuse. Par exemple, vous pouvez intervenir en tant que juriste, interprète, traducteur, graphiste, psychologue, community manager… Si vous êtes un génie de la recherche en sources ouvertes ou si vous savez soulever une communauté sur les réseaux comme personne, n’hésitez pas à nous rejoindre. `
     },
     {
       value: 'item-2',
       question:
         'Puis-je contribuer financièrement pour soutenir les recherches et les familles ?',
-      answer:
-        'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil enim quis possimus obcaecati ipsa delectus eligendi, ipsam, architecto modi vitae rem dicta cumque nam numquam ipsum ex perferendis fuga magnam.'
-    },
-    {
-      value: 'item-3',
-      question: 'Comment l’ANTRED utilise-t-elle les fonds collectés ?',
-      answer:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita delectus eos deleniti neque a quibusdam, aspernatur nesciunt quisquam cumque nemo quo! Odit natus veritatis libero, eos qui quas. Molestias, ea assumenda officia qui minima aliquid aut quo veritatis asperiores vel?'
+      answer: `Oui, vous pouvez tout à fait contribuer financièrement pour soutenir les recherches et aider les familles. Votre don permettra de financer des actions concrètes comme les déplacements des familles, l’intervention d’enquêteurs privés, les frais d’interprètes, ainsi que de soutenir les projets de l'ANTRED et d'apporter un soutien aux victimes. Quel que soit le montant, votre geste est précieux et peut faire la différence.`
     },
     {
       value: 'item-4',
       question: `L'ANTRED peut-elle fournir une aide sur place en cas de disparition à l’étranger ?`,
-      answer:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita delectus eos deleniti neque a quibusdam, aspernatur nesciunt quisquam cumque nemo quo! Odit natus veritatis libero, eos qui quas. Molestias, ea assumenda officia qui minima aliquid aut quo veritatis asperiores vel?'
+      answer: `  L'ANTRED peut intervenir directement sur place en cas de disparition à l'étranger, lorsque cela est possible et, surtout, si cela s'avère nécessaire. Nous mobilisons notre réseau pour identifier les professionnels et les contacts les mieux placés pour apporter leur aide. Nous cherchons à établir des collaborations locales, prenons contact avec les autorités à la demande des familles. N'hésitez pas à nous appeler ou nous écrire pour discuter de votre situation spécifique et des actions possibles.`
     },
     {
       value: 'item-5',
       question: `Quels types d'experts travaillent avec l'ANTRED ?`,
-      answer:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita delectus eos deleniti neque a quibusdam, aspernatur nesciunt quisquam cumque nemo quo! Odit natus veritatis libero, eos qui quas. Molestias, ea assumenda officia qui minima aliquid aut quo veritatis asperiores vel?'
+      answer: ` L'ANTRED travaille avec une variété d'experts afin de répondre au mieux aux besoins des familles. . Parmi eux, l'association peut compter sur des professionnels du droit, des policiers et gendarmes, des ingénieurs, des experts en téléphonie, ainsi que sur des enquêteurs privés, des psychologues, des interprètes et des spécialistes en recherches en sources ouvertes. Chaque nouvelle disparition est l'occasion de solliciter notre réseau pour identifier la personne compétente, en fonction des spécificités de chaque situation`
     },
     {
       value: 'item-6',
@@ -123,12 +113,12 @@ export default function Page() {
           </div>
           <div className="flex  text-dark-secondaryForeground  text-bold flex-col w-full space-around text-md md:flex-row md:text-lg md:items-center md:w-4/5 md:justify-around md:mx-auto">
             <a
-              href="mailto:contact.antred@gmail.com"
+              href="mailto:contact@antred.org"
               className="inline-flex lg:items-center mb-4 "
             >
               {' '}
               <Mail className="mx-2" />
-              contact.antred@gmail.com
+              contact@antred.org
             </a>
           </div>
 
