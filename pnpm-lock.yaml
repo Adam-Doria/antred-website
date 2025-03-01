@@ -40,10 +40,10 @@ importers:
         version: 1.1.3(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-three/drei':
         specifier: ^9.114.6
-        version: 9.122.0(@react-three/fiber@8.18.0(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.78.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(three@0.169.0))(@types/react@18.3.18)(@types/three@0.173.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(three@0.169.0)(use-sync-external-store@1.4.0(react@18.3.1))
+        version: 9.122.0(@react-three/fiber@8.18.0(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.78.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(three@0.174.0))(@types/react@18.3.18)(@types/three@0.173.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(three@0.174.0)(use-sync-external-store@1.4.0(react@18.3.1))
       '@react-three/fiber':
         specifier: ^8.17.10
-        version: 8.18.0(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.78.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(three@0.169.0)
+        version: 8.18.0(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.78.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(three@0.174.0)
       '@storybook/addon-storysource':
         specifier: ^8.3.5
         version: 8.6.0(storybook@8.6.0(prettier@3.5.2))
@@ -97,7 +97,7 @@ importers:
         version: 5.5.0(react@18.3.1)
       react-spring:
         specifier: ^9.7.4
-        version: 9.7.5(@react-three/fiber@8.18.0(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.78.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(three@0.169.0))(konva@9.3.18)(react-dom@18.3.1(react@18.3.1))(react-konva@18.2.10(@types/react@18.3.18)(konva@9.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-native@0.78.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react-zdog@1.2.2)(react@18.3.1)(three@0.169.0)(zdog@1.1.3)
+        version: 9.7.5(@react-three/fiber@8.18.0(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.78.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(three@0.174.0))(konva@9.3.18)(react-dom@18.3.1(react@18.3.1))(react-konva@18.2.10(@types/react@18.3.18)(konva@9.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-native@0.78.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react-zdog@1.2.2)(react@18.3.1)(three@0.174.0)(zdog@1.1.3)
       storybook:
         specifier: ^8.3.5
         version: 8.6.0(prettier@3.5.2)
@@ -108,11 +108,11 @@ importers:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@3.4.17)
       three:
-        specifier: ^0.169.0
-        version: 0.169.0
+        specifier: ^0.174.0
+        version: 0.174.0
       three-globe:
         specifier: ^2.33.0
-        version: 2.41.12(three@0.169.0)
+        version: 2.41.12(three@0.174.0)
       zod:
         specifier: ^3.24.1
         version: 3.24.2
@@ -146,7 +146,7 @@ importers:
         version: 8.6.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(storybook@8.6.0(prettier@3.5.2))
       '@storybook/experimental-nextjs-vite':
         specifier: ^8.3.5
-        version: 8.6.0(@babel/core@7.26.9)(@storybook/test@8.6.0(storybook@8.6.0(prettier@3.5.2)))(next@14.2.21(@babel/core@7.26.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rollup@4.34.8)(storybook@8.6.0(prettier@3.5.2))(typescript@5.7.3)(vite@6.2.0(@types/node@20.17.19)(jiti@1.21.7)(terser@5.39.0)(yaml@2.7.0))
+        version: 8.6.0(@babel/core@7.26.9)(@storybook/test@8.6.0(storybook@8.6.0(prettier@3.5.2)))(next@14.2.21(@babel/core@7.26.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rollup@4.34.9)(storybook@8.6.0(prettier@3.5.2))(typescript@5.7.3)(vite@6.2.0(@types/node@20.17.19)(jiti@1.21.7)(terser@5.39.0)(yaml@2.7.0))
       '@storybook/nextjs':
         specifier: ^8.3.5
         version: 8.6.0(esbuild@0.25.0)(next@14.2.21(@babel/core@7.26.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(storybook@8.6.0(prettier@3.5.2))(type-fest@2.19.0)(typescript@5.7.3)(webpack-hot-middleware@2.26.1)(webpack@5.98.0(esbuild@0.25.0))
@@ -1974,98 +1974,98 @@ packages:
       rollup:
         optional: true
 
-  '@rollup/rollup-android-arm-eabi@4.34.8':
-    resolution: {integrity: sha512-q217OSE8DTp8AFHuNHXo0Y86e1wtlfVrXiAlwkIvGRQv9zbc6mE3sjIVfwI8sYUyNxwOg0j/Vm1RKM04JcWLJw==}
+  '@rollup/rollup-android-arm-eabi@4.34.9':
+    resolution: {integrity: sha512-qZdlImWXur0CFakn2BJ2znJOdqYZKiedEPEVNTBrpfPjc/YuTGcaYZcdmNFTkUj3DU0ZM/AElcM8Ybww3xVLzA==}
     cpu: [arm]
     os: [android]
 
-  '@rollup/rollup-android-arm64@4.34.8':
-    resolution: {integrity: sha512-Gigjz7mNWaOL9wCggvoK3jEIUUbGul656opstjaUSGC3eT0BM7PofdAJaBfPFWWkXNVAXbaQtC99OCg4sJv70Q==}
+  '@rollup/rollup-android-arm64@4.34.9':
+    resolution: {integrity: sha512-4KW7P53h6HtJf5Y608T1ISKvNIYLWRKMvfnG0c44M6In4DQVU58HZFEVhWINDZKp7FZps98G3gxwC1sb0wXUUg==}
     cpu: [arm64]
     os: [android]
 
-  '@rollup/rollup-darwin-arm64@4.34.8':
-    resolution: {integrity: sha512-02rVdZ5tgdUNRxIUrFdcMBZQoaPMrxtwSb+/hOfBdqkatYHR3lZ2A2EGyHq2sGOd0Owk80oV3snlDASC24He3Q==}
+  '@rollup/rollup-darwin-arm64@4.34.9':
+    resolution: {integrity: sha512-0CY3/K54slrzLDjOA7TOjN1NuLKERBgk9nY5V34mhmuu673YNb+7ghaDUs6N0ujXR7fz5XaS5Aa6d2TNxZd0OQ==}
     cpu: [arm64]
     os: [darwin]
 
-  '@rollup/rollup-darwin-x64@4.34.8':
-    resolution: {integrity: sha512-qIP/elwR/tq/dYRx3lgwK31jkZvMiD6qUtOycLhTzCvrjbZ3LjQnEM9rNhSGpbLXVJYQ3rq39A6Re0h9tU2ynw==}
+  '@rollup/rollup-darwin-x64@4.34.9':
+    resolution: {integrity: sha512-eOojSEAi/acnsJVYRxnMkPFqcxSMFfrw7r2iD9Q32SGkb/Q9FpUY1UlAu1DH9T7j++gZ0lHjnm4OyH2vCI7l7Q==}
     cpu: [x64]
     os: [darwin]
 
-  '@rollup/rollup-freebsd-arm64@4.34.8':
-    resolution: {integrity: sha512-IQNVXL9iY6NniYbTaOKdrlVP3XIqazBgJOVkddzJlqnCpRi/yAeSOa8PLcECFSQochzqApIOE1GHNu3pCz+BDA==}
+  '@rollup/rollup-freebsd-arm64@4.34.9':
+    resolution: {integrity: sha512-2lzjQPJbN5UnHm7bHIUKFMulGTQwdvOkouJDpPysJS+QFBGDJqcfh+CxxtG23Ik/9tEvnebQiylYoazFMAgrYw==}
     cpu: [arm64]
     os: [freebsd]
 
-  '@rollup/rollup-freebsd-x64@4.34.8':
-    resolution: {integrity: sha512-TYXcHghgnCqYFiE3FT5QwXtOZqDj5GmaFNTNt3jNC+vh22dc/ukG2cG+pi75QO4kACohZzidsq7yKTKwq/Jq7Q==}
+  '@rollup/rollup-freebsd-x64@4.34.9':
+    resolution: {integrity: sha512-SLl0hi2Ah2H7xQYd6Qaiu01kFPzQ+hqvdYSoOtHYg/zCIFs6t8sV95kaoqjzjFwuYQLtOI0RZre/Ke0nPaQV+g==}
     cpu: [x64]
     os: [freebsd]
 
-  '@rollup/rollup-linux-arm-gnueabihf@4.34.8':
-    resolution: {integrity: sha512-A4iphFGNkWRd+5m3VIGuqHnG3MVnqKe7Al57u9mwgbyZ2/xF9Jio72MaY7xxh+Y87VAHmGQr73qoKL9HPbXj1g==}
+  '@rollup/rollup-linux-arm-gnueabihf@4.34.9':
+    resolution: {integrity: sha512-88I+D3TeKItrw+Y/2ud4Tw0+3CxQ2kLgu3QvrogZ0OfkmX/DEppehus7L3TS2Q4lpB+hYyxhkQiYPJ6Mf5/dPg==}
     cpu: [arm]
     os: [linux]
 
-  '@rollup/rollup-linux-arm-musleabihf@4.34.8':
-    resolution: {integrity: sha512-S0lqKLfTm5u+QTxlFiAnb2J/2dgQqRy/XvziPtDd1rKZFXHTyYLoVL58M/XFwDI01AQCDIevGLbQrMAtdyanpA==}
+  '@rollup/rollup-linux-arm-musleabihf@4.34.9':
+    resolution: {integrity: sha512-3qyfWljSFHi9zH0KgtEPG4cBXHDFhwD8kwg6xLfHQ0IWuH9crp005GfoUUh/6w9/FWGBwEHg3lxK1iHRN1MFlA==}
     cpu: [arm]
     os: [linux]
 
-  '@rollup/rollup-linux-arm64-gnu@4.34.8':
-    resolution: {integrity: sha512-jpz9YOuPiSkL4G4pqKrus0pn9aYwpImGkosRKwNi+sJSkz+WU3anZe6hi73StLOQdfXYXC7hUfsQlTnjMd3s1A==}
+  '@rollup/rollup-linux-arm64-gnu@4.34.9':
+    resolution: {integrity: sha512-6TZjPHjKZUQKmVKMUowF3ewHxctrRR09eYyvT5eFv8w/fXarEra83A2mHTVJLA5xU91aCNOUnM+DWFMSbQ0Nxw==}
     cpu: [arm64]
     os: [linux]
 
-  '@rollup/rollup-linux-arm64-musl@4.34.8':
-    resolution: {integrity: sha512-KdSfaROOUJXgTVxJNAZ3KwkRc5nggDk+06P6lgi1HLv1hskgvxHUKZ4xtwHkVYJ1Rep4GNo+uEfycCRRxht7+Q==}
+  '@rollup/rollup-linux-arm64-musl@4.34.9':
+    resolution: {integrity: sha512-LD2fytxZJZ6xzOKnMbIpgzFOuIKlxVOpiMAXawsAZ2mHBPEYOnLRK5TTEsID6z4eM23DuO88X0Tq1mErHMVq0A==}
     cpu: [arm64]
     os: [linux]
 
-  '@rollup/rollup-linux-loongarch64-gnu@4.34.8':
-    resolution: {integrity: sha512-NyF4gcxwkMFRjgXBM6g2lkT58OWztZvw5KkV2K0qqSnUEqCVcqdh2jN4gQrTn/YUpAcNKyFHfoOZEer9nwo6uQ==}
+  '@rollup/rollup-linux-loongarch64-gnu@4.34.9':
+    resolution: {integrity: sha512-dRAgTfDsn0TE0HI6cmo13hemKpVHOEyeciGtvlBTkpx/F65kTvShtY/EVyZEIfxFkV5JJTuQ9tP5HGBS0hfxIg==}
     cpu: [loong64]
     os: [linux]
 
-  '@rollup/rollup-linux-powerpc64le-gnu@4.34.8':
-    resolution: {integrity: sha512-LMJc999GkhGvktHU85zNTDImZVUCJ1z/MbAJTnviiWmmjyckP5aQsHtcujMjpNdMZPT2rQEDBlJfubhs3jsMfw==}
+  '@rollup/rollup-linux-powerpc64le-gnu@4.34.9':
+    resolution: {integrity: sha512-PHcNOAEhkoMSQtMf+rJofwisZqaU8iQ8EaSps58f5HYll9EAY5BSErCZ8qBDMVbq88h4UxaNPlbrKqfWP8RfJA==}
     cpu: [ppc64]
     os: [linux]
 
-  '@rollup/rollup-linux-riscv64-gnu@4.34.8':
-    resolution: {integrity: sha512-xAQCAHPj8nJq1PI3z8CIZzXuXCstquz7cIOL73HHdXiRcKk8Ywwqtx2wrIy23EcTn4aZ2fLJNBB8d0tQENPCmw==}
+  '@rollup/rollup-linux-riscv64-gnu@4.34.9':
+    resolution: {integrity: sha512-Z2i0Uy5G96KBYKjeQFKbbsB54xFOL5/y1P5wNBsbXB8yE+At3oh0DVMjQVzCJRJSfReiB2tX8T6HUFZ2k8iaKg==}
     cpu: [riscv64]
     os: [linux]
 
-  '@rollup/rollup-linux-s390x-gnu@4.34.8':
-    resolution: {integrity: sha512-DdePVk1NDEuc3fOe3dPPTb+rjMtuFw89gw6gVWxQFAuEqqSdDKnrwzZHrUYdac7A7dXl9Q2Vflxpme15gUWQFA==}
+  '@rollup/rollup-linux-s390x-gnu@4.34.9':
+    resolution: {integrity: sha512-U+5SwTMoeYXoDzJX5dhDTxRltSrIax8KWwfaaYcynuJw8mT33W7oOgz0a+AaXtGuvhzTr2tVKh5UO8GVANTxyQ==}
     cpu: [s390x]
     os: [linux]
 
-  '@rollup/rollup-linux-x64-gnu@4.34.8':
-    resolution: {integrity: sha512-8y7ED8gjxITUltTUEJLQdgpbPh1sUQ0kMTmufRF/Ns5tI9TNMNlhWtmPKKHCU0SilX+3MJkZ0zERYYGIVBYHIA==}
+  '@rollup/rollup-linux-x64-gnu@4.34.9':
+    resolution: {integrity: sha512-FwBHNSOjUTQLP4MG7y6rR6qbGw4MFeQnIBrMe161QGaQoBQLqSUEKlHIiVgF3g/mb3lxlxzJOpIBhaP+C+KP2A==}
     cpu: [x64]
     os: [linux]
 
-  '@rollup/rollup-linux-x64-musl@4.34.8':
-    resolution: {integrity: sha512-SCXcP0ZpGFIe7Ge+McxY5zKxiEI5ra+GT3QRxL0pMMtxPfpyLAKleZODi1zdRHkz5/BhueUrYtYVgubqe9JBNQ==}
+  '@rollup/rollup-linux-x64-musl@4.34.9':
+    resolution: {integrity: sha512-cYRpV4650z2I3/s6+5/LONkjIz8MBeqrk+vPXV10ORBnshpn8S32bPqQ2Utv39jCiDcO2eJTuSlPXpnvmaIgRA==}
     cpu: [x64]
     os: [linux]
 
-  '@rollup/rollup-win32-arm64-msvc@4.34.8':
-    resolution: {integrity: sha512-YHYsgzZgFJzTRbth4h7Or0m5O74Yda+hLin0irAIobkLQFRQd1qWmnoVfwmKm9TXIZVAD0nZ+GEb2ICicLyCnQ==}
+  '@rollup/rollup-win32-arm64-msvc@4.34.9':
+    resolution: {integrity: sha512-z4mQK9dAN6byRA/vsSgQiPeuO63wdiDxZ9yg9iyX2QTzKuQM7T4xlBoeUP/J8uiFkqxkcWndWi+W7bXdPbt27Q==}
     cpu: [arm64]
     os: [win32]
 
-  '@rollup/rollup-win32-ia32-msvc@4.34.8':
-    resolution: {integrity: sha512-r3NRQrXkHr4uWy5TOjTpTYojR9XmF0j/RYgKCef+Ag46FWUTltm5ziticv8LdNsDMehjJ543x/+TJAek/xBA2w==}
+  '@rollup/rollup-win32-ia32-msvc@4.34.9':
+    resolution: {integrity: sha512-KB48mPtaoHy1AwDNkAJfHXvHp24H0ryZog28spEs0V48l3H1fr4i37tiyHsgKZJnCmvxsbATdZGBpbmxTE3a9w==}
     cpu: [ia32]
     os: [win32]
 
-  '@rollup/rollup-win32-x64-msvc@4.34.8':
-    resolution: {integrity: sha512-U0FaE5O1BCpZSeE6gBl3c5ObhePQSfk9vDRToMmTkbhCOgW4jqvtS5LGyQ76L1fH8sM0keRp4uDTsbjiUyjk0g==}
+  '@rollup/rollup-win32-x64-msvc@4.34.9':
+    resolution: {integrity: sha512-AyleYRPU7+rgkMWbEh71fQlrzRfeP6SyMnRf9XX4fCdDPAJumdSBqYEcWPMzVQ4ScAl7E4oFfK0GUVn77xSwbw==}
     cpu: [x64]
     os: [win32]
 
@@ -2480,6 +2480,9 @@ packages:
 
   '@types/node@20.17.19':
     resolution: {integrity: sha512-LEwC7o1ifqg/6r2gn9Dns0f1rhK+fPFDoMiceTJ6kWmVk6bgXBI/9IOWfVan4WiAavK9pIVWdX0/e3J+eEUh5A==}
+
+  '@types/node@20.17.22':
+    resolution: {integrity: sha512-9RV2zST+0s3EhfrMZIhrz2bhuhBwxgkbHEwP2gtGWPjBzVQjifMzJ9exw7aDZhR1wbpj8zBrfp3bo8oJcGiUUw==}
 
   '@types/offscreencanvas@2019.7.3':
     resolution: {integrity: sha512-ieXiYmgSRXUDeOntE1InxjWyvEelZGP63M+cGuquuRLuIKKT1osnkXjxev9B7d1nXSug5vpunx+gNlbVxMlC9A==}
@@ -4013,8 +4016,8 @@ packages:
   flow-enums-runtime@0.0.6:
     resolution: {integrity: sha512-3PYnM29RFXwvAN6Pc/scUfkI7RwhQ/xqyLUyPNlXUp9S40zI8nup9tUSrTLSVnWGBN38FNiGWbwZOB6uR4OGdw==}
 
-  flow-parser@0.261.2:
-    resolution: {integrity: sha512-RtunoakA3YjtpAxPSOBVW6lmP5NYmETwkpAfNkdr8Ovf86ENkbD3mtPWnswFTIUtRvjwv0i8ZSkHK+AzsUg1JA==}
+  flow-parser@0.262.0:
+    resolution: {integrity: sha512-K3asSw4s2/sRoUC4xD2OfGi04gdYCCFRgkcwEXi5JyfFhS0HrFWLcDPp55ttv95OY5970WKl4T+7hWrnuOAUMQ==}
     engines: {node: '>=0.4.0'}
 
   for-each@0.3.5:
@@ -5722,8 +5725,8 @@ packages:
   robust-predicates@3.0.2:
     resolution: {integrity: sha512-IXgzBWvWQwE6PrDI05OvmXUIruQTcoMDzRsOd5CDvHCVLcLHMTSYvOK5Cm46kWqlV3yAbuSpBZdJ5oP5OUoStg==}
 
-  rollup@4.34.8:
-    resolution: {integrity: sha512-489gTVMzAYdiZHFVA/ig/iYFllCcWFHMvUHI1rpFmkoUtRlQxqh6/yiNqnYibjMZ2b/+FUQwldG+aLsEt6bglQ==}
+  rollup@4.34.9:
+    resolution: {integrity: sha512-nF5XYqWWp9hx/LrpC8sZvvvmq0TeTjQgaZHYmAgwysT9nh8sWnZhBnM8ZyVbbJFIQBLwHDNoMqsBZBbUo4U8sQ==}
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
 
@@ -6191,8 +6194,8 @@ packages:
     peerDependencies:
       three: '>=0.128.0'
 
-  three@0.169.0:
-    resolution: {integrity: sha512-Ed906MA3dR4TS5riErd4QBsRGPcx+HBDX2O5yYE5GqJeFQTPU+M56Va/f/Oph9X7uZo3W3o4l2ZhBZ6f6qUv0w==}
+  three@0.174.0:
+    resolution: {integrity: sha512-p+WG3W6Ov74alh3geCMkGK9NWuT62ee21cV3jEnun201zodVF4tCE5aZa2U122/mkLRmhJJUQmLLW1BH00uQJQ==}
 
   throat@5.0.0:
     resolution: {integrity: sha512-fcwX4mndzpLQKBS1DVYhGAcYaYt7vsHNIvQV+WXMvnow5cgjPphq5CaayLaGsjRdSCKZFNGt7/GYAuXaNOiYCA==}
@@ -7869,14 +7872,14 @@ snapshots:
     dependencies:
       '@jest/fake-timers': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.17.19
+      '@types/node': 20.17.22
       jest-mock: 29.7.0
 
   '@jest/fake-timers@29.7.0':
     dependencies:
       '@jest/types': 29.6.3
       '@sinonjs/fake-timers': 10.3.0
-      '@types/node': 20.17.19
+      '@types/node': 20.17.22
       jest-message-util: 29.7.0
       jest-mock: 29.7.0
       jest-util: 29.7.0
@@ -7910,7 +7913,7 @@ snapshots:
       '@jest/schemas': 29.6.3
       '@types/istanbul-lib-coverage': 2.0.6
       '@types/istanbul-reports': 3.0.4
-      '@types/node': 20.17.19
+      '@types/node': 20.17.22
       '@types/yargs': 17.0.33
       chalk: 4.1.2
 
@@ -7953,10 +7956,10 @@ snapshots:
 
   '@mediapipe/tasks-vision@0.10.17': {}
 
-  '@monogrid/gainmap-js@3.1.0(three@0.169.0)':
+  '@monogrid/gainmap-js@3.1.0(three@0.174.0)':
     dependencies:
       promise-worker-transferable: 1.0.4
-      three: 0.169.0
+      three: 0.174.0
 
   '@next/env@14.2.21': {}
 
@@ -8554,15 +8557,15 @@ snapshots:
       '@react-spring/types': 9.7.5
       react: 18.3.1
 
-  '@react-spring/three@9.7.5(@react-three/fiber@8.18.0(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.78.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(three@0.169.0))(react@18.3.1)(three@0.169.0)':
+  '@react-spring/three@9.7.5(@react-three/fiber@8.18.0(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.78.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(three@0.174.0))(react@18.3.1)(three@0.174.0)':
     dependencies:
       '@react-spring/animated': 9.7.5(react@18.3.1)
       '@react-spring/core': 9.7.5(react@18.3.1)
       '@react-spring/shared': 9.7.5(react@18.3.1)
       '@react-spring/types': 9.7.5
-      '@react-three/fiber': 8.18.0(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.78.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(three@0.169.0)
+      '@react-three/fiber': 8.18.0(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.78.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(three@0.174.0)
       react: 18.3.1
-      three: 0.169.0
+      three: 0.174.0
 
   '@react-spring/types@9.7.5': {}
 
@@ -8586,30 +8589,30 @@ snapshots:
       react-zdog: 1.2.2
       zdog: 1.1.3
 
-  '@react-three/drei@9.122.0(@react-three/fiber@8.18.0(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.78.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(three@0.169.0))(@types/react@18.3.18)(@types/three@0.173.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(three@0.169.0)(use-sync-external-store@1.4.0(react@18.3.1))':
+  '@react-three/drei@9.122.0(@react-three/fiber@8.18.0(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.78.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(three@0.174.0))(@types/react@18.3.18)(@types/three@0.173.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(three@0.174.0)(use-sync-external-store@1.4.0(react@18.3.1))':
     dependencies:
       '@babel/runtime': 7.26.9
       '@mediapipe/tasks-vision': 0.10.17
-      '@monogrid/gainmap-js': 3.1.0(three@0.169.0)
-      '@react-spring/three': 9.7.5(@react-three/fiber@8.18.0(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.78.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(three@0.169.0))(react@18.3.1)(three@0.169.0)
-      '@react-three/fiber': 8.18.0(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.78.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(three@0.169.0)
+      '@monogrid/gainmap-js': 3.1.0(three@0.174.0)
+      '@react-spring/three': 9.7.5(@react-three/fiber@8.18.0(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.78.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(three@0.174.0))(react@18.3.1)(three@0.174.0)
+      '@react-three/fiber': 8.18.0(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.78.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(three@0.174.0)
       '@use-gesture/react': 10.3.1(react@18.3.1)
-      camera-controls: 2.10.0(three@0.169.0)
+      camera-controls: 2.10.0(three@0.174.0)
       cross-env: 7.0.3
       detect-gpu: 5.0.70
       glsl-noise: 0.0.0
       hls.js: 1.5.20
-      maath: 0.10.8(@types/three@0.173.0)(three@0.169.0)
-      meshline: 3.3.1(three@0.169.0)
+      maath: 0.10.8(@types/three@0.173.0)(three@0.174.0)
+      meshline: 3.3.1(three@0.174.0)
       react: 18.3.1
       react-composer: 5.0.3(react@18.3.1)
-      stats-gl: 2.4.2(@types/three@0.173.0)(three@0.169.0)
+      stats-gl: 2.4.2(@types/three@0.173.0)(three@0.174.0)
       stats.js: 0.17.0
       suspend-react: 0.1.3(react@18.3.1)
-      three: 0.169.0
-      three-mesh-bvh: 0.7.8(three@0.169.0)
-      three-stdlib: 2.35.14(three@0.169.0)
-      troika-three-text: 0.52.3(three@0.169.0)
+      three: 0.174.0
+      three-mesh-bvh: 0.7.8(three@0.174.0)
+      three-stdlib: 2.35.14(three@0.174.0)
+      troika-three-text: 0.52.3(three@0.174.0)
       tunnel-rat: 0.1.2(@types/react@18.3.18)(react@18.3.1)
       utility-types: 3.11.0
       zustand: 5.0.3(@types/react@18.3.18)(react@18.3.1)(use-sync-external-store@1.4.0(react@18.3.1))
@@ -8621,7 +8624,7 @@ snapshots:
       - immer
       - use-sync-external-store
 
-  '@react-three/fiber@8.18.0(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.78.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(three@0.169.0)':
+  '@react-three/fiber@8.18.0(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.78.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(three@0.174.0)':
     dependencies:
       '@babel/runtime': 7.26.9
       '@types/react-reconciler': 0.26.7
@@ -8634,7 +8637,7 @@ snapshots:
       react-use-measure: 2.1.7(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       scheduler: 0.21.0
       suspend-react: 0.1.3(react@18.3.1)
-      three: 0.169.0
+      three: 0.174.0
       zustand: 3.7.2(react@18.3.1)
     optionalDependencies:
       react-dom: 18.3.1(react@18.3.1)
@@ -8642,69 +8645,69 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
 
-  '@rollup/pluginutils@5.1.4(rollup@4.34.8)':
+  '@rollup/pluginutils@5.1.4(rollup@4.34.9)':
     dependencies:
       '@types/estree': 1.0.6
       estree-walker: 2.0.2
       picomatch: 4.0.2
     optionalDependencies:
-      rollup: 4.34.8
+      rollup: 4.34.9
 
-  '@rollup/rollup-android-arm-eabi@4.34.8':
+  '@rollup/rollup-android-arm-eabi@4.34.9':
     optional: true
 
-  '@rollup/rollup-android-arm64@4.34.8':
+  '@rollup/rollup-android-arm64@4.34.9':
     optional: true
 
-  '@rollup/rollup-darwin-arm64@4.34.8':
+  '@rollup/rollup-darwin-arm64@4.34.9':
     optional: true
 
-  '@rollup/rollup-darwin-x64@4.34.8':
+  '@rollup/rollup-darwin-x64@4.34.9':
     optional: true
 
-  '@rollup/rollup-freebsd-arm64@4.34.8':
+  '@rollup/rollup-freebsd-arm64@4.34.9':
     optional: true
 
-  '@rollup/rollup-freebsd-x64@4.34.8':
+  '@rollup/rollup-freebsd-x64@4.34.9':
     optional: true
 
-  '@rollup/rollup-linux-arm-gnueabihf@4.34.8':
+  '@rollup/rollup-linux-arm-gnueabihf@4.34.9':
     optional: true
 
-  '@rollup/rollup-linux-arm-musleabihf@4.34.8':
+  '@rollup/rollup-linux-arm-musleabihf@4.34.9':
     optional: true
 
-  '@rollup/rollup-linux-arm64-gnu@4.34.8':
+  '@rollup/rollup-linux-arm64-gnu@4.34.9':
     optional: true
 
-  '@rollup/rollup-linux-arm64-musl@4.34.8':
+  '@rollup/rollup-linux-arm64-musl@4.34.9':
     optional: true
 
-  '@rollup/rollup-linux-loongarch64-gnu@4.34.8':
+  '@rollup/rollup-linux-loongarch64-gnu@4.34.9':
     optional: true
 
-  '@rollup/rollup-linux-powerpc64le-gnu@4.34.8':
+  '@rollup/rollup-linux-powerpc64le-gnu@4.34.9':
     optional: true
 
-  '@rollup/rollup-linux-riscv64-gnu@4.34.8':
+  '@rollup/rollup-linux-riscv64-gnu@4.34.9':
     optional: true
 
-  '@rollup/rollup-linux-s390x-gnu@4.34.8':
+  '@rollup/rollup-linux-s390x-gnu@4.34.9':
     optional: true
 
-  '@rollup/rollup-linux-x64-gnu@4.34.8':
+  '@rollup/rollup-linux-x64-gnu@4.34.9':
     optional: true
 
-  '@rollup/rollup-linux-x64-musl@4.34.8':
+  '@rollup/rollup-linux-x64-musl@4.34.9':
     optional: true
 
-  '@rollup/rollup-win32-arm64-msvc@4.34.8':
+  '@rollup/rollup-win32-arm64-msvc@4.34.9':
     optional: true
 
-  '@rollup/rollup-win32-ia32-msvc@4.34.8':
+  '@rollup/rollup-win32-ia32-msvc@4.34.9':
     optional: true
 
-  '@rollup/rollup-win32-x64-msvc@4.34.8':
+  '@rollup/rollup-win32-x64-msvc@4.34.9':
     optional: true
 
   '@rtsao/scc@1.1.0': {}
@@ -8935,11 +8938,11 @@ snapshots:
     dependencies:
       lodash: 4.17.21
 
-  '@storybook/experimental-nextjs-vite@8.6.0(@babel/core@7.26.9)(@storybook/test@8.6.0(storybook@8.6.0(prettier@3.5.2)))(next@14.2.21(@babel/core@7.26.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rollup@4.34.8)(storybook@8.6.0(prettier@3.5.2))(typescript@5.7.3)(vite@6.2.0(@types/node@20.17.19)(jiti@1.21.7)(terser@5.39.0)(yaml@2.7.0))':
+  '@storybook/experimental-nextjs-vite@8.6.0(@babel/core@7.26.9)(@storybook/test@8.6.0(storybook@8.6.0(prettier@3.5.2)))(next@14.2.21(@babel/core@7.26.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rollup@4.34.9)(storybook@8.6.0(prettier@3.5.2))(typescript@5.7.3)(vite@6.2.0(@types/node@20.17.19)(jiti@1.21.7)(terser@5.39.0)(yaml@2.7.0))':
     dependencies:
       '@storybook/builder-vite': 8.6.0(storybook@8.6.0(prettier@3.5.2))(vite@6.2.0(@types/node@20.17.19)(jiti@1.21.7)(terser@5.39.0)(yaml@2.7.0))
       '@storybook/react': 8.6.0(@storybook/test@8.6.0(storybook@8.6.0(prettier@3.5.2)))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(storybook@8.6.0(prettier@3.5.2))(typescript@5.7.3)
-      '@storybook/react-vite': 8.6.0(@storybook/test@8.6.0(storybook@8.6.0(prettier@3.5.2)))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rollup@4.34.8)(storybook@8.6.0(prettier@3.5.2))(typescript@5.7.3)(vite@6.2.0(@types/node@20.17.19)(jiti@1.21.7)(terser@5.39.0)(yaml@2.7.0))
+      '@storybook/react-vite': 8.6.0(@storybook/test@8.6.0(storybook@8.6.0(prettier@3.5.2)))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rollup@4.34.9)(storybook@8.6.0(prettier@3.5.2))(typescript@5.7.3)(vite@6.2.0(@types/node@20.17.19)(jiti@1.21.7)(terser@5.39.0)(yaml@2.7.0))
       '@storybook/test': 8.6.0(storybook@8.6.0(prettier@3.5.2))
       next: 14.2.21(@babel/core@7.26.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
@@ -9089,10 +9092,10 @@ snapshots:
       react-dom: 18.3.1(react@18.3.1)
       storybook: 8.6.0(prettier@3.5.2)
 
-  '@storybook/react-vite@8.6.0(@storybook/test@8.6.0(storybook@8.6.0(prettier@3.5.2)))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rollup@4.34.8)(storybook@8.6.0(prettier@3.5.2))(typescript@5.7.3)(vite@6.2.0(@types/node@20.17.19)(jiti@1.21.7)(terser@5.39.0)(yaml@2.7.0))':
+  '@storybook/react-vite@8.6.0(@storybook/test@8.6.0(storybook@8.6.0(prettier@3.5.2)))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rollup@4.34.9)(storybook@8.6.0(prettier@3.5.2))(typescript@5.7.3)(vite@6.2.0(@types/node@20.17.19)(jiti@1.21.7)(terser@5.39.0)(yaml@2.7.0))':
     dependencies:
       '@joshwooding/vite-plugin-react-docgen-typescript': 0.5.0(typescript@5.7.3)(vite@6.2.0(@types/node@20.17.19)(jiti@1.21.7)(terser@5.39.0)(yaml@2.7.0))
-      '@rollup/pluginutils': 5.1.4(rollup@4.34.8)
+      '@rollup/pluginutils': 5.1.4(rollup@4.34.9)
       '@storybook/builder-vite': 8.6.0(storybook@8.6.0(prettier@3.5.2))(vite@6.2.0(@types/node@20.17.19)(jiti@1.21.7)(terser@5.39.0)(yaml@2.7.0))
       '@storybook/react': 8.6.0(@storybook/test@8.6.0(storybook@8.6.0(prettier@3.5.2)))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(storybook@8.6.0(prettier@3.5.2))(typescript@5.7.3)
       find-up: 5.0.0
@@ -9300,7 +9303,7 @@ snapshots:
 
   '@types/graceful-fs@4.1.9':
     dependencies:
-      '@types/node': 20.17.19
+      '@types/node': 20.17.22
 
   '@types/html-minifier-terser@6.1.0': {}
 
@@ -9322,9 +9325,13 @@ snapshots:
 
   '@types/node-forge@1.3.11':
     dependencies:
-      '@types/node': 20.17.19
+      '@types/node': 20.17.22
 
   '@types/node@20.17.19':
+    dependencies:
+      undici-types: 6.19.8
+
+  '@types/node@20.17.22':
     dependencies:
       undici-types: 6.19.8
 
@@ -10134,9 +10141,9 @@ snapshots:
 
   camelcase@6.3.0: {}
 
-  camera-controls@2.10.0(three@0.169.0):
+  camera-controls@2.10.0(three@0.174.0):
     dependencies:
-      three: 0.169.0
+      three: 0.174.0
 
   caniuse-lite@1.0.30001700: {}
 
@@ -10180,7 +10187,7 @@ snapshots:
 
   chrome-launcher@0.15.2:
     dependencies:
-      '@types/node': 20.17.19
+      '@types/node': 20.17.22
       escape-string-regexp: 4.0.0
       is-wsl: 2.2.0
       lighthouse-logger: 1.4.2
@@ -10191,7 +10198,7 @@ snapshots:
 
   chromium-edge-launcher@0.2.0:
     dependencies:
-      '@types/node': 20.17.19
+      '@types/node': 20.17.22
       escape-string-regexp: 4.0.0
       is-wsl: 2.2.0
       lighthouse-logger: 1.4.2
@@ -11161,7 +11168,7 @@ snapshots:
 
   flow-enums-runtime@0.0.6: {}
 
-  flow-parser@0.261.2: {}
+  flow-parser@0.262.0: {}
 
   for-each@0.3.5:
     dependencies:
@@ -11689,7 +11696,7 @@ snapshots:
       '@jest/environment': 29.7.0
       '@jest/fake-timers': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.17.19
+      '@types/node': 20.17.22
       jest-mock: 29.7.0
       jest-util: 29.7.0
 
@@ -11699,7 +11706,7 @@ snapshots:
     dependencies:
       '@jest/types': 29.6.3
       '@types/graceful-fs': 4.1.9
-      '@types/node': 20.17.19
+      '@types/node': 20.17.22
       anymatch: 3.1.3
       fb-watchman: 2.0.2
       graceful-fs: 4.2.11
@@ -11726,7 +11733,7 @@ snapshots:
   jest-mock@29.7.0:
     dependencies:
       '@jest/types': 29.6.3
-      '@types/node': 20.17.19
+      '@types/node': 20.17.22
       jest-util: 29.7.0
 
   jest-regex-util@29.6.3: {}
@@ -11734,7 +11741,7 @@ snapshots:
   jest-util@29.7.0:
     dependencies:
       '@jest/types': 29.6.3
-      '@types/node': 20.17.19
+      '@types/node': 20.17.22
       chalk: 4.1.2
       ci-info: 3.9.0
       graceful-fs: 4.2.11
@@ -11757,7 +11764,7 @@ snapshots:
 
   jest-worker@29.7.0:
     dependencies:
-      '@types/node': 20.17.19
+      '@types/node': 20.17.22
       jest-util: 29.7.0
       merge-stream: 2.0.0
       supports-color: 8.1.1
@@ -11789,7 +11796,7 @@ snapshots:
       '@babel/preset-flow': 7.25.9(@babel/core@7.26.9)
       '@babel/preset-typescript': 7.26.0(@babel/core@7.26.9)
       '@babel/register': 7.25.9(@babel/core@7.26.9)
-      flow-parser: 0.261.2
+      flow-parser: 0.262.0
       graceful-fs: 4.2.11
       micromatch: 4.0.8
       neo-async: 2.6.2
@@ -11946,10 +11953,10 @@ snapshots:
 
   lz-string@1.5.0: {}
 
-  maath@0.10.8(@types/three@0.173.0)(three@0.169.0):
+  maath@0.10.8(@types/three@0.173.0)(three@0.174.0):
     dependencies:
       '@types/three': 0.173.0
-      three: 0.169.0
+      three: 0.174.0
 
   magic-string@0.27.0:
     dependencies:
@@ -11998,9 +12005,9 @@ snapshots:
 
   merge2@1.4.1: {}
 
-  meshline@3.3.1(three@0.169.0):
+  meshline@3.3.1(three@0.174.0):
     dependencies:
-      three: 0.169.0
+      three: 0.174.0
 
   meshoptimizer@0.18.1: {}
 
@@ -12906,12 +12913,12 @@ snapshots:
     optionalDependencies:
       '@types/react': 18.3.18
 
-  react-spring@9.7.5(@react-three/fiber@8.18.0(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.78.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(three@0.169.0))(konva@9.3.18)(react-dom@18.3.1(react@18.3.1))(react-konva@18.2.10(@types/react@18.3.18)(konva@9.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-native@0.78.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react-zdog@1.2.2)(react@18.3.1)(three@0.169.0)(zdog@1.1.3):
+  react-spring@9.7.5(@react-three/fiber@8.18.0(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.78.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(three@0.174.0))(konva@9.3.18)(react-dom@18.3.1(react@18.3.1))(react-konva@18.2.10(@types/react@18.3.18)(konva@9.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-native@0.78.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react-zdog@1.2.2)(react@18.3.1)(three@0.174.0)(zdog@1.1.3):
     dependencies:
       '@react-spring/core': 9.7.5(react@18.3.1)
       '@react-spring/konva': 9.7.5(konva@9.3.18)(react-konva@18.2.10(@types/react@18.3.18)(konva@9.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       '@react-spring/native': 9.7.5(react-native@0.78.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)
-      '@react-spring/three': 9.7.5(@react-three/fiber@8.18.0(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.78.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(three@0.169.0))(react@18.3.1)(three@0.169.0)
+      '@react-spring/three': 9.7.5(@react-three/fiber@8.18.0(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.78.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(three@0.174.0))(react@18.3.1)(three@0.174.0)
       '@react-spring/web': 9.7.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-spring/zdog': 9.7.5(react-dom@18.3.1(react@18.3.1))(react-zdog@1.2.2)(react@18.3.1)(zdog@1.1.3)
       react: 18.3.1
@@ -13120,29 +13127,29 @@ snapshots:
 
   robust-predicates@3.0.2: {}
 
-  rollup@4.34.8:
+  rollup@4.34.9:
     dependencies:
       '@types/estree': 1.0.6
     optionalDependencies:
-      '@rollup/rollup-android-arm-eabi': 4.34.8
-      '@rollup/rollup-android-arm64': 4.34.8
-      '@rollup/rollup-darwin-arm64': 4.34.8
-      '@rollup/rollup-darwin-x64': 4.34.8
-      '@rollup/rollup-freebsd-arm64': 4.34.8
-      '@rollup/rollup-freebsd-x64': 4.34.8
-      '@rollup/rollup-linux-arm-gnueabihf': 4.34.8
-      '@rollup/rollup-linux-arm-musleabihf': 4.34.8
-      '@rollup/rollup-linux-arm64-gnu': 4.34.8
-      '@rollup/rollup-linux-arm64-musl': 4.34.8
-      '@rollup/rollup-linux-loongarch64-gnu': 4.34.8
-      '@rollup/rollup-linux-powerpc64le-gnu': 4.34.8
-      '@rollup/rollup-linux-riscv64-gnu': 4.34.8
-      '@rollup/rollup-linux-s390x-gnu': 4.34.8
-      '@rollup/rollup-linux-x64-gnu': 4.34.8
-      '@rollup/rollup-linux-x64-musl': 4.34.8
-      '@rollup/rollup-win32-arm64-msvc': 4.34.8
-      '@rollup/rollup-win32-ia32-msvc': 4.34.8
-      '@rollup/rollup-win32-x64-msvc': 4.34.8
+      '@rollup/rollup-android-arm-eabi': 4.34.9
+      '@rollup/rollup-android-arm64': 4.34.9
+      '@rollup/rollup-darwin-arm64': 4.34.9
+      '@rollup/rollup-darwin-x64': 4.34.9
+      '@rollup/rollup-freebsd-arm64': 4.34.9
+      '@rollup/rollup-freebsd-x64': 4.34.9
+      '@rollup/rollup-linux-arm-gnueabihf': 4.34.9
+      '@rollup/rollup-linux-arm-musleabihf': 4.34.9
+      '@rollup/rollup-linux-arm64-gnu': 4.34.9
+      '@rollup/rollup-linux-arm64-musl': 4.34.9
+      '@rollup/rollup-linux-loongarch64-gnu': 4.34.9
+      '@rollup/rollup-linux-powerpc64le-gnu': 4.34.9
+      '@rollup/rollup-linux-riscv64-gnu': 4.34.9
+      '@rollup/rollup-linux-s390x-gnu': 4.34.9
+      '@rollup/rollup-linux-x64-gnu': 4.34.9
+      '@rollup/rollup-linux-x64-musl': 4.34.9
+      '@rollup/rollup-win32-arm64-msvc': 4.34.9
+      '@rollup/rollup-win32-ia32-msvc': 4.34.9
+      '@rollup/rollup-win32-x64-msvc': 4.34.9
       fsevents: 2.3.3
 
   run-parallel@1.2.0:
@@ -13383,10 +13390,10 @@ snapshots:
     dependencies:
       type-fest: 0.7.1
 
-  stats-gl@2.4.2(@types/three@0.173.0)(three@0.169.0):
+  stats-gl@2.4.2(@types/three@0.173.0)(three@0.174.0):
     dependencies:
       '@types/three': 0.173.0
-      three: 0.169.0
+      three: 0.174.0
 
   stats.js@0.17.0: {}
 
@@ -13664,7 +13671,7 @@ snapshots:
     dependencies:
       any-promise: 1.3.0
 
-  three-conic-polygon-geometry@2.1.2(three@0.169.0):
+  three-conic-polygon-geometry@2.1.2(three@0.174.0):
     dependencies:
       '@turf/boolean-point-in-polygon': 7.2.0
       d3-array: 3.2.4
@@ -13673,16 +13680,16 @@ snapshots:
       d3-scale: 4.0.2
       delaunator: 5.0.1
       earcut: 3.0.1
-      three: 0.169.0
+      three: 0.174.0
 
-  three-geojson-geometry@2.1.1(three@0.169.0):
+  three-geojson-geometry@2.1.1(three@0.174.0):
     dependencies:
       d3-geo: 3.1.1
       d3-interpolate: 3.0.1
       earcut: 3.0.1
-      three: 0.169.0
+      three: 0.174.0
 
-  three-globe@2.41.12(three@0.169.0):
+  three-globe@2.41.12(three@0.174.0):
     dependencies:
       '@tweenjs/tween.js': 25.0.0
       accessor-fn: 1.5.1
@@ -13697,24 +13704,24 @@ snapshots:
       h3-js: 4.1.0
       index-array-by: 1.4.2
       kapsule: 1.16.0
-      three: 0.169.0
-      three-conic-polygon-geometry: 2.1.2(three@0.169.0)
-      three-geojson-geometry: 2.1.1(three@0.169.0)
-      three-slippy-map-globe: 1.0.3(three@0.169.0)
+      three: 0.174.0
+      three-conic-polygon-geometry: 2.1.2(three@0.174.0)
+      three-geojson-geometry: 2.1.1(three@0.174.0)
+      three-slippy-map-globe: 1.0.3(three@0.174.0)
       tinycolor2: 1.6.0
 
-  three-mesh-bvh@0.7.8(three@0.169.0):
+  three-mesh-bvh@0.7.8(three@0.174.0):
     dependencies:
-      three: 0.169.0
+      three: 0.174.0
 
-  three-slippy-map-globe@1.0.3(three@0.169.0):
+  three-slippy-map-globe@1.0.3(three@0.174.0):
     dependencies:
       d3-geo: 3.1.1
       d3-octree: 1.1.0
       d3-scale: 4.0.2
-      three: 0.169.0
+      three: 0.174.0
 
-  three-stdlib@2.35.14(three@0.169.0):
+  three-stdlib@2.35.14(three@0.174.0):
     dependencies:
       '@types/draco3d': 1.4.10
       '@types/offscreencanvas': 2019.7.3
@@ -13722,9 +13729,9 @@ snapshots:
       draco3d: 1.5.7
       fflate: 0.6.10
       potpack: 1.0.2
-      three: 0.169.0
+      three: 0.174.0
 
-  three@0.169.0: {}
+  three@0.174.0: {}
 
   throat@5.0.0: {}
 
@@ -13757,17 +13764,17 @@ snapshots:
 
   tr46@0.0.3: {}
 
-  troika-three-text@0.52.3(three@0.169.0):
+  troika-three-text@0.52.3(three@0.174.0):
     dependencies:
       bidi-js: 1.0.3
-      three: 0.169.0
-      troika-three-utils: 0.52.0(three@0.169.0)
+      three: 0.174.0
+      troika-three-utils: 0.52.0(three@0.174.0)
       troika-worker-utils: 0.52.0
       webgl-sdf-generator: 1.1.1
 
-  troika-three-utils@0.52.0(three@0.169.0):
+  troika-three-utils@0.52.0(three@0.174.0):
     dependencies:
-      three: 0.169.0
+      three: 0.174.0
 
   troika-worker-utils@0.52.0: {}
 
@@ -13976,7 +13983,7 @@ snapshots:
     dependencies:
       esbuild: 0.25.0
       postcss: 8.5.3
-      rollup: 4.34.8
+      rollup: 4.34.9
     optionalDependencies:
       '@types/node': 20.17.19
       fsevents: 2.3.3
