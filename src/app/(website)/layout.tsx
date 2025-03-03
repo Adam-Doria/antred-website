@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { GoogleTagManager } from '@next/third-parties/google'
+import Script from 'next/script'
 
 import { NextIntlClientProvider } from 'next-intl'
 import { getLocale, getMessages } from 'next-intl/server'
@@ -85,7 +85,14 @@ export default async function RootLayout({
         <Analytics />
         <SpeedInsights />
       </body>
-      <GoogleTagManager gtmId="AW-16894381494" />
+      <Script id="google-ads-conversion" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'AW-16894381494');
+        `}
+      </Script>
     </html>
   )
 }
