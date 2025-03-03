@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import { GoogleTagManager } from '@next/third-parties/google'
+
 import { NextIntlClientProvider } from 'next-intl'
 import { getLocale, getMessages } from 'next-intl/server'
 import { montserrat, bontang } from '@/components/system/typography/fonts/font'
@@ -83,6 +85,7 @@ export default async function RootLayout({
         <Analytics />
         <SpeedInsights />
       </body>
+      <GoogleTagManager gtmId="AW-16894381494" />
     </html>
   )
 }
