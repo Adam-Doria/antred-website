@@ -3,7 +3,10 @@ import dynamic from 'next/dynamic'
 const World = dynamic(
   () => import('@/components/ui/globe').then((m) => m.World),
   {
-    ssr: false
+    ssr: false,
+    loading: () => (
+      <div className="h-full w-full bg-brand-700/30 animate-pulse"></div>
+    )
   }
 )
 
