@@ -1,12 +1,16 @@
 import { articles, parolesExpert } from '../../article'
 import Image from 'next/image'
-export default function Page({
+
+// Définition correcte des types pour Next.js 15.2
+export default async function Page({
   params
 }: {
-  params: { id: string; title: string }
+  params: Promise<{ id: string; title: string }>
 }) {
+  const { id } = await params
+
   const article = [...articles, ...parolesExpert].find(
-    (article) => article.id === params?.id
+    (article) => article.id === id
   )
 
   return (

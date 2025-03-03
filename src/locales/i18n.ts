@@ -1,4 +1,5 @@
 'use server'
+
 import { getRequestConfig } from 'next-intl/server'
 import { cookies } from 'next/headers'
 import { Locale, defaultLocale } from './localesConfig'
@@ -8,11 +9,13 @@ import { Locale, defaultLocale } from './localesConfig'
 const COOKIE_NAME = 'NEXT_LOCALE'
 
 export async function getUserLocale() {
-  return cookies().get(COOKIE_NAME)?.value
+  const cookieStore = await cookies()
+  return cookieStore.get(COOKIE_NAME)?.value
 }
 
 export async function setUserLocale(locale: Locale) {
-  cookies().set(COOKIE_NAME, locale)
+  const cookieStore = await cookies()
+  cookieStore.set(COOKIE_NAME, locale)
 }
 
 export default getRequestConfig(async () => {
