@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
-    "test": "echo  \"no test specified\"",
+    "test": "vitest",
     "prettier:check": "prettier \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\" -c",
     "prettier:format": "prettier . --write",
     "storybook": "storybook dev -p 6006",
@@ -70,11 +70,15 @@
     "@storybook/react": "^8.3.5",
     "@storybook/test": "^8.3.5",
     "@supabase/ssr": "^0.5.2",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/react": "^16.2.0",
     "@types/eslint__js": "^8.42.3",
     "@types/node": "^20.16.11",
+    "@types/pg": "^8.11.11",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.1",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.20",
     "eslint": "^8.57.1",
     "eslint-config-next": "14.2.5",
@@ -85,6 +89,7 @@
     "eslint-plugin-storybook": "^0.8.0",
     "framer-motion": "^11.11.10",
     "husky": "^9.1.7",
+    "jsdom": "^26.0.0",
     "kysely-supabase": "^0.2.0",
     "postcss": "^8.4.47",
     "prettier": "^3.3.3",
@@ -92,6 +97,8 @@
     "storybook-next-intl": "^1.1.6",
     "supabase": "^1.204.3",
     "tailwindcss": "^3.4.13",
-    "typescript": "^5.6.3"
+    "typescript": "^5.6.3",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.0.7"
   }
 }
