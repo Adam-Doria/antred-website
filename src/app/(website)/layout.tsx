@@ -13,7 +13,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 
 export const metadata: Metadata = {
   title: `ANTRED - Association pour la Recherche des Français Disparus à l'Étranger`,
-  description: `ANTRED (Association Nationale Tiphaine pour la Recherche à l'Étranger des Disparus) est dédiée au soutien des familles de Français disparus à l'étranger. Nous les accompagnons dans les démarches administratives, les recherches internationales, et la sensibilisation des autorités pour une meilleure prise en charge de ces situations critiques.`,
+  description: `ANTRED (Association Nationale Tiphaine pour la Recherche à l'Étranger des Disparus) est dédiée au soutien des familles de Français disparus à l'étranger. Nous les accompagnons dans les démarches administratives, les recherches internationales, et la sensibilisation des autorités pour une meilleure prise en charge de ces situations critiques.Recherche et aide en cas de disparition. Aide les familles des victimes.`,
   keywords: [
     'ANTRED',
     'association recherche disparus',
@@ -26,7 +26,14 @@ export const metadata: Metadata = {
     'accompagnement administratif',
     'justice internationale',
     'enquêtes disparitions',
-    'sensibilisation autorités'
+    'sensibilisation autorités',
+    'disparition',
+    'disparus',
+    'recherche victimes',
+    'recherche disparus',
+    'aide judiciaire',
+    'justice',
+    'police scientifique'
   ],
   authors: [
     { name: 'Association ANTRED', url: 'https://www.antred.fr' },
@@ -41,7 +48,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: `ANTRED - Association pour la Recherche des Français Disparus à l'Étranger`,
-    description: `L'Association Nationale Tiphaine pour la Recherche à l'Étranger des Disparus (ANTRED) apporte son soutien aux familles de Français disparus à l'étranger, en les aidant dans les démarches administratives, les recherches internationales et la sensibilisation des autorités pour une meilleure gestion de ces situations critiques.`,
+    description: `L'Association Nationale Tiphaine pour la Recherche à l'Étranger des Disparus (ANTRED) apporte son soutien aux familles de Français disparus à l'étranger, en les aidant dans les démarches administratives, les recherches internationales et la sensibilisation des autorités pour une meilleure gestion de ces situations critiques. Recherche et aide en cas de disparition. Aide les familles des victimes.`,
     url: 'https://www.antred.fr',
     siteName: 'antred.fr',
     type: 'website',
@@ -78,6 +85,19 @@ export default async function RootLayout({
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
           gtag('config', 'AW-16894381494');
+        `}
+        </Script>
+        <Script id="google-ads-specific-conversion" strategy="afterInteractive">
+          {`
+          function gtag_report_conversion() {
+            gtag('event', 'conversion', {
+              'send_to': 'AW-16894381494/92dtCOGbhaUaELab7_c-',
+              'value': 1.0,
+              'currency': 'USD'
+            });
+            return false;
+          }
+          gtag_report_conversion();
         `}
         </Script>
       </head>
