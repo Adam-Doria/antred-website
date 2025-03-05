@@ -67,6 +67,20 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
+      <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-16894381494"
+          strategy="afterInteractive"
+        />
+        <Script id="google-ads-conversion" strategy="afterInteractive">
+          {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'AW-16894381494');
+        `}
+        </Script>
+      </head>
       <body className={`${montserrat.variable} ${bontang.variable} `}>
         <ThemeProvider
           attribute="class"
@@ -85,14 +99,6 @@ export default async function RootLayout({
         <Analytics />
         <SpeedInsights />
       </body>
-      <Script id="google-ads-conversion" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'AW-16894381494');
-        `}
-      </Script>
     </html>
   )
 }
