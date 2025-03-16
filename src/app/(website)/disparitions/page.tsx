@@ -1,31 +1,18 @@
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
-import { missingPerson } from './missingPerson'
+import { MissingPersonData, missingPersonData } from './missingPerson'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 
-interface CardProps {
-  id: string
-  name: string
-  lastname: string
-  birthdate: string
-  country: string
-  gps: string
-  gender: string
-  disappearanceDate: string
-  images: { src: string; alt: string }[]
-  infos: { description: string }[]
-}
-
-function MissingCard(props: CardProps) {
-  const imageSrc = props.images?.[0]?.src
+function MissingCard(props: MissingPersonData) {
+  const imageSrc = props.images?.[0]
 
   return (
     <div className=" md:max-w-[25%] w-full relative overflow-hidden rounded-md shadow-xl mx-auto">
       <Image
         src={`/${imageSrc}`}
-        alt={`${props?.name} ${props?.lastname}`}
+        alt={`${props?.firstName} ${props?.lastName}`}
         fill
         style={{
           objectFit: 'cover'
@@ -36,7 +23,7 @@ function MissingCard(props: CardProps) {
       <div className="  pointer-events-none filter-none relative z-10 flex flex-col justify-end h-96 p-4 bg-transparent">
         <div className="text-dark-foreground">
           <h3 className="font-bold w-fit rounded-lg px-2  ">
-            {`${props?.name} ${props?.lastname}`}
+            {`${props?.firstName} ${props?.lastName}`}
           </h3>
           <p className="font-bold text-base w-fit bg-accent/55 rounded-lg px-2 my-4">
             {props?.country}
@@ -75,8 +62,8 @@ export default function Page() {
         </div>
       </div>
       <section className="w-full flex flex-wrap gap-4 justify-evenly mb-10">
-        {missingPerson.map((person) => (
-          <MissingCard key={person?.lastname} {...person} />
+        {missingPersonData.map((person: MissingPersonData) => (
+          <MissingCard key={person?.lastName} {...person} />
         ))}
       </section>
     </main>

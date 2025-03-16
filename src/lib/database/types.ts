@@ -1,25 +1,32 @@
 import { ColumnType, Generated } from 'kysely'
 
 export interface Database {
-  missing_persons: MissingPersonsTable
-  missing_persons_article: MissingPersonsArticle
+  missingPersons: MissingPersonsTable
+  missingPersonArticles: MissingPersonsArticle
 }
 
 export interface BaseField {
   id: Generated<string>
-  created_at: ColumnType<Date, string | undefined, never>
-  updated_at: ColumnType<Date, string | undefined, string>
+  createdAt: ColumnType<
+    Date | undefined | string,
+    Date | undefined | string,
+    never
+  >
+  updatedAt: Date | undefined | string
 }
 
 export interface MissingPersonsTable extends BaseField {
   firstName: string
   lastName: string
-  gender: 'homme' | 'femme' | 'autre'
-  birthdate: ColumnType<Date, string | undefined, string>
-  disappearance_date: ColumnType<Date, string | undefined, string>
-  disappearance_location: string | null | undefined
+  gender: 'Masculin' | 'Féminin' | 'Autre'
+  birthDate: Date | undefined | string
+  disappearanceDate: Date | undefined | string
+  disappearanceLocation: string | null | undefined
   country: string | null | undefined
-  coordinates: { latitude: number; longitude: number }
+  coordinates: {
+    latitude: number
+    longitude: number
+  }
   description: string | null
   images: string[]
 }
@@ -29,8 +36,8 @@ export interface MissingPersonsArticle extends BaseField {
   title: string
   summary: string
   author: string
-  publish_date: ColumnType<Date, string | undefined, string>
+  publishDate: Date | undefined | string
   content: string
-  cover_image: string
+  coverImage: string
   images: string[]
 }

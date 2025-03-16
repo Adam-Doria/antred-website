@@ -1,13 +1,12 @@
 /* eslint-disable indent */
-import * as path from 'path'
+import path from 'path'
 import { promises as fs } from 'fs'
 import { getDB } from './db'
 import { Migrator, FileMigrationProvider, MigrationResult } from 'kysely'
 
 type MigrationInstructions = 'up' | 'down' | 'latest' | 'init'
 
-const migrationTemplate = `
-import {Kysely} from 'kysely'
+const migrationTemplate = `import {Kysely} from 'kysely'
 
 export async function up(db: Kysely<unknown>): Promise<void> {
 
@@ -17,7 +16,7 @@ export async function down(db: Kysely<unknown>): Promise<void> {
 
 }`
 
-const migrationFolder = './src/lib/database/migrations'
+const migrationFolder = path.join(process.cwd(), 'src/lib/database/migrations')
 
 const instruction = process.argv[2] as MigrationInstructions | undefined
 
@@ -84,9 +83,10 @@ async function migrate() {
       case 'up':
         ;({ results, error } = await migrator.migrateUp())
         break
-
       case 'down':
+        console.log('down')
         ;({ results, error } = await migrator.migrateDown())
+        break
       case 'latest':
       default:
         ;({ results, error } = await migrator.migrateToLatest())
