@@ -1,6 +1,9 @@
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
-import { MissingPersonData, missingPersonData } from './missingPerson'
+import {
+  MissingPersonData,
+  missingPersonData
+} from '../../../features/missingPersons/missingPerson'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'

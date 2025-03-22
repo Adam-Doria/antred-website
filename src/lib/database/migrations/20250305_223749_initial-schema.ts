@@ -30,6 +30,7 @@ export async function up(db: Kysely<unknown>): Promise<void> {
     .addColumn('updatedAt', 'timestamptz', (col) =>
       col.defaultTo(sql`now()`).notNull()
     )
+    .addUniqueConstraint('firstNameLastNameUnique', ['firstName', 'lastName'])
     .execute()
 }
 
