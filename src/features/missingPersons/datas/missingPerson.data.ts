@@ -1,21 +1,7 @@
-// Définition simplifiée pour représenter les données de base
-export interface MissingPersonData {
-  id: string
-  firstName: string
-  lastName: string
-  birthdate?: string
-  gender: 'Masculin' | 'Féminin' | 'Autre'
-  disappearanceDate: string
-  disappearanceLocation: string
-  country: string
-  coordinates: { latitude: number; longitude: number }
-  description: string
-  images: string[]
-}
+import { MissingPersonCreate } from '../types/missingPerson.type'
 
-export const missingPersonData: MissingPersonData[] = [
+export const missingPersonInitialData: MissingPersonCreate[] = [
   {
-    id: '1',
     firstName: 'Francis',
     lastName: 'Userovici',
     gender: 'Masculin',
@@ -30,7 +16,6 @@ export const missingPersonData: MissingPersonData[] = [
     ]
   },
   {
-    id: '2',
     firstName: 'Éloi',
     lastName: 'Rolland',
     gender: 'Masculin',
@@ -45,7 +30,6 @@ export const missingPersonData: MissingPersonData[] = [
     ]
   },
   {
-    id: '3',
     firstName: 'Tiphaine',
     lastName: 'Véron',
     gender: 'Féminin',
@@ -60,7 +44,6 @@ export const missingPersonData: MissingPersonData[] = [
     ]
   },
   {
-    id: '4',
     firstName: 'Mathieu',
     lastName: 'Martin',
     gender: 'Masculin',
@@ -75,7 +58,6 @@ export const missingPersonData: MissingPersonData[] = [
     ]
   },
   {
-    id: '5',
     firstName: 'Valérie',
     lastName: 'Ramier',
     gender: 'Féminin',

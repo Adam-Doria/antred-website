@@ -1,14 +1,12 @@
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
-import {
-  MissingPersonData,
-  missingPersonData
-} from '../../../features/missingPersons/missingPerson'
+import { missingPersonInitialData } from '../../../features/missingPersons/datas/missingPerson.data'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
+import { MissingPersonRO } from '@/features/missingPersons/types/missingPerson.type'
 
-function MissingCard(props: MissingPersonData) {
+function MissingCard(props: MissingPersonRO) {
   const imageSrc = props.images?.[0]
 
   return (
@@ -65,7 +63,7 @@ export default function Page() {
         </div>
       </div>
       <section className="w-full flex flex-wrap gap-4 justify-evenly mb-10">
-        {missingPersonData.map((person: MissingPersonData) => (
+        {missingPersonInitialData.map((person) => (
           <MissingCard key={person?.lastName} {...person} />
         ))}
       </section>
