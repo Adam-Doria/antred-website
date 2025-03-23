@@ -1,0 +1,38 @@
+name: Database Migration
+on: [push]
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    environment: ${{ github.ref == 'refs/heads/main' || 'development' }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js et pnpm
+        uses: ./.github/actions/setup-node-pnpm
+        with:
+          node-version: '20'
+          pnpm-version: '10'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Exécuter les migrations
+        run: pnpm migrate:latest
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
+      - name: Migration Success
+        if: success()
+        run: |
+          echo "✅ Migrations exécutées avec succès sur l'environnement ${{ github.ref == 'refs/heads/main' || 'development' }}"
+
+      - name: Rollback on Failure (dev only)
+        if: ${{ failure() && github.ref != 'refs/heads/main' }}
+        run: pnpm migrate:down
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      - name: Report Failure
+        if: failure()
+        run: |
+          echo "❌ Échec des migrations sur l'environnement ${{ github.ref == 'refs/heads/main' && 'production' || 'development' }}"
