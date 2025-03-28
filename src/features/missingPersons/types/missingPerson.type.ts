@@ -2,13 +2,13 @@ export interface MissingPerson {
   id: string
   firstName: string
   lastName: string
-  birthdate?: string
+  birthDate?: Date | undefined | string
   gender: 'Masculin' | 'Féminin' | 'Autre'
-  disappearanceDate: string
-  disappearanceLocation: string
-  country: string
+  disappearanceDate: Date | undefined | string
+  disappearanceLocation?: string
+  country?: string
   coordinates: { latitude: number; longitude: number }
-  description: string
+  description?: string
   images: string[]
   createdAt: Date | undefined | string
   updatedAt: Date | undefined | string

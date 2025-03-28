@@ -12,7 +12,7 @@ export async function up(db: Kysely<Database>): Promise<void> {
         firstName: person.firstName,
         lastName: person.lastName,
         gender: person.gender,
-        birthDate: person.birthdate,
+        birthDate: person.birthDate,
         disappearanceDate: person.disappearanceDate,
         disappearanceLocation: person.disappearanceLocation || 'Inconnu',
         country: person.country,
