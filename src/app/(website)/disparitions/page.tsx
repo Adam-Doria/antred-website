@@ -1,42 +1,19 @@
-import Image from 'next/image'
-import { useTranslations } from 'next-intl'
-import { missingPersonInitialData } from '../../../features/missingPersons/datas/missingPerson.data'
+import { getTranslations } from 'next-intl/server'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
-import { MissingPersonRO } from '@/features/missingPersons/types/missingPerson.type'
+import { MissingCard } from '@/features/missingPersons/components/MissingPersonCard'
+import { getMissingPerson } from '@/features/missingPersons/actions'
 
-function MissingCard(props: MissingPersonRO) {
-  const imageSrc = props.images?.[0]
+export default async function Page() {
+  const { data: missingPerson } = await getMissingPerson({
+    page: 1,
+    limit: 1000,
+    order: 'asc'
+  })
 
-  return (
-    <div className=" md:max-w-[25%] w-full relative overflow-hidden rounded-md shadow-xl mx-auto">
-      <Image
-        src={`/${imageSrc}`}
-        alt={`${props?.firstName} ${props?.lastName}`}
-        fill
-        style={{
-          objectFit: 'cover'
-        }}
-        className=" transition-all duration-500 filter grayscale hover:filter-none "
-      />
+  const t = await getTranslations('disappearance')
 
-      <div className="  pointer-events-none filter-none relative z-10 flex flex-col justify-end h-96 p-4 bg-transparent">
-        <div className="text-dark-foreground">
-          <h3 className="font-bold w-fit rounded-lg px-2  ">
-            {`${props?.firstName} ${props?.lastName}`}
-          </h3>
-          <p className="font-bold text-base w-fit bg-accent/55 rounded-lg px-2 my-4">
-            {props?.country}
-          </p>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-export default function Page() {
-  const t = useTranslations('disappearance')
   return (
     <main className="flex min-h-fit flex-col items-center overflow-hidden justify-between pt-24 px-4 my-4 space-y-4">
       <div className="w-full rounded-lg bg-brand-radial p-4 sm:p-6 md:p-8 relative">
@@ -63,8 +40,8 @@ export default function Page() {
         </div>
       </div>
       <section className="w-full flex flex-wrap gap-4 justify-evenly mb-10">
-        {missingPersonInitialData.map((person) => (
-          <MissingCard key={person?.lastName} {...person} />
+        {missingPerson.map((person) => (
+          <MissingCard key={person.id} {...person} />
         ))}
       </section>
     </main>

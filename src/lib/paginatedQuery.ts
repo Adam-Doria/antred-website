@@ -26,11 +26,12 @@ export const paginatedQuery = async <T extends Record<string, any>>(
 ): Promise<PaginationResult<T>> => {
   const page = Number(options.page || '1')
   const limit = Number(options.limit || '10')
-  const offset = page * limit
+  const offset = (page - 1) * limit
 
   const countQuery = query
     .clearSelect()
     .clearGroupBy()
+    .clearOrderBy()
     .select((eb) => eb.fn.countAll().as('total'))
 
   const dataQuery = query.limit(limit).offset(offset)

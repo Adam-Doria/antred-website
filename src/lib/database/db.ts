@@ -7,10 +7,9 @@ let databaseInstance: Kysely<Database> | null = null
 
 export function getDB(): Kysely<Database> {
   if (databaseInstance) return databaseInstance
-
   const dialect = new PostgresDialect({
     pool: new Pool({
-      connectionString: process.env.DATABASE_URL
+      connectionString: process.env.DATABASE_URL_ACTION
     })
   })
   databaseInstance = new Kysely<Database>({

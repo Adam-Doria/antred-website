@@ -17,14 +17,14 @@ export const getMissingPerson = async ({
   page: number
   limit: number
   order: 'asc' | 'desc'
-}): Promise<PaginationResult<MissingPersonRO[]>> => {
+}): Promise<PaginationResult<MissingPersonRO>> => {
   try {
     const baseQuery = db
       .selectFrom('missingPersons')
       .selectAll()
       .orderBy('disappearanceDate', order)
 
-    const results = paginatedQuery<MissingPersonRO[]>(baseQuery, {
+    const results = await paginatedQuery<MissingPersonRO>(baseQuery, {
       page,
       limit
     })
