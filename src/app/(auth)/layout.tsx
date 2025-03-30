@@ -25,7 +25,7 @@ export default async function RootLayout({
           disableTransitionOnChange
         >
           <NextIntlClientProvider messages={messages}>
-            <div className="max-w-7xl mx-auto ">{children}</div>
+            <div>{children}</div>
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>
