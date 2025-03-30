@@ -20,7 +20,7 @@ jobs:
       - name: Exécuter les migrations
         run: pnpm migrate:latest
         env:
-          DATABASE_URL_ACTION: ${{ secrets.DATABASE_URL_ACTION }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
       - name: Migration Success
         if: success()
