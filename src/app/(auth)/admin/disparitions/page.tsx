@@ -1,3 +1,3 @@
-export const Disparition = () => {
+export default function Disparitions() {
   return <div> toto</div>
 }
