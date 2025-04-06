@@ -2,7 +2,7 @@ import { useTranslations } from 'next-intl'
 import { Contact } from '../contact/Contact'
 import Image from 'next/image'
 import Link from 'next/link'
-import { LocaleSwitch } from '../system/localeSwitch/LocaleSwitch'
+import { LocaleSwitch } from '@/components/localeSwitch/LocaleSwitch'
 import { Heart } from 'lucide-react'
 import { FooterSection } from './FooterHelperComponents'
 

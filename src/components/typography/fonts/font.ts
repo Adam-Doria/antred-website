@@ -10,6 +10,6 @@ export const montserrat = Montserrat({
 })
 
 export const bontang = localFont({
-  src: '../../../../../public/fonts/Bontang.otf',
+  src: '../../../../public/fonts/Bontang.otf',
   variable: '--font-bontang'
 })

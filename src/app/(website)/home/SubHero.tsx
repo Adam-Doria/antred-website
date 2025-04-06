@@ -1,6 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { useTranslations } from 'next-intl'
-import { TabCardsCard } from '@/components/system/cards/TabCards'
+import { TabCardsCard } from '@/components/cards/TabCards'
 
 const tabs = [
   {

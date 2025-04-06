@@ -37,7 +37,7 @@ export function AdminSidebar() {
   const contentItems = [
     {
       title: 'Disparitions',
-      url: '/admin/disparition',
+      url: '/admin/disparitions',
       icon: UserSearch
     },
     {

@@ -1,4 +1,4 @@
-import { PressAndPartnerCard } from '@/components/system/cards/PressAndPartnerCards'
+import { PressAndPartnerCard } from '@/components/cards/PressAndPartnerCards'
 import Marquee from '@/components/ui/marquee'
 import { useTranslations } from 'next-intl'
 
