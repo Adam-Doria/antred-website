@@ -1,6 +1,6 @@
 import { NextIntlClientProvider } from 'next-intl'
 import { getLocale, getMessages } from 'next-intl/server'
-import { montserrat, bontang } from '@/components/system/typography/fonts/font'
+import { montserrat, bontang } from '@/components/typography/fonts/font'
 import { ThemeProvider } from '@/style/themes'
 import '@/style/globals.css'
 

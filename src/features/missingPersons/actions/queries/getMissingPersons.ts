@@ -12,17 +12,31 @@ const db = getDB()
 export const getMissingPerson = async ({
   page,
   limit,
-  order = 'asc'
+  order = 'asc',
+  search = ''
 }: {
   page: number
   limit: number
-  order: 'asc' | 'desc'
+  order?: 'asc' | 'desc'
+  search?: string
 }): Promise<PaginationResult<MissingPersonRO>> => {
   try {
-    const baseQuery = db
+    let baseQuery = db
       .selectFrom('missingPersons')
       .selectAll()
       .orderBy('disappearanceDate', order)
+
+    if (search && search.trim() !== '') {
+      const searchTerm = `%${search.toLowerCase()}%`
+
+      baseQuery = baseQuery.where((eb) =>
+        eb.or([
+          eb('firstName', 'ilike', searchTerm),
+          eb('lastName', 'ilike', searchTerm),
+          eb('country', 'ilike', searchTerm)
+        ])
+      )
+    }
 
     const results = await paginatedQuery<MissingPersonRO>(baseQuery, {
       page,
