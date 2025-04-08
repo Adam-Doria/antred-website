@@ -23,7 +23,6 @@ export function EditMissingPerson({
 }: EditMissingPersonProps) {
   const [isOpen, setIsOpen] = useState(false)
 
-  // Fonction appelée après modification réussie
   const handleSuccess = () => {
     setIsOpen(false)
     onSuccess?.()
@@ -42,7 +41,7 @@ export function EditMissingPerson({
       </DropdownMenuItem>
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto">
+        <DialogContent className="sm:max-w-[80vh] max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>
               Modifier les informations de {person.firstName} {person.lastName}

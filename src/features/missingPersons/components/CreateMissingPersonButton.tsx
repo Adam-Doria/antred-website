@@ -12,7 +12,6 @@ import {
 import { MissingPersonForm } from './MissingPersonForm'
 
 export function CreateMissingPersonButton() {
-  // État pour contrôler l'ouverture/fermeture de la modale
   const [isOpen, setIsOpen] = useState(false)
 
   const handleSuccess = () => {
@@ -26,7 +25,7 @@ export function CreateMissingPersonButton() {
       </Button>
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto">
+        <DialogContent className="sm:max-w-[80vh] max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>Ajouter une nouvelle personne disparue</DialogTitle>
           </DialogHeader>
