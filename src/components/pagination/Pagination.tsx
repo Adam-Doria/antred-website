@@ -42,10 +42,10 @@ export function Pagination({
   return (
     <div className={cn('flex items-center justify-between px-2', className)}>
       {showSummary && (
-        <div className="text-sm text-muted-foreground">
+        <div className="text-sm text-secondary-foreground">
           Affichage de {Math.min((currentPage - 1) * pageSize + 1, totalItems)}{' '}
-          à {Math.min(currentPage * pageSize, totalItems)} sur {totalItems}{' '}
-          entrées
+          à {Math.min(currentPage * pageSize, totalItems)} sur {totalItems} dans
+          la base{' '}
         </div>
       )}
 

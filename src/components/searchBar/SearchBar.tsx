@@ -49,7 +49,7 @@ export function SearchBar({
 
   return (
     <div className={cn('relative', className)}>
-      <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+      <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-secondary-foreground" />
       <Input
         placeholder={placeholder}
         value={inputValue}
@@ -61,7 +61,7 @@ export function SearchBar({
       {inputValue && (
         <button
           onClick={handleClear}
-          className="absolute right-2 top-2 h-5 w-5 rounded-full text-muted-foreground hover:bg-muted flex items-center justify-center"
+          className="absolute right-2 top-2 h-5 w-5 rounded-full text-secondary-foreground hover:bg-muted flex items-center justify-center"
         >
           ×
         </button>

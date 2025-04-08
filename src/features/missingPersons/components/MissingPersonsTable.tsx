@@ -21,13 +21,14 @@ import { ChevronDown, MoreHorizontal } from 'lucide-react'
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 import { Pagination } from '@/components/pagination/Pagination'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { MissingPersonRO } from '@/features/missingPersons/types/missingPerson.type'
+import { EditMissingPerson } from './EditMissingPerson'
+import { DeleteMissingPerson } from './DeleteMissingPerson'
 
 // Formatage de date pour l'affichage
 const formatDate = (dateString: string | Date | undefined) => {
@@ -117,17 +118,11 @@ export function MissingPersonsTableClient({
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuItem
-                onClick={() => console.log('Modifier', person.id)}
-              >
-                Modifier
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                onClick={() => console.log('Supprimer', person.id)}
-                className="text-destructive"
-              >
-                Supprimer
-              </DropdownMenuItem>
+              <EditMissingPerson person={person} />
+              <DeleteMissingPerson
+                id={person.id}
+                personName={`${person.firstName} ${person.lastName}`}
+              />
             </DropdownMenuContent>
           </DropdownMenu>
         )
