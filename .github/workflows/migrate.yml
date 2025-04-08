@@ -3,7 +3,7 @@ on: [push]
 jobs:
   migrate:
     runs-on: ubuntu-latest
-    environment: ${{ github.ref == 'refs/heads/main' || 'development' }}
+    environment: ${{ github.ref == 'refs/heads/main' && 'production' || 'development' }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -25,13 +25,8 @@ jobs:
       - name: Migration Success
         if: success()
         run: |
-          echo "✅ Migrations exécutées avec succès sur l'environnement ${{ github.ref == 'refs/heads/main' || 'development' }}"
+          echo "✅ Migrations exécutées avec succès sur l'environnement ${{ github.ref == 'refs/heads/main' && 'production' || 'development' }}"
 
-      - name: Rollback on Failure (dev only)
-        if: ${{ failure() && github.ref != 'refs/heads/main' }}
-        run: pnpm migrate:down
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
       - name: Report Failure
         if: failure()
         run: |

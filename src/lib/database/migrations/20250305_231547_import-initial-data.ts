@@ -1,18 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Kysely } from 'kysely'
-import { missingPersonData } from '@/features/missingPersons/missingPerson'
+import { missingPersonInitialData } from '@/features/missingPersons/datas/missingPerson.data'
 import { Database } from '../types'
 
 export async function up(db: Kysely<Database>): Promise<void> {
   console.log('Importation des données de personnes disparues...')
 
-  for (const person of missingPersonData) {
+  for (const person of missingPersonInitialData) {
     try {
       const missingPerson = {
         firstName: person.firstName,
         lastName: person.lastName,
         gender: person.gender,
-        birthDate: person.birthdate,
+        birthDate: person.birthDate,
         disappearanceDate: person.disappearanceDate,
         disappearanceLocation: person.disappearanceLocation || 'Inconnu',
         country: person.country,

@@ -1,6 +1,6 @@
 import { NextIntlClientProvider } from 'next-intl'
 import { getLocale, getMessages } from 'next-intl/server'
-import { montserrat, bontang } from '@/components/system/typography/fonts/font'
+import { montserrat, bontang } from '@/components/typography/fonts/font'
 import { ThemeProvider } from '@/style/themes'
 import '@/style/globals.css'
 
@@ -25,7 +25,7 @@ export default async function RootLayout({
           disableTransitionOnChange
         >
           <NextIntlClientProvider messages={messages}>
-            <div className="max-w-7xl mx-auto ">{children}</div>
+            <div>{children}</div>
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>

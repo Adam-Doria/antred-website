@@ -21,13 +21,13 @@ export interface MissingPersonsTable extends BaseField {
   gender: 'Masculin' | 'Féminin' | 'Autre'
   birthDate: Date | undefined | string
   disappearanceDate: Date | undefined | string
-  disappearanceLocation: string | null | undefined
-  country: string | null | undefined
+  disappearanceLocation: string | undefined
+  country: string | undefined
   coordinates: {
     latitude: number
     longitude: number
   }
-  description: string | null
+  description: string | undefined
   images: string[]
 }
 

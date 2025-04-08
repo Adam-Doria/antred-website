@@ -1,4 +1,4 @@
-import ArticleCards from '@/components/system/cards/ArticleCards'
+import ArticleCards from '@/components/cards/ArticleCards'
 import { useTranslations } from 'next-intl'
 import { articles, parolesExpert } from './article'
 

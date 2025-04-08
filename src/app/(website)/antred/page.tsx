@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 import { Hero } from './Hero'
 import { useTranslations } from 'next-intl'
-import ProfileCard from '../../../components/system/cards/ProfileCards'
+import ProfileCard from '@/components/cards/ProfileCards'
 import { Mail } from 'lucide-react'
 import { Contact } from '@/components/contact/Contact'
 
