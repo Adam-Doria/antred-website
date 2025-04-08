@@ -5,11 +5,20 @@ import { Suspense } from 'react'
 import { Skeleton } from '@/components/ui/skeleton'
 import { CreateMissingPersonButton } from '@/features/missingPersons/components/CreateMissingPersonButton'
 
+export const dynamic = 'force-dynamic'
+
+type SearchParamsProps = Promise<{
+  q?: string
+  page?: string
+  limit?: string
+}>
+
 export default async function MissingPersonsPage({
-  searchParams
+  searchParams: searchParamsPromise
 }: {
-  searchParams: { q?: string; page?: string; limit?: string }
+  searchParams: SearchParamsProps
 }) {
+  const searchParams = await searchParamsPromise
   const searchQuery = searchParams.q || ''
   const page = parseInt(searchParams.page || '1', 10)
   const limit = parseInt(searchParams.limit || '10', 10)

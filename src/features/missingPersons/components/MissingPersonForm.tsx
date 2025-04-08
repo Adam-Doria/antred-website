@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 'use client'
 
 import { useState } from 'react'
@@ -34,6 +33,7 @@ import {
   MissingPersonFormValues,
   missingPersonSchema
 } from '../schemas/missingPerson'
+import { ImageDndUpload, UploadedImage } from '@/components/ui/image-uploader'
 
 // Props du composant
 interface MissingPersonFormProps {
@@ -48,46 +48,43 @@ export function MissingPersonForm({
   const [isLoading, setIsLoading] = useState(false)
   const isEditMode = !!initialData
 
+  // Convertir les URLs d'images initiales en objets UploadedImage
+  const initialImages =
+    initialData?.images?.map((imageUrl) => ({
+      url: imageUrl,
+      isNew: false
+    })) || []
+
   // Configuration du formulaire
   const form = useForm<MissingPersonFormValues>({
     resolver: zodResolver(missingPersonSchema),
-    defaultValues: initialData
-      ? {
-          firstName: initialData.firstName,
-          lastName: initialData.lastName,
-          gender: initialData.gender,
-          disappearanceDate: initialData?.disappearanceDate
-            ? new Date(initialData.disappearanceDate)
-                .toISOString()
-                .split('T')[0]
-            : '',
-          disappearanceLocation: initialData.disappearanceLocation || '',
-          country: initialData.country || '',
-          description: initialData.description || '',
-          latitude: initialData.coordinates?.latitude?.toString() || '',
-          longitude: initialData.coordinates?.longitude?.toString() || '',
-          imageUrl: initialData.images[0] || ''
-        }
-      : {
-          firstName: '',
-          lastName: '',
-          gender: 'Masculin',
-          disappearanceDate: '',
-          disappearanceLocation: '',
-          country: '',
-          description: '',
-          latitude: '',
-          longitude: '',
-          imageUrl: ''
-        }
+    defaultValues: {
+      firstName: initialData?.firstName || '',
+      lastName: initialData?.lastName || '',
+      gender: initialData?.gender || 'Masculin',
+      disappearanceDate: initialData?.disappearanceDate
+        ? new Date(initialData.disappearanceDate).toISOString().split('T')[0]
+        : '',
+      disappearanceLocation: initialData?.disappearanceLocation || '',
+      country: initialData?.country || '',
+      description: initialData?.description || '',
+      latitude: initialData?.coordinates?.latitude?.toString() || '',
+      longitude: initialData?.coordinates?.longitude?.toString() || '',
+      images: initialImages
+    }
   })
+
+  const handleImagesChange = (images: UploadedImage[]) => {
+    form.setValue('images', images, { shouldValidate: true })
+  }
 
   // Soumission du formulaire
   const onSubmit = async (data: MissingPersonFormValues) => {
     setIsLoading(true)
     try {
-      // Préparation des données
-      const personData: MissingPersonCreate = {
+      const personData: MissingPersonCreate & {
+        uploadedImages?: UploadedImage[]
+      } = {
         firstName: data.firstName,
         lastName: data.lastName,
         gender: data.gender as 'Masculin' | 'Féminin' | 'Autre',
@@ -99,7 +96,8 @@ export function MissingPersonForm({
           latitude: parseFloat(data.latitude || '0'),
           longitude: parseFloat(data.longitude || '0')
         },
-        images: data.imageUrl ? [data.imageUrl] : []
+        images: [],
+        uploadedImages: data.images
       }
 
       if (isEditMode && initialData) {
@@ -255,17 +253,20 @@ export function MissingPersonForm({
           />
         </div>
 
-        {/* URL de l'image */}
+        {/* Images */}
         <FormField
           control={form.control}
-          name="imageUrl"
+          name="images"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>URL de l&apos;image</FormLabel>
+              <FormLabel>Images</FormLabel>
               <FormControl>
-                <Input
-                  placeholder="URL de l'image (ex: images/missing/personne/image.jpg)"
-                  {...field}
+                <ImageDndUpload
+                  images={field.value || []}
+                  onImagesChange={handleImagesChange}
+                  disabled={isLoading}
+                  maxFiles={5}
+                  className="mt-2"
                 />
               </FormControl>
               <FormMessage />

@@ -144,7 +144,7 @@ export function MissingPersonsTableClient({
 
   return (
     <div className="space-y-4">
-      <div className="rounded-md border">
+      <div>
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (

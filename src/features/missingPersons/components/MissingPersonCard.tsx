@@ -7,7 +7,7 @@ export function MissingCard(props: MissingPersonRO) {
   return (
     <div className=" md:max-w-[25%] w-full relative overflow-hidden rounded-md shadow-xl mx-auto">
       <Image
-        src={`/${imageSrc}`}
+        src={`${imageSrc}`}
         alt={`${props?.firstName} ${props?.lastName}`}
         fill
         style={{
