@@ -75,7 +75,7 @@ export const MobileNavbar: React.FC = () => {
               </nav>
             </SheetContent>
           </Sheet>
-          <Link href={'/public'}>
+          <Link href={'/'}>
             <Logo />
           </Link>
         </div>

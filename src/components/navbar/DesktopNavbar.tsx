@@ -26,13 +26,13 @@ export const DesktopNavbar: React.FC = () => {
   return (
     <nav className="hidden lg:pt-4 lg:fixed lg:flex lg:bg-background lg:w-full lg:justify-center">
       <div className="inline-flex max-w-7xl w-full justify-between">
-        <Link href={'/public'}>
+        <Link href={'/'}>
           <Logo />
         </Link>
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
-              <MenuLink href="/public">{t('home')}</MenuLink>
+              <MenuLink href="/">{t('home')}</MenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <Link href={'/antred'}>
