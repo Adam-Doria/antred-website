@@ -2,8 +2,6 @@ import { getDB } from '@/lib/database/db'
 import { MissingPersonRO } from '../../types/missingPerson.type'
 import { paginatedQuery, PaginationResult } from '@/lib/paginatedQuery'
 
-const db = getDB()
-
 //Améliorations futures
 // Ajouter des filtres:
 //-Creer un type MissingPerson filter
@@ -20,6 +18,7 @@ export const getMissingPerson = async ({
   order?: 'asc' | 'desc'
   search?: string
 }): Promise<PaginationResult<MissingPersonRO>> => {
+  const db = getDB()
   try {
     let baseQuery = db
       .selectFrom('missingPersons')
@@ -53,6 +52,7 @@ export const getMissingPerson = async ({
 export const getMissingPersonById = async (
   id: string
 ): Promise<MissingPersonRO | undefined> => {
+  const db = getDB()
   try {
     const query = await db
       .selectFrom('missingPersons')

@@ -1,15 +1,18 @@
+'use server'
 import { getDB } from '@/lib/database/db'
 import { MissingPersonCreate } from '../../types/missingPerson.type'
+import { revalidatePath } from 'next/cache'
 
-const db = getDB()
-export const createMissingPerson = async (
-  missingPerson: MissingPersonCreate
-) => {
+export async function createMissingPerson(missingPerson: MissingPersonCreate) {
+  const db = getDB()
   try {
     await db
       .insertInto('missingPersons')
       .values(missingPerson)
       .executeTakeFirst()
+
+    revalidatePath('/disparitions')
+    revalidatePath('/admin/disparitions')
 
     return { success: 'ok' }
   } catch (error) {
