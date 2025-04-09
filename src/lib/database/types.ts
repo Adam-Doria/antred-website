@@ -56,6 +56,7 @@ export interface CategoriesTable extends BaseField {
 
 export interface TagsTable extends BaseField {
   name: string
+  color: string
   slug: string
 }
 

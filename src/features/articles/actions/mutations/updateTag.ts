@@ -20,7 +20,7 @@ export async function updateTag(
   }
 
   const db = getDB()
-  const { name } = validation.data
+  const { name, color } = validation.data
 
   try {
     const currentTag = await db
@@ -33,7 +33,7 @@ export async function updateTag(
       return { success: false, error: 'Tag not found.' }
     }
 
-    const tagUpdateData: TagUpdate = { name }
+    const tagUpdateData: TagUpdate = { name, color }
 
     if (currentTag.name !== name) {
       tagUpdateData.slug = await generateUniqueSlug(name, 'tags', id)

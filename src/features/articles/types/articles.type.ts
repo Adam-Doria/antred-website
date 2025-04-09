@@ -20,6 +20,7 @@ export type CategoryUpdate = Partial<CategoryCreate>
 export interface Tag extends BaseEntity {
   name: string
   slug: string
+  color: string
 }
 export type TagRO = Readonly<Tag>
 export type TagCreate = Omit<Tag, 'id' | 'createdAt' | 'updatedAt'>

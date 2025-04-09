@@ -20,7 +20,15 @@ export const categorySchema = z.object({
 export type CategoryFormValues = z.infer<typeof categorySchema>
 
 export const tagSchema = z.object({
-  name: z.string().min(2, 'Le nom doit contenir au moins 2 caractères.')
+  name: z.string().min(2, 'Le nom doit contenir au moins 2 caractères.'),
+  color: z
+    .string()
+    .regex(
+      /^#[0-9a-fA-F]{6}$/,
+      `La couleur doit être au format hexadécimal valide (ex: #RRGGBB)`
+    )
+    .optional()
+    .default('#cccccc')
 })
 export type TagFormValues = z.infer<typeof tagSchema>
 
