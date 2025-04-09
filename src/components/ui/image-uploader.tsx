@@ -261,12 +261,12 @@ function ImageDndUploadContent({
               onChange={handleFileSelect}
               disabled={disabled || images.length >= maxFiles}
             />
-            <ImageIcon className="mb-2 h-10 w-10 text-muted-foreground" />
+            <ImageIcon className="mb-2 h-10 w-10 text-gray-500" />
             <div className="space-y-1">
               <p className="text-sm font-medium text-foreground">
                 Déposer une image ici
               </p>
-              <p className="text-xs text-muted-foreground">
+              <p className="text-xs text-gray-400">
                 ou cliquez pour en sélectionner
               </p>
             </div>
@@ -274,7 +274,7 @@ function ImageDndUploadContent({
         )}
       </div>
 
-      <div className="text-xs text-muted-foreground">
+      <div className="text-xs text-gray-400">
         {images.length} sur {maxFiles} images ajoutées
       </div>
     </div>

@@ -66,8 +66,8 @@
     --primary: 162 27% 26%; /* Couleur principale : #30554E (vert foncé) */
     --primary-foreground: 0 0% 100%; /* Texte en avant sur fond vert : blanc */
 
-    --secondary: 214 15% 91%; /* Couleur secondaire : gris clair pour bordures (#E0E0E0) */
-    --secondary-foreground: 0 0% 26%; /* Texte principal : #434343 */
+    --secondary: 240 4.8% 95.9%; /* Couleur secondaire : gris clair pour bordures (#E0E0E0) */
+    --secondary-foreground: 240 4.8% 95.9%; /* Texte principal : #434343 */
 
     --muted: 30 50% 96%; /* Couleur atténuée : #F2EDEB  */
     --muted-foreground: 30 100% 97%; /* Texte atténué : #FEF9F6 */
