@@ -6,16 +6,17 @@ export interface PaginationOption {
   limit?: number | string
 }
 
+export interface IPagination {
+  total: number
+  page: number
+  limit: number
+  totalPages: number
+  hasPreviousPage: boolean
+  hasNextPage: boolean
+}
 export interface PaginationResult<T> {
   data: T[]
-  pagination: {
-    total: number
-    page: number
-    limit: number
-    totalPages: number
-    hasPreviousPage: boolean
-    hasNextPage: boolean
-  }
+  pagination: IPagination
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

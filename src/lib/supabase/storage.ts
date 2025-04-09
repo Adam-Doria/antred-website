@@ -30,31 +30,25 @@ export type UploadResult = {
   }
 }
 
-// --- Constantes (Presets) ---
-
 export const STORAGE_PRESETS = {
   missingPersons: {
-    bucketName: 'missing-persons', // Assure-toi que ce bucket existe dans Supabase
+    bucketName: 'missing-persons',
     folderPath: 'images',
-    fileSizeLimit: 5 * 1024 * 1024, // 5MB (pour référence ou validation client)
+    fileSizeLimit: 5 * 1024 * 1024,
     filePrefix: 'person',
     optimizationPreset: 'missingPerson' as const
   },
   articles: {
-    bucketName: 'content', // Assure-toi que ce bucket existe dans Supabase
-    folderPath: 'articles',
-    fileSizeLimit: 10 * 1024 * 1024, // 10MB (pour référence ou validation client)
+    bucketName: 'articles',
+    folderPath: 'images',
+    fileSizeLimit: 10 * 1024 * 1024,
     filePrefix: 'article',
     optimizationPreset: 'article' as const
   }
-  // Ajoute d'autres presets si nécessaire
 }
 
 // --- Fonctions Utilitaires ---
 
-/**
- * Vérifie si un fichier est de type image.
- */
 function isImageFile(file: File): boolean {
   return file.type.startsWith('image/')
 }
@@ -104,7 +98,6 @@ export async function uploadFile(
   options: StorageOptions,
   itemId?: string
 ): Promise<UploadResult> {
-  // Crée une instance client Supabase pour cette requête serveur
   const supabase = await createServerClient()
 
   const {
@@ -115,7 +108,6 @@ export async function uploadFile(
     customOptimization
   } = options
 
-  // Logique d'optimisation d'image (si applicable)
   let optimizationOptions: ImageOptimizationOptions | undefined
   if (optimizationPreset && optimizationPreset in optimizationPresets) {
     optimizationOptions = optimizationPresets[optimizationPreset]
