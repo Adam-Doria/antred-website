@@ -11,12 +11,8 @@ export interface Database {
 
 export interface BaseField {
   id: Generated<string>
-  createdAt: ColumnType<
-    Date | undefined | string,
-    Date | undefined | string,
-    never
-  >
-  updatedAt: Date | undefined | string
+  createdAt: ColumnType<Date | string, undefined, never>
+  updatedAt: ColumnType<Date | string, undefined, undefined>
 }
 
 //*************************/
@@ -69,13 +65,18 @@ export interface ArticlesTable extends BaseField {
   content: string
   excerpt: string | null
   coverImageUrl: string | null
+  images: ColumnType<
+    string[],
+    string[] | string | undefined,
+    string[] | string | undefined
+  >
   categoryId: string | null
   authorName: string | null
   status: 'draft' | 'published' | 'archived'
   publishedAt: ColumnType<
     Date | string | null,
-    string | undefined,
-    string | undefined
+    Date | string | null | undefined,
+    Date | string | null | undefined
   >
 }
 
