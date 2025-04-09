@@ -1,5 +1,6 @@
-// src/features/articles/actions/queries/getArticleBySlug.ts
+// src/features/articles/actions/queries/getArticleById.ts
 'use server'
+
 import { getDB } from '@/lib/database/db'
 import {
   Article,
@@ -9,11 +10,15 @@ import {
 } from '../../types/articles.type'
 import { sql } from 'kysely'
 
-export async function getArticleBySlug(
-  slug: string
-): Promise<ArticleRO | null> {
+export async function getArticleById(id: string): Promise<ArticleRO | null> {
+  if (!id) {
+    return null
+  }
+
   const db = getDB()
+
   try {
+    // Requête similaire à getArticleBySlug, mais filtre par ID
     const result = await db
       .selectFrom('articles')
       .leftJoin('categories', 'categories.id', 'articles.categoryId')
@@ -41,16 +46,21 @@ export async function getArticleBySlug(
         'categories.updatedAt as category_updatedAt'
       ])
       .select(() => [
-        sql<string>`(SELECT json_agg(t.*) FROM tags t JOIN "article_tags" at ON t.id = at."tag_id" WHERE at."article_id" = articles.id)`.as(
-          'tags_json'
-        )
+        sql<string>`(
+                    SELECT json_agg(t.*)
+                    FROM tags t
+                    JOIN "article_tags" at ON t.id = at."tag_id"
+                    WHERE at."article_id" = articles.id
+                )`.as('tags_json')
       ])
-      .where('articles.slug', '=', slug)
+      .where('articles.id', '=', id) // Filtre par ID ici
       .executeTakeFirst()
 
-    if (!result) return null
+    if (!result) {
+      return null
+    }
 
-    const articleData: Article = {
+    const article: Article = {
       id: result.id,
       title: result.title,
       slug: result.slug,
@@ -69,8 +79,7 @@ export async function getArticleBySlug(
     }
 
     if (result.category_id) {
-      /* ... ajouter catégorie ... */
-      articleData.category = {
+      article.category = {
         id: result.category_id,
         name: result.category_name,
         slug: result.category_slug,
@@ -79,17 +88,23 @@ export async function getArticleBySlug(
         updatedAt: result.category_updatedAt
       } as CategoryRO
     }
+
     if (result.tags_json) {
       try {
-        articleData.tags = JSON.parse(result.tags_json) as TagRO[]
+        article.tags = result.tags_json
+          ? (JSON.parse(result.tags_json) as TagRO[])
+          : []
       } catch (e) {
-        articleData.tags = []
+        console.error(`Failed to parse tags JSON for article ${result.id}:`, e)
+        article.tags = []
       }
+    } else {
+      article.tags = []
     }
 
-    return articleData as ArticleRO
+    return article as ArticleRO
   } catch (error) {
-    console.error(`Error fetching article by slug ${slug}:`, error)
-    throw new Error(`Failed to fetch article with slug ${slug}.`)
+    console.error(`Error fetching article by ID ${id}:`, error)
+    throw new Error(`Failed to fetch article with ID ${id}.`)
   }
 }

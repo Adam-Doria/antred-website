@@ -70,7 +70,7 @@
     --secondary-foreground: 240 4.8% 95.9%; /* Texte principal : #434343 */
 
     --muted: 30 50% 96%; /* Couleur atténuée : #F2EDEB  */
-    --muted-foreground: 30 100% 97%; /* Texte atténué : #FEF9F6 */
+    --muted-foreground: 218 15% 65%; /* Texte atténué : #FEF9F6 */
 
     --accent: 348 76% 55%; /* Accent : Rouge #E42E47 */
     --accent-foreground: 0 0% 100%; /* Texte sur fond accent : blanc */

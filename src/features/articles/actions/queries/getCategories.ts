@@ -80,3 +80,21 @@ export async function getCategoryById(id: string): Promise<CategoryRO | null> {
     throw new Error(`Failed to fetch category with ID ${id}.`)
   }
 }
+
+export async function getCategoryBySlug(
+  slug: string
+): Promise<CategoryRO | null> {
+  if (!slug) return null
+  const db = getDB()
+  try {
+    const category = await db
+      .selectFrom('categories')
+      .selectAll()
+      .where('slug', '=', slug)
+      .executeTakeFirst()
+    return category ? (category as CategoryRO) : null
+  } catch (error) {
+    console.error(`Error fetching category by slug ${slug}:`, error)
+    return null
+  }
+}

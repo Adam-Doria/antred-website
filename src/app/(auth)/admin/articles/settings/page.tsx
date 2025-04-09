@@ -8,7 +8,6 @@ import { SettingsListEditor } from '@/features/articles/component/SettingsListEd
 
 export const dynamic = 'force-dynamic'
 
-// Récupérer l'ID autorisé depuis les variables d'environnement
 const AUTHORIZED_USER_ID_FOR_CATEGORIES =
   process.env.NEXT_PUBLIC_AUTHORIZED_CATEGORY_MANAGER_ID || ''
 

@@ -24,11 +24,15 @@ import { AdminSidebarFooter } from './AdminSidebarFooter'
 
 export function AdminSidebar() {
   const ADMIN_ARTICLE_CATEGORIES = [
-    { name: `Paroles d'expert`, slug: 'paroles-expert', icon: GraduationCap },
+    {
+      name: `Paroles d'experts`,
+      slug: 'paroles-dexperts',
+      icon: GraduationCap
+    },
     { name: 'Conseils Pratiques', slug: 'conseils-pratiques', icon: BookOpen },
     {
       name: `Actualités de l'Antred`,
-      slug: 'actualites-antred',
+      slug: 'actualites-de-lantred',
       icon: Megaphone
     }
   ]

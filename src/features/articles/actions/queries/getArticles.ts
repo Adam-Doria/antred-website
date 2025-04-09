@@ -1,98 +1,209 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// src/features/articles/actions/queries/getArticles.ts
-'use server'
-import { getDB } from '@/lib/database/db'
-import { ArticleRO, CategoryRO, TagRO } from '../../types/articles.type'
-import { paginatedQuery, PaginationResult } from '@/lib/paginatedQuery'
-import { sql } from 'kysely'
-import { Database } from '@/lib/database/types' // Assurez-vous que Database est importé
 
-interface GetArticlesByCategoryOptions {
+'use server'
+
+import { getDB } from '@/lib/database/db'
+import {
+  ArticleRO,
+  CategoryRO,
+  TagRO,
+  ArticleStatus,
+  Article
+} from '../../types/articles.type'
+import { paginatedQuery, PaginationResult } from '@/lib/paginatedQuery'
+import { sql, SelectQueryBuilder, ExpressionBuilder } from 'kysely' // Importer SelectQueryBuilder et ExpressionBuilder
+import { Database, ArticlesTable } from '@/lib/database/types' // Importer Database et ArticlesTable
+
+// --- Interface d'options pour la fonction générique ---
+interface GetArticlesOptions {
   page?: number
   limit?: number
-  categoryId: string // Rendre categoryId requis pour cette fonction
-  // Statut publié implicite pour les vues publiques
+  search?: string
+  status?: ArticleStatus | ArticleStatus[]
+  categoryId?: string | null
+  tagId?: string
+  // Typage plus strict pour orderBy basé sur les colonnes réelles de ArticlesTable
+  orderBy?: keyof Pick<
+    ArticlesTable,
+    'title' | 'status' | 'publishedAt' | 'createdAt' | 'updatedAt'
+  >
+  orderDirection?: 'asc' | 'desc'
+  includeCategory?: boolean
+  includeTags?: boolean
 }
 
-export async function getPublishedArticlesByCategory(
-  options: GetArticlesByCategoryOptions
+// --- Fonction Principale et Générique ---
+export async function getArticles(
+  options: GetArticlesOptions = {}
 ): Promise<PaginationResult<ArticleRO>> {
-  const { page = 1, limit = 10, categoryId } = options
+  const {
+    page = 1,
+    limit = 15,
+    search = '',
+    status,
+    categoryId,
+    tagId,
+    orderBy = 'updatedAt',
+    orderDirection = 'desc',
+    includeCategory = true, // Gardons true par défaut pour l'admin
+    includeTags = true // Gardons true par défaut pour l'admin
+  } = options
+
   const db = getDB()
 
   try {
-    const query = db
-      .selectFrom('articles')
-      .leftJoin('categories', 'categories.id', 'articles.categoryId') // Jointure pour filtrer ET récupérer les infos
-      .select([
-        // Sélectionner les champs nécessaires pour la liste
-        'articles.id',
-        'articles.title',
-        'articles.slug',
-        'articles.excerpt',
-        'articles.coverImageUrl',
-        'articles.authorName',
-        'articles.status',
-        'articles.publishedAt',
-        'articles.createdAt',
-        'articles.updatedAt',
-        'articles.categoryId',
-        // Champs catégorie aliasés
-        'categories.id as category_id',
-        'categories.name as category_name',
-        'categories.slug as category_slug'
-      ])
-      .select(() => [
-        // Récupérer les tags pour affichage
-        sql<string>`(SELECT json_agg(t.*) FROM tags t JOIN "articleTags" at ON t.id = at."tagId" WHERE at."articleId" = articles.id)`.as(
-          'tags_json'
+    // Définir le type de base de la requête pour plus de clarté
+    let query: SelectQueryBuilder<Database, 'articles', any> =
+      db.selectFrom('articles')
+
+    // --- Jointures Conditionnelles (appliquées avant la sélection principale) ---
+    if (includeCategory || categoryId) {
+      query = query.leftJoin(
+        'categories',
+        'categories.id',
+        'articles.categoryId'
+      )
+    }
+    if (tagId) {
+      // Utiliser des alias clairs pour éviter les conflits si on joint plusieurs fois tags/articleTags
+      query = query
+        .innerJoin(
+          'article_tags as filter_at',
+          'filter_at.articleId',
+          'articles.id'
         )
-      ])
-      .where('articles.categoryId', '=', categoryId)
-      .where('articles.status', '=', 'published') // Filtrer par statut publié
-      .orderBy('articles.publishedAt', 'desc') // Trier par date de publication
+        .where('filter_at.tagId', '=', tagId) // Filtrer directement ici
+    }
+
+    query = query.select((eb: ExpressionBuilder<Database, any>) => {
+      const articleColumns: (keyof ArticlesTable)[] = [
+        'id',
+        'title',
+        'slug',
+        'content',
+        'excerpt',
+        'coverImageUrl',
+        'images',
+        'categoryId',
+        'authorName',
+        'status',
+        'publishedAt',
+        'createdAt',
+        'updatedAt'
+      ]
+      const selections: any[] = articleColumns.map((col) => `articles.${col}`)
+
+      if (includeCategory) {
+        selections.push(
+          eb.ref('categories.id').as('category_id'),
+          eb.ref('categories.name').as('category_name'),
+          eb.ref('categories.slug').as('category_slug')
+        )
+      }
+
+      if (includeTags) {
+        selections.push(
+          sql<string>`(
+                        SELECT json_agg(json_build_object('id', t.id, 'name', t.name, 'slug', t.slug, 'color', t.color))
+                        FROM tags t
+                        JOIN "article_tags" at ON t.id = at."tag_id"
+                        WHERE at."article_id" = articles.id
+                    )`.as('tags_json')
+        )
+      }
+
+      return selections
+    })
+
+    if (search && search.trim() !== '') {
+      const searchTerm = `%${search.toLowerCase()}%`
+      query = query.where((eb: ExpressionBuilder<Database, any>) => {
+        const conditions: any[] = [
+          eb('articles.title', 'ilike', searchTerm),
+          eb('articles.excerpt', 'ilike', searchTerm),
+          eb('articles.authorName', 'ilike', searchTerm)
+        ]
+        if (includeCategory) {
+          conditions.push(eb('categories.name', 'ilike', searchTerm))
+        }
+        return eb.or(conditions)
+      })
+    }
+
+    if (status) {
+      const statuses = Array.isArray(status) ? status : [status]
+      const validStatuses = statuses.filter((s) =>
+        ['draft', 'published', 'archived'].includes(s)
+      )
+      if (validStatuses.length > 0) {
+        query = query.where('articles.status', 'in', validStatuses)
+      }
+    }
+
+    if (categoryId === null) {
+      query = query.where('articles.categoryId', 'is', null)
+    } else if (categoryId) {
+      query = query.where('articles.categoryId', '=', categoryId)
+    }
+
+    query = query
+      .orderBy(`articles.${orderBy}`, orderDirection)
       .orderBy('articles.id', 'desc')
 
     const results = await paginatedQuery<any>(query, { page, limit })
 
-    // Formatage (similaire à getArticleBySlug, mais sans le 'content' complet)
     const formattedData = results.data.map((row) => {
-      const articleData: any = {
-        id: row.id,
-        title: row.title,
-        slug: row.slug,
-        excerpt: row.excerpt,
-        coverImageUrl: row.coverImageUrl,
-        authorName: row.authorName,
-        status: row.status,
-        publishedAt: row.publishedAt,
-        createdAt: row.createdAt,
-        updatedAt: row.updatedAt,
-        categoryId: row.categoryId,
-        category: null,
-        tags: []
-      }
+      const article: Partial<Article> = {}
+      const articleKeys: (keyof ArticlesTable)[] = [
+        'id',
+        'title',
+        'slug',
+        'content',
+        'excerpt',
+        'coverImageUrl',
+        'images',
+        'categoryId',
+        'authorName',
+        'status',
+        'publishedAt',
+        'createdAt',
+        'updatedAt'
+      ]
+      articleKeys.forEach((key) => {
+        if (row[key] !== undefined) {
+          ;(article as any)[key] = row[key]
+        }
+      })
+      article.images = row.images || []
       if (row.category_id) {
-        articleData.category = {
+        article.category = {
           id: row.category_id,
           name: row.category_name,
-          slug: row.category_slug
-          // Pas besoin de tous les champs ici, juste ce qui est utile pour la carte/liste
-        } as Partial<CategoryRO>
+          slug: row.category_slug,
+          description: null,
+          createdAt: '',
+          updatedAt: ''
+        } as CategoryRO
+      } else {
+        article.category = null
       }
+
       if (row.tags_json) {
         try {
-          // On peut ne parser que le nom/slug pour la liste
-          const fullTags = JSON.parse(row.tags_json) as TagRO[]
-          articleData.tags = fullTags.map((t) => ({
-            name: t.name,
-            slug: t.slug
-          }))
+          article.tags = JSON.parse(row.tags_json) as TagRO[]
         } catch (e) {
-          articleData.tags = []
+          console.error(`Failed to parse tags JSON for article ${row.id}:`, e)
+          article.tags = []
         }
+      } else {
+        article.tags = []
       }
-      return articleData as ArticleRO
+
+      return {
+        ...article,
+        category: article.category === undefined ? null : article.category,
+        tags: article.tags === undefined ? [] : article.tags
+      } as ArticleRO
     })
 
     return {
@@ -100,86 +211,29 @@ export async function getPublishedArticlesByCategory(
       pagination: results.pagination
     }
   } catch (error) {
-    console.error(`Error fetching articles for category ${categoryId}:`, error)
-    throw new Error(`Failed to fetch articles for category ${categoryId}.`)
+    console.error('Error fetching articles:', error)
+    throw new Error('Failed to fetch articles.')
   }
 }
 
-// OPTIONNEL : Une fonction pour l'admin qui a plus de filtres
-export async function getAllArticlesForAdmin(
-  options: {
-    page?: number
-    limit?: number
-    search?: string
-    status?:
-      | 'draft'
-      | 'published'
-      | 'archived'
-      | ('draft' | 'published' | 'archived')[]
-    categoryId?: string | null
-    orderBy?: keyof Database['articles']
-    orderDirection?: 'asc' | 'desc'
-  } = {}
+interface GetPublishedArticlesByCategoryOptions {
+  page?: number
+  limit?: number
+  categoryId: string
+}
+
+// --- Fonction Spécifique pour le Frontend ---
+export async function getPublishedArticlesByCategory(
+  options: GetPublishedArticlesByCategoryOptions
 ): Promise<PaginationResult<ArticleRO>> {
-  // Implémentation similaire à la version précédente de getArticles
-  // mais sans la jointure/agrégation complexe des tags par défaut,
-  // sauf si demandée spécifiquement via une option.
-  const {
-    page = 1,
-    limit = 15,
-    search = '',
-    status,
-    categoryId,
-    orderBy = 'updatedAt',
-    orderDirection = 'desc'
-  } = options
-  const db = getDB()
-
-  try {
-    let query = db
-      .selectFrom('articles')
-      .leftJoin('categories', 'categories.id', 'articles.categoryId')
-      .selectAll('articles') // Sélection simple pour l'admin par défaut
-      .select(['categories.name as category_name']) // Récupérer juste le nom de la catégorie
-
-    // --- Appliquer les filtres (status, categoryId, search) ---
-    if (search) {
-      /* ... where clause ... */
-      const searchTerm = `%${search.toLowerCase()}%`
-      query = query.where((eb) =>
-        eb.or([eb('articles.title', 'ilike', searchTerm) /* , etc */])
-      )
-    }
-    if (status) {
-      /* ... where clause ... */
-      const statuses = Array.isArray(status) ? status : [status]
-      if (statuses.length > 0) {
-        query = query.where('articles.status', 'in', statuses)
-      }
-    }
-    if (categoryId === null) {
-      query = query.where('articles.categoryId', 'is', null)
-    } else if (categoryId) {
-      query = query.where('articles.categoryId', '=', categoryId)
-    }
-
-    // --- Tri ---
-    query = query
-      .orderBy(`articles.${orderBy}`, orderDirection)
-      .orderBy('articles.id', 'desc')
-
-    const results = await paginatedQuery<any>(query, { page, limit })
-
-    // Formatage simple pour l'admin
-    const formattedData = results.data.map((row) => ({
-      ...row,
-      category: row.category_name ? { name: row.category_name } : null, // Juste le nom pour l'admin
-      tags: [] // Pas de chargement des tags par défaut pour l'admin
-    })) as ArticleRO[]
-
-    return { data: formattedData, pagination: results.pagination }
-  } catch (error) {
-    console.error('Error fetching articles for admin:', error)
-    throw new Error('Failed to fetch articles for admin.')
-  }
+  return getArticles({
+    page: options.page,
+    limit: options.limit,
+    categoryId: options.categoryId,
+    status: 'published',
+    orderBy: 'publishedAt',
+    orderDirection: 'desc',
+    includeCategory: true,
+    includeTags: true
+  })
 }

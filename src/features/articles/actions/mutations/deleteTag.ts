@@ -13,7 +13,7 @@ export async function deleteTag(
   const db = getDB()
 
   try {
-    await db.deleteFrom('articleTags').where('tagId', '=', id).execute()
+    await db.deleteFrom('article_tags').where('tag_id', '=', id).execute()
 
     const result = await db
       .deleteFrom('tags')

@@ -29,7 +29,7 @@ export function RichTextEditor({
       attributes: {
         class: cn(
           'prose dark:prose-invert prose-sm sm:prose-base lg:prose-lg xl:prose-2xl',
-          'min-h-[150px] w-full rounded-md rounded-t-none border border-input border-t-0 bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
+          'min-h-[400px] w-full rounded-md rounded-t-none border border-input border-t-0 bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
           className
         )
       }
