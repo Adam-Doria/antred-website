@@ -49,7 +49,7 @@ export async function createArticle(formData: ArticleFormValues): Promise<{
   let coverImagePath: string | null = null
   const carouselImagePaths: string[] = []
   let finalCarouselImageUrls: string[] = []
-  let insertedArticleId: string | null = null
+  let insertedArticleId: string = ''
   let finalSlug: string | null = null
 
   try {

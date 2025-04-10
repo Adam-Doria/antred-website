@@ -19,7 +19,7 @@ import { getArticles } from '@/features/articles/actions/queries/getArticles'
 export const dynamic = 'force-dynamic'
 
 interface CategoryArticlesPageProps {
-  params: { categorySlug: string }
+  params: Promise<{ categorySlug: string }>
   searchParams: Promise<{
     q?: string
     page?: string

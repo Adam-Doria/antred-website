@@ -14,6 +14,7 @@ import {
 } from '@/lib/paginatedQuery'
 import { sql } from 'kysely'
 import { ArticlesTable, ArticleContentStructure } from '@/lib/database/types'
+import { getCategoryBySlug } from './getCategories'
 
 interface GetArticlesOptions {
   page?: number
@@ -73,7 +74,9 @@ export async function getArticles(
 
   // --- Jointure Catégories (si nécessaire) ---
   if (needsCategoryJoin) {
-    query = query.leftJoin('categories', 'categories.id', 'articles.categoryId')
+    query = query
+      .leftJoin('categories', 'categories.id', 'articles.categoryId')
+      .selectAll()
   }
 
   const columnsToSelect: any[] = [
@@ -155,7 +158,7 @@ export async function getArticles(
   }
 
   if (excludeCategory) {
-    query = query.where('categories.slug', '!=', excludeCategory)
+    query = query.where(sql`categories.slug`, '!=', excludeCategory)
   }
 
   // --- Tri ---
@@ -184,17 +187,17 @@ export async function getArticles(
     console.log(results)
     const formattedData = results.data.map((row): ArticleRO => {
       const article: Partial<Article> = {
-        id: row.id,
+        id: String(row.id),
         title: row.title,
         slug: row.slug,
         status: row.status,
-        createdAt: row.createdAt,
-        updatedAt: row.updatedAt,
+        createdAt: row.createdAt as unknown as string | Date,
+        updatedAt: row.updatedAt as unknown as string | Date,
         excerpt: row.excerpt ?? null,
         coverImageUrl: row.coverImageUrl ?? null,
         categoryId: row.categoryId ?? null,
         authorName: row.authorName ?? null,
-        publishedAt: row.publishedAt ?? null,
+        publishedAt: row.publishedAt as unknown as string | Date | null,
         content: row.contentJson ?? {},
         category: null,
         tags: []
@@ -273,4 +276,22 @@ export async function getAllPublishedArticleSlugs(): Promise<
     console.error('Error fetching published article slugs:', error)
     return []
   }
+}
+
+export async function getLatestNewsArticle(): Promise<ArticleRO | null> {
+  const category = await getCategoryBySlug('actualites-de-lantred')
+
+  const categoryId = category?.id
+
+  const newsArticles = await getArticles({
+    limit: 1,
+    status: 'published',
+    orderBy: 'publishedAt',
+    orderDirection: 'desc',
+    categoryId,
+    includeCategory: false,
+    includeTags: false
+  })
+
+  return newsArticles.data[0] || null
 }

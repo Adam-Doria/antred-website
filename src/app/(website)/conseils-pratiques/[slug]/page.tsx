@@ -5,9 +5,9 @@ import ArticleTemplate from '@/features/articles/component/ArticleTemplate'
 export async function generateMetadata({
   params
 }: {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }): Promise<Metadata> {
-  const slug = params.slug
+  const { slug } = await params
   const article = await getArticleBySlug(slug)
 
   if (!article) {
@@ -38,11 +38,11 @@ export async function generateMetadata({
 }
 
 interface ArticlePageProps {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }
 
 export default async function ArticlePage({ params }: ArticlePageProps) {
-  const slug = params.slug
+  const { slug } = await params
   const article = await getArticleBySlug(slug)
 
   if (!article) {

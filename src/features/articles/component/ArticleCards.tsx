@@ -19,7 +19,7 @@ export const ArticleCard: React.FC<ArticleCardsProps> = ({
   const tagName =
     article.tags && article.tags.length > 0 ? article.tags[0].name : 'Article'
   const articleLink = `/conseils-pratiques/${article.slug}`
-  const coverSrc = article.coverImageUrl || '/images/press/default.jpeg'
+  const coverSrc = article.coverImageUrl || '/images/presse/default.jpeg'
 
   return (
     <Link

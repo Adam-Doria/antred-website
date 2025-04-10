@@ -38,7 +38,7 @@ import { createArticle } from '../actions/mutations/createArticle'
 import { updateArticle } from '../actions/mutations/updateArticle'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
-import ArticlePreview from './ArticlePreview'
+import { ArticlePreview } from './ArticlePreview'
 
 interface ArticleFormProps {
   initialData?: ArticleRO | null
@@ -308,7 +308,7 @@ export function ArticleForm({
                   <FormControl>
                     <Select
                       onValueChange={field.onChange}
-                      defaultValue={field.value}
+                      defaultValue={field.value ?? ''}
                     >
                       <SelectTrigger>
                         <SelectValue placeholder="Choisir une catégorie" />
@@ -415,7 +415,13 @@ export function ArticleForm({
                 <FormItem>
                   <FormLabel>Extrait</FormLabel>
                   <FormControl>
-                    <Textarea placeholder="Extrait..." {...field} />
+                    <Textarea
+                      placeholder="Extrait..."
+                      value={field.value || ''}
+                      onChange={field.onChange}
+                      onBlur={field.onBlur}
+                      name={field.name}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -445,8 +451,33 @@ export function ArticleForm({
             </div>
           </form>
         ) : (
-          // --- Prévisualisation de l'article ---
-          <ArticlePreview article={form.getValues()} />
+          <ArticlePreview
+            article={{
+              id: initialData?.id || 'preview',
+              slug: 'preview',
+              title: form.getValues().title,
+              excerpt: form.getValues().excerpt || null,
+              coverImageUrl: '/images/presse/default.jpeg',
+              categoryId: form.getValues().categoryId || null,
+              authorName: form.getValues().authorName || null,
+              status: form.getValues().status,
+              publishedAt:
+                form.getValues().status === 'published'
+                  ? new Date().toISOString()
+                  : null,
+              createdAt: new Date().toISOString(),
+              updatedAt: new Date().toISOString(),
+              content: form.getValues().content,
+              category:
+                availableCategories.find(
+                  (c) => c.id === form.getValues().categoryId
+                ) || null,
+              tags:
+                availableTags.filter((t) =>
+                  form.getValues().tagIds?.includes(t.id)
+                ) || []
+            }}
+          />
         )}
       </Form>
     </DndProvider>

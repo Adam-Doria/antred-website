@@ -1,12 +1,12 @@
 import React from 'react'
-import { ArticleFormValues } from '../schema/articles.schema'
 import ArticleTemplate from './ArticleTemplate'
+import { ArticleRO } from '../types/articles.type'
 
 interface ArticlePreviewProps {
-  article: ArticleFormValues
+  article: ArticleRO
 }
 
-const ArticlePreview: React.FC<ArticlePreviewProps> = ({ article }) => {
+export const ArticlePreview: React.FC<ArticlePreviewProps> = ({ article }) => {
   return (
     <div>
       <ArticleTemplate article={article} />
