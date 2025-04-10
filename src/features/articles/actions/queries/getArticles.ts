@@ -29,6 +29,7 @@ interface GetArticlesOptions {
   orderDirection?: 'asc' | 'desc'
   includeCategory?: boolean
   includeTags?: boolean
+  excludeCategory?: string
 }
 
 type RawArticleData = Omit<ArticlesTable, 'content'> & {
@@ -52,8 +53,18 @@ export async function getArticles(
     orderBy = 'updatedAt',
     orderDirection = 'desc',
     includeCategory = true,
-    includeTags = true
+    includeTags = true,
+    excludeCategory
   } = options
+
+  console.log('[DEBUG] getArticles called with options:', {
+    page,
+    limit,
+    status,
+    categoryId,
+    tagId,
+    excludeCategory
+  })
 
   const db = getDB()
   let query = db.selectFrom('articles')
@@ -143,6 +154,10 @@ export async function getArticles(
     )
   }
 
+  if (excludeCategory) {
+    query = query.where('categories.slug', '!=', excludeCategory)
+  }
+
   // --- Tri ---
   const validOrderByFields: (keyof Pick<
     ArticlesTable,
@@ -155,10 +170,18 @@ export async function getArticles(
     .orderBy(`articles.${safeOrderBy}`, orderDirection)
     .orderBy('articles.id', 'desc')
 
+  try {
+    const sqlQuery = query.compile()
+    console.log('[DEBUG] Generated SQL:', sqlQuery.sql)
+    console.log('[DEBUG] SQL Parameters:', sqlQuery.parameters)
+  } catch (e) {
+    console.error('[ERROR] Failed to compile SQL query:', e)
+  }
+
   // --- Exécution et Formatage ---
   try {
     const results = await paginatedQuery<RawArticleData>(query, { page, limit })
-
+    console.log(results)
     const formattedData = results.data.map((row): ArticleRO => {
       const article: Partial<Article> = {
         id: row.id,

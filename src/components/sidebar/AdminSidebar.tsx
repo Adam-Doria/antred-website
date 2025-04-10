@@ -1,6 +1,5 @@
 import {
   UserSearch,
-  Newspaper,
   Settings,
   BookOpen,
   LayoutDashboard,
@@ -57,11 +56,6 @@ export function AdminSidebar() {
       title: 'Disparitions',
       url: '/admin/disparitions',
       icon: UserSearch
-    },
-    {
-      title: 'Articles (in progress)',
-      url: '/admin/articles',
-      icon: Newspaper
     }
   ]
 
