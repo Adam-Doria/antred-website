@@ -1,4 +1,3 @@
-// src/features/articles/components/ArticleForm.tsx
 'use client'
 
 import { useState } from 'react'
@@ -35,9 +34,11 @@ import {
 import { ImageDndUpload, UploadedImage } from '@/components/ui/image-uploader'
 import { Loader2 } from 'lucide-react'
 import { RichTextEditor } from '@/components/ui/richTextEditor'
+import { MultiSelectTags } from './MultiSelectTag'
 import { createArticle } from '../actions/mutations/createArticle'
 import { updateArticle } from '../actions/mutations/updateArticle'
-import { MultiSelectTags } from './MultiSelectTag'
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
 
 interface ArticleFormProps {
   initialData?: ArticleRO | null
@@ -57,8 +58,8 @@ export function ArticleForm({
   initialData,
   initialCategoryId,
   availableCategories,
-  onSuccess,
-  availableTags
+  availableTags,
+  onSuccess
 }: ArticleFormProps) {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -68,14 +69,25 @@ export function ArticleForm({
   const initialCoverImage = initialData?.coverImageUrl
     ? [{ url: initialData.coverImageUrl, isNew: false }]
     : []
-  const initialContentImages =
-    initialData?.images?.map((url) => ({ url, isNew: false })) || []
+  // --- CORRECTION: Lire les images du carrousel depuis content.images ---
+  const initialCarouselImages: UploadedImage[] =
+    initialData?.content?.images?.map((url) => ({ url, isNew: false })) || []
+  const initialContent = initialData?.content || {}
 
   const form = useForm<ArticleFormValues>({
     resolver: zodResolver(articleSchema),
     defaultValues: {
       title: initialData?.title || '',
-      content: initialData?.content || '<p></p>',
+      content: {
+        introduction: initialContent.introduction || '', // Utiliser '' au lieu de '<p></p>'
+        part1: initialContent.part1 || '',
+        quote: initialContent.quote || '',
+        part2: initialContent.part2 || '',
+        images: [], // Ce champ reste vide, géré par uploadedCarouselImages
+        part3: initialContent.part3 || '',
+        // Initialiser l'uploader avec les images existantes
+        uploadedCarouselImages: initialCarouselImages
+      },
       excerpt: initialData?.excerpt || '',
       categoryId:
         !isEditMode && initialCategoryId
@@ -84,8 +96,7 @@ export function ArticleForm({
       tagIds: initialData?.tags?.map((tag) => tag.id) || [],
       authorName: initialData?.authorName || '',
       status: initialData?.status || 'draft',
-      uploadedCoverImage: initialCoverImage[0] || null,
-      uploadedImages: initialContentImages
+      uploadedCoverImage: initialCoverImage[0] || null
     }
   })
 
@@ -94,8 +105,11 @@ export function ArticleForm({
       shouldValidate: true
     })
   }
-  const handleContentImagesChange = (images: UploadedImage[]) => {
-    form.setValue('uploadedImages', images, { shouldValidate: true })
+  const handleCarouselImagesChange = (images: UploadedImage[]) => {
+    // --- CORRECTION: Utiliser le bon nom de champ ---
+    form.setValue('content.uploadedCarouselImages', images, {
+      shouldValidate: true
+    })
   }
 
   const onSubmit = async (data: ArticleFormValues) => {
@@ -108,145 +122,119 @@ export function ArticleForm({
       } else {
         result = await createArticle(data)
       }
-
       if (result.success) {
         onSuccess?.()
         router.refresh()
       } else {
         if (typeof result.error === 'string') setError(result.error)
-        else setError('Erreur de validation. Vérifiez les champs.')
+        else if (result.error && typeof result.error === 'object') {
+          const firstKey = Object.keys(result.error)[0]
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const messages = (result.error as any)[firstKey]
+          const msg = Array.isArray(messages)
+            ? messages[0]
+            : 'Erreur validation'
+          setError(msg || 'Erreur de validation.')
+        } else {
+          setError('Erreur inconnue.')
+        }
         console.error('Submit Error Object:', result.error)
       }
     } catch (err) {
       console.error('Submit Exception:', err)
-      setError(err instanceof Error ? err.message : 'Erreur inattendue.')
+      setError(err instanceof Error ? err.message : 'Erreur.')
     } finally {
       setIsLoading(false)
     }
   }
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <FormField
-            control={form.control}
-            name="title"
-            render={({ field }) => (
-              <FormItem>
-                {' '}
-                <FormLabel>Titre*</FormLabel>{' '}
-                <FormControl>
-                  <Input placeholder="Titre de l article..." {...field} />
-                </FormControl>{' '}
-                <FormMessage />{' '}
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="authorName"
-            render={({ field }) => (
-              <FormItem>
-                {' '}
-                <FormLabel>Auteur</FormLabel>{' '}
-                <FormControl>
-                  <Input
-                    placeholder="Nom de l auteur (optionnel)"
-                    {...field}
-                    value={field.value ?? ''}
-                  />
-                </FormControl>{' '}
-                <FormMessage />{' '}
-              </FormItem>
-            )}
-          />
-        </div>
-
-        <FormField
-          control={form.control}
-          name="content"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Contenu*</FormLabel>
-              <FormControl>
-                <RichTextEditor
-                  content={field.value}
-                  onChange={field.onChange}
-                  disabled={isLoading}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name="excerpt"
-          render={({ field }) => (
-            <FormItem>
-              {' '}
-              <FormLabel>Extrait (Optionnel)</FormLabel>{' '}
-              <FormControl>
-                <Textarea
-                  placeholder="Court résumé..."
-                  className="min-h-[80px]"
-                  {...field}
-                  value={field.value ?? ''}
-                />
-              </FormControl>{' '}
-              <FormDescription>Affiché dans les listes.</FormDescription>{' '}
-              <FormMessage />{' '}
-            </FormItem>
-          )}
-        />
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <FormField
-            control={form.control}
-            name="categoryId"
-            render={({ field }) => (
-              <FormItem>
-                {' '}
-                <FormLabel>Catégorie*</FormLabel>{' '}
-                <Select
-                  onValueChange={field.onChange}
-                  value={field.value ?? ''}
-                >
-                  {' '}
+    <DndProvider backend={HTML5Backend}>
+      <Form {...form}>
+        <form
+          id={`article-form-${initialData?.id || 'new'}`}
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="space-y-6"
+        >
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <FormField
+              control={form.control}
+              name="title"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Titre*</FormLabel>
                   <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Choisir catégorie..." />
-                    </SelectTrigger>
-                  </FormControl>{' '}
-                  <SelectContent>
-                    {' '}
-                    {availableCategories.map((cat) => (
-                      <SelectItem key={cat.id} value={cat.id}>
-                        {cat.name}
-                      </SelectItem>
-                    ))}{' '}
-                  </SelectContent>{' '}
-                </Select>{' '}
-                <FormMessage />{' '}
-              </FormItem>
-            )}
-          />
+                    <Input placeholder="Titre..." {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="authorName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Auteur</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="(Optionnel)"
+                      {...field}
+                      value={field.value ?? ''}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
 
           <FormField
             control={form.control}
-            name="tagIds"
+            name="content.introduction"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Tags (Optionnel)</FormLabel>
+                <FormLabel>Introduction</FormLabel>
                 <FormControl>
-                  <MultiSelectTags
-                    availableTags={availableTags}
-                    selectedTagIds={field.value || []}
+                  <RichTextEditor
+                    content={field.value ?? ''}
                     onChange={field.onChange}
                     disabled={isLoading}
-                    maxSelection={3}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="content.part1"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Partie 1*</FormLabel>
+                <FormControl>
+                  <RichTextEditor
+                    content={field.value ?? ''}
+                    onChange={field.onChange}
+                    disabled={isLoading}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="content.quote"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Citation</FormLabel>
+                <FormControl>
+                  <Textarea
+                    placeholder="Citation..."
+                    {...field}
+                    value={field.value ?? ''}
+                    rows={2}
                   />
                 </FormControl>
                 <FormMessage />
@@ -256,102 +244,198 @@ export function ArticleForm({
 
           <FormField
             control={form.control}
-            name="status"
+            name="content.part2"
             render={({ field }) => (
               <FormItem>
-                {' '}
-                <FormLabel>Statut*</FormLabel>{' '}
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
-                  {' '}
+                <FormLabel>Partie 2</FormLabel>
+                <FormControl>
+                  <RichTextEditor
+                    content={field.value ?? ''}
+                    onChange={field.onChange}
+                    disabled={isLoading}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="content.part3"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Partie 3</FormLabel>
+                <FormControl>
+                  <RichTextEditor
+                    content={field.value ?? ''}
+                    onChange={field.onChange}
+                    disabled={isLoading}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          {/* Métadonnées */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <FormField
+              control={form.control}
+              name="categoryId"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Catégorie*</FormLabel>
                   <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Choisir statut..." />
-                    </SelectTrigger>
-                  </FormControl>{' '}
-                  <SelectContent>
-                    {' '}
-                    {statusOptions.map((opt) => (
-                      <SelectItem key={opt.value} value={opt.value}>
-                        {opt.label}
-                      </SelectItem>
-                    ))}{' '}
-                  </SelectContent>{' '}
-                </Select>{' '}
-                <FormMessage />{' '}
-              </FormItem>
-            )}
-          />
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <FormField
-            control={form.control}
-            name="uploadedCoverImage"
-            render={({ field }) => (
-              <FormItem>
-                {' '}
-                <FormLabel>Image Couverture</FormLabel>{' '}
-                <FormControl>
-                  <ImageDndUpload
-                    images={field.value ? [field.value] : []}
-                    onImagesChange={handleCoverImageChange}
-                    maxFiles={1}
+                    <Select
+                      onValueChange={field.onChange}
+                      value={field.value ?? ''}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Choisir..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {availableCategories.map((cat) => (
+                          <SelectItem key={cat.id} value={cat.id}>
+                            {cat.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            {/* --- Tags (sans FormControl) --- */}
+            <FormField
+              control={form.control}
+              name="tagIds"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Tags</FormLabel>
+                  <MultiSelectTags
+                    availableTags={availableTags}
+                    selectedTagIds={field.value || []}
+                    onChange={field.onChange}
                     disabled={isLoading}
                     className="mt-2"
                   />
-                </FormControl>
-                <FormMessage />{' '}
-              </FormItem>
-            )}
-          />
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="status"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Statut*</FormLabel>
+                  <FormControl>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Choisir..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {statusOptions.map((opt) => (
+                          <SelectItem key={opt.value} value={opt.value}>
+                            {opt.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+
+          {/* Images */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <FormField
+              control={form.control}
+              name="uploadedCoverImage"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Image Couverture</FormLabel>
+                  <FormControl>
+                    <ImageDndUpload
+                      images={field.value ? [field.value] : []}
+                      onImagesChange={handleCoverImageChange}
+                      maxFiles={1}
+                      disabled={isLoading}
+                      className="mt-2"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="content.uploadedCarouselImages"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Images Carrousel</FormLabel>
+                  <FormControl>
+                    <ImageDndUpload
+                      images={field.value || []}
+                      onImagesChange={handleCarouselImagesChange}
+                      maxFiles={10}
+                      disabled={isLoading}
+                      className="mt-2"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+
+          {/* Extrait */}
           <FormField
             control={form.control}
-            name="uploadedImages"
+            name="excerpt"
             render={({ field }) => (
               <FormItem>
-                {' '}
-                <FormLabel>Images Additionnelles</FormLabel>{' '}
+                <FormLabel>Extrait</FormLabel>
                 <FormControl>
-                  <ImageDndUpload
-                    images={field.value || []}
-                    onImagesChange={handleContentImagesChange}
-                    maxFiles={5}
-                    disabled={isLoading}
-                    className="mt-2"
+                  <Textarea
+                    placeholder="Court résumé..."
+                    className="min-h-[80px]"
+                    {...field}
+                    value={field.value ?? ''}
                   />
                 </FormControl>
-                <FormMessage />{' '}
+                <FormDescription>Pour SEO et aperçus.</FormDescription>
+                <FormMessage />
               </FormItem>
             )}
           />
-        </div>
 
-        {error && (
-          <p className="text-sm font-medium text-destructive">{error}</p>
-        )}
-
-        <div className="flex justify-end space-x-2 pt-4">
-          <Button
-            type="button"
-            variant="outline"
-            onClick={() => onSuccess?.()}
-            disabled={isLoading}
-          >
-            {' '}
-            Annuler{' '}
-          </Button>
-          <Button type="submit" disabled={isLoading}>
-            {' '}
-            {isLoading && (
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            )}{' '}
-            {isEditMode ? 'Mettre à jour' : 'Créer'}{' '}
-          </Button>
-        </div>
-      </form>
-    </Form>
+          {/* Erreur Générale et Boutons */}
+          {error && (
+            <p className="text-sm font-medium text-destructive">{error}</p>
+          )}
+          <div className="flex justify-end space-x-2 pt-4">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => onSuccess?.()}
+              disabled={isLoading}
+            >
+              Annuler
+            </Button>
+            <Button type="submit" disabled={isLoading}>
+              {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+              {isEditMode ? 'Mettre à jour' : 'Créer'}
+            </Button>
+          </div>
+        </form>
+      </Form>
+    </DndProvider>
   )
 }

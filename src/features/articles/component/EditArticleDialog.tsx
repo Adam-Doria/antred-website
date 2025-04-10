@@ -6,7 +6,7 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogTrigger // Importé mais utilisé avec asChild
+  DialogTrigger
 } from '@/components/ui/dialog'
 import { ArticleForm } from './ArticleForm'
 import { ArticleRO, CategoryRO, TagRO } from '../types/articles.type'
@@ -17,7 +17,7 @@ import { getAllTags } from '../actions/queries/getTags'
 
 interface EditArticleDialogProps {
   articleId: string
-  trigger: React.ReactNode // Le composant déclencheur (ex: DropdownMenuItem)
+  trigger: React.ReactNode
 }
 
 export function EditArticleDialog({
@@ -65,8 +65,6 @@ export function EditArticleDialog({
           ? err.message
           : 'Impossible de charger les données.'
       )
-      // Ne pas fermer la modale automatiquement, laisser l'utilisateur voir l'erreur
-      // setIsOpen(false);
     } finally {
       setIsLoadingData(false)
     }
@@ -79,7 +77,7 @@ export function EditArticleDialog({
   return (
     <Dialog open={isOpen} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
-      <DialogContent className="sm:max-w-4xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-[80vw] max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>
             Modifier l&apos;article

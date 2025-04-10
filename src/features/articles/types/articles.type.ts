@@ -1,6 +1,5 @@
-// src/features/articles/types/articles.type.ts
-
-import { UploadedImage } from '@/components/ui/image-uploader' // Assumant que ce type existe
+import { UploadedImage } from '@/components/ui/image-uploader'
+import { ArticleContentStructure } from '@/lib/database/types'
 
 export interface BaseEntity {
   id: string
@@ -31,10 +30,9 @@ export type ArticleStatus = 'draft' | 'published' | 'archived'
 export interface Article extends BaseEntity {
   title: string
   slug: string
-  content: string
+  content: ArticleContentStructure
   excerpt: string | null
   coverImageUrl: string | null
-  images: string[]
   categoryId: string | null
   category?: CategoryRO | null
   tags?: TagRO[]
@@ -54,3 +52,20 @@ export type ArticleCreate = Omit<
 }
 
 export type ArticleUpdate = Partial<ArticleCreate>
+
+export type ArticleManipulationInput = {
+  title: string
+  excerpt?: string | null
+  coverImageUrl?: string | null
+  categoryId?: string | null
+  tagIds?: string[]
+  authorName?: string | null
+  status: ArticleStatus
+  content: ArticleContentStructure & {
+    uploadedCarouselImages?: UploadedImage[] | null
+  }
+  uploadedCoverImage?: UploadedImage | null
+}
+
+export type ArticleCreateInput = ArticleManipulationInput
+export type ArticleUpdateInput = Partial<ArticleManipulationInput>

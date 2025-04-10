@@ -1,20 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 'use server'
-
 import { getDB } from '@/lib/database/db'
 import {
   ArticleRO,
-  CategoryRO,
   TagRO,
   ArticleStatus,
   Article
 } from '../../types/articles.type'
-import { paginatedQuery, PaginationResult } from '@/lib/paginatedQuery'
-import { sql, SelectQueryBuilder, ExpressionBuilder } from 'kysely' // Importer SelectQueryBuilder et ExpressionBuilder
-import { Database, ArticlesTable } from '@/lib/database/types' // Importer Database et ArticlesTable
+import {
+  paginatedQuery,
+  PaginationResult,
+  IPagination
+} from '@/lib/paginatedQuery'
+import { sql } from 'kysely'
+import { ArticlesTable, ArticleContentStructure } from '@/lib/database/types'
 
-// --- Interface d'options pour la fonction générique ---
 interface GetArticlesOptions {
   page?: number
   limit?: number
@@ -22,7 +22,6 @@ interface GetArticlesOptions {
   status?: ArticleStatus | ArticleStatus[]
   categoryId?: string | null
   tagId?: string
-  // Typage plus strict pour orderBy basé sur les colonnes réelles de ArticlesTable
   orderBy?: keyof Pick<
     ArticlesTable,
     'title' | 'status' | 'publishedAt' | 'createdAt' | 'updatedAt'
@@ -32,7 +31,14 @@ interface GetArticlesOptions {
   includeTags?: boolean
 }
 
-// --- Fonction Principale et Générique ---
+type RawArticleData = Omit<ArticlesTable, 'content'> & {
+  contentJson: ArticleContentStructure | null
+  categoryId?: string | null
+  categoryName?: string | null
+  categorySlug?: string | null
+  tagsJson?: TagRO[] | string | null
+}
+
 export async function getArticles(
   options: GetArticlesOptions = {}
 ): Promise<PaginationResult<ArticleRO>> {
@@ -45,165 +51,150 @@ export async function getArticles(
     tagId,
     orderBy = 'updatedAt',
     orderDirection = 'desc',
-    includeCategory = true, // Gardons true par défaut pour l'admin
-    includeTags = true // Gardons true par défaut pour l'admin
+    includeCategory = true,
+    includeTags = true
   } = options
 
   const db = getDB()
+  let query = db.selectFrom('articles')
 
-  try {
-    // Définir le type de base de la requête pour plus de clarté
-    let query: SelectQueryBuilder<Database, 'articles', any> =
-      db.selectFrom('articles')
+  const needsCategoryJoin = includeCategory || categoryId || search
 
-    // --- Jointures Conditionnelles (appliquées avant la sélection principale) ---
-    if (includeCategory || categoryId) {
-      query = query.leftJoin(
-        'categories',
-        'categories.id',
-        'articles.categoryId'
-      )
-    }
-    if (tagId) {
-      // Utiliser des alias clairs pour éviter les conflits si on joint plusieurs fois tags/articleTags
-      query = query
-        .innerJoin(
-          'article_tags as filter_at',
-          'filter_at.articleId',
-          'articles.id'
-        )
-        .where('filter_at.tagId', '=', tagId) // Filtrer directement ici
-    }
+  // --- Jointure Catégories (si nécessaire) ---
+  if (needsCategoryJoin) {
+    query = query.leftJoin('categories', 'categories.id', 'articles.categoryId')
+  }
 
-    query = query.select((eb: ExpressionBuilder<Database, any>) => {
-      const articleColumns: (keyof ArticlesTable)[] = [
-        'id',
-        'title',
-        'slug',
-        'content',
-        'excerpt',
-        'coverImageUrl',
-        'images',
-        'categoryId',
-        'authorName',
-        'status',
-        'publishedAt',
-        'createdAt',
-        'updatedAt'
+  const columnsToSelect: any[] = [
+    'articles.id',
+    'articles.title',
+    'articles.slug',
+    'articles.excerpt',
+    'articles.coverImageUrl',
+    'articles.categoryId',
+    'articles.authorName',
+    'articles.status',
+    'articles.publishedAt',
+    'articles.createdAt',
+    'articles.updatedAt',
+    'articles.content as content_json'
+  ]
+
+  if (includeCategory) {
+    columnsToSelect.push(
+      sql.ref('categories.id').as('category_id'),
+      sql.ref('categories.name').as('category_name'),
+      sql.ref('categories.slug').as('category_slug')
+    )
+  }
+
+  if (includeTags) {
+    columnsToSelect.push(
+      sql<string>`(
+        SELECT COALESCE(json_agg(json_build_object('id', t.id, 'name', t.name, 'slug', t.slug, 'color', t.color)), '[]'::json)
+        FROM tags t
+        JOIN "article_tags" at ON t.id = at.tag_id
+        WHERE at.article_id = articles.id
+      )`.as('tags_json')
+    )
+  }
+
+  query = query.select(columnsToSelect)
+
+  // --- Filtres ---
+  if (search && search.trim() !== '') {
+    const searchTerm = `%${search.toLowerCase()}%`
+    query = query.where((eb) => {
+      const conditions = [
+        eb('articles.title', 'ilike', searchTerm),
+        eb('articles.excerpt', 'ilike', searchTerm),
+        eb('articles.authorName', 'ilike', searchTerm),
+        eb(sql<string>`articles.content::text`, 'ilike', searchTerm)
       ]
-      const selections: any[] = articleColumns.map((col) => `articles.${col}`)
-
-      if (includeCategory) {
-        selections.push(
-          eb.ref('categories.id').as('category_id'),
-          eb.ref('categories.name').as('category_name'),
-          eb.ref('categories.slug').as('category_slug')
-        )
+      if (needsCategoryJoin) {
+        conditions.push(eb(sql.ref('categories.name'), 'ilike', searchTerm))
       }
-
-      if (includeTags) {
-        selections.push(
-          sql<string>`(
-                        SELECT json_agg(json_build_object('id', t.id, 'name', t.name, 'slug', t.slug, 'color', t.color))
-                        FROM tags t
-                        JOIN "article_tags" at ON t.id = at."tag_id"
-                        WHERE at."article_id" = articles.id
-                    )`.as('tags_json')
-        )
-      }
-
-      return selections
+      return eb.or(conditions)
     })
+  }
 
-    if (search && search.trim() !== '') {
-      const searchTerm = `%${search.toLowerCase()}%`
-      query = query.where((eb: ExpressionBuilder<Database, any>) => {
-        const conditions: any[] = [
-          eb('articles.title', 'ilike', searchTerm),
-          eb('articles.excerpt', 'ilike', searchTerm),
-          eb('articles.authorName', 'ilike', searchTerm)
-        ]
-        if (includeCategory) {
-          conditions.push(eb('categories.name', 'ilike', searchTerm))
-        }
-        return eb.or(conditions)
-      })
+  if (status) {
+    const statuses = Array.isArray(status) ? status : [status]
+    const validStatuses = statuses.filter((s): s is ArticleStatus =>
+      ['draft', 'published', 'archived'].includes(s)
+    )
+    if (validStatuses.length > 0) {
+      query = query.where('articles.status', 'in', validStatuses)
     }
+  }
 
-    if (status) {
-      const statuses = Array.isArray(status) ? status : [status]
-      const validStatuses = statuses.filter((s) =>
-        ['draft', 'published', 'archived'].includes(s)
-      )
-      if (validStatuses.length > 0) {
-        query = query.where('articles.status', 'in', validStatuses)
+  if (categoryId === null) {
+    query = query.where('articles.categoryId', 'is', null)
+  } else if (categoryId) {
+    query = query.where('articles.categoryId', '=', categoryId)
+  }
+
+  if (tagId) {
+    query = query.where('articles.id', 'in', (eb) =>
+      eb
+        .selectFrom('articleTags')
+        .select('articleTags.articleId')
+        .where('articleTags.tagId', '=', tagId)
+    )
+  }
+
+  // --- Tri ---
+  const validOrderByFields: (keyof Pick<
+    ArticlesTable,
+    'title' | 'status' | 'publishedAt' | 'createdAt' | 'updatedAt'
+  >)[] = ['title', 'status', 'publishedAt', 'createdAt', 'updatedAt']
+  const safeOrderBy = validOrderByFields.includes(orderBy)
+    ? orderBy
+    : 'updatedAt'
+  query = query
+    .orderBy(`articles.${safeOrderBy}`, orderDirection)
+    .orderBy('articles.id', 'desc')
+
+  // --- Exécution et Formatage ---
+  try {
+    const results = await paginatedQuery<RawArticleData>(query, { page, limit })
+
+    const formattedData = results.data.map((row): ArticleRO => {
+      const article: Partial<Article> = {
+        id: row.id,
+        title: row.title,
+        slug: row.slug,
+        status: row.status,
+        createdAt: row.createdAt,
+        updatedAt: row.updatedAt,
+        excerpt: row.excerpt ?? null,
+        coverImageUrl: row.coverImageUrl ?? null,
+        categoryId: row.categoryId ?? null,
+        authorName: row.authorName ?? null,
+        publishedAt: row.publishedAt ?? null,
+        content: row.contentJson ?? {},
+        category: null,
+        tags: []
       }
-    }
 
-    if (categoryId === null) {
-      query = query.where('articles.categoryId', 'is', null)
-    } else if (categoryId) {
-      query = query.where('articles.categoryId', '=', categoryId)
-    }
-
-    query = query
-      .orderBy(`articles.${orderBy}`, orderDirection)
-      .orderBy('articles.id', 'desc')
-
-    const results = await paginatedQuery<any>(query, { page, limit })
-
-    const formattedData = results.data.map((row) => {
-      const article: Partial<Article> = {}
-      const articleKeys: (keyof ArticlesTable)[] = [
-        'id',
-        'title',
-        'slug',
-        'content',
-        'excerpt',
-        'coverImageUrl',
-        'images',
-        'categoryId',
-        'authorName',
-        'status',
-        'publishedAt',
-        'createdAt',
-        'updatedAt'
-      ]
-      articleKeys.forEach((key) => {
-        if (row[key] !== undefined) {
-          ;(article as any)[key] = row[key]
-        }
-      })
-      article.images = row.images || []
-      if (row.category_id) {
+      // Catégorie
+      if (includeCategory && row.categoryId) {
         article.category = {
-          id: row.category_id,
-          name: row.category_name,
-          slug: row.category_slug,
+          id: row.categoryId,
+          name: row.categoryName ?? 'Inconnu',
+          slug: row.categorySlug ?? '',
           description: null,
           createdAt: '',
           updatedAt: ''
-        } as CategoryRO
-      } else {
-        article.category = null
-      }
-
-      if (row.tags_json) {
-        try {
-          article.tags = JSON.parse(row.tags_json) as TagRO[]
-        } catch (e) {
-          console.error(`Failed to parse tags JSON for article ${row.id}:`, e)
-          article.tags = []
         }
-      } else {
-        article.tags = []
       }
 
-      return {
-        ...article,
-        category: article.category === undefined ? null : article.category,
-        tags: article.tags === undefined ? [] : article.tags
-      } as ArticleRO
+      // Tags
+      if (includeTags && Array.isArray(row.tagsJson)) {
+        article.tags = row.tagsJson[0] === null ? [] : row.tagsJson
+      }
+
+      return article as ArticleRO
     })
 
     return {
@@ -211,29 +202,52 @@ export async function getArticles(
       pagination: results.pagination
     }
   } catch (error) {
-    console.error('Error fetching articles:', error)
-    throw new Error('Failed to fetch articles.')
+    console.error('Error executing paginated query for articles:', error)
+    const defaultPagination: IPagination = {
+      total: 0,
+      page,
+      limit,
+      totalPages: 0,
+      hasNextPage: false,
+      hasPreviousPage: false
+    }
+    return { data: [], pagination: defaultPagination }
   }
 }
 
+// ...
 interface GetPublishedArticlesByCategoryOptions {
   page?: number
   limit?: number
   categoryId: string
 }
-
-// --- Fonction Spécifique pour le Frontend ---
 export async function getPublishedArticlesByCategory(
   options: GetPublishedArticlesByCategoryOptions
 ): Promise<PaginationResult<ArticleRO>> {
   return getArticles({
-    page: options.page,
-    limit: options.limit,
-    categoryId: options.categoryId,
+    ...options,
     status: 'published',
     orderBy: 'publishedAt',
     orderDirection: 'desc',
     includeCategory: true,
     includeTags: true
   })
+}
+
+export async function getAllPublishedArticleSlugs(): Promise<
+  { slug: string; updatedAt: Date | string }[]
+> {
+  const db = getDB()
+  try {
+    const slugs = await db
+      .selectFrom('articles')
+      .select(['slug', 'updatedAt'])
+      .where('status', '=', 'published')
+      .orderBy('publishedAt', 'desc')
+      .execute()
+    return slugs as { slug: string; updatedAt: Date | string }[]
+  } catch (error) {
+    console.error('Error fetching published article slugs:', error)
+    return []
+  }
 }

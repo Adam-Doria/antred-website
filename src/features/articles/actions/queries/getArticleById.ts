@@ -1,24 +1,21 @@
-// src/features/articles/actions/queries/getArticleById.ts
 'use server'
 
 import { getDB } from '@/lib/database/db'
 import {
-  Article,
   ArticleRO,
   CategoryRO,
-  TagRO
+  TagRO,
+  Article
 } from '../../types/articles.type'
 import { sql } from 'kysely'
+import { ArticleContentStructure, ArticlesTable } from '@/lib/database/types'
 
 export async function getArticleById(id: string): Promise<ArticleRO | null> {
-  if (!id) {
-    return null
-  }
+  if (!id) return null
 
   const db = getDB()
 
   try {
-    // Requête similaire à getArticleBySlug, mais filtre par ID
     const result = await db
       .selectFrom('articles')
       .leftJoin('categories', 'categories.id', 'articles.categoryId')
@@ -29,7 +26,6 @@ export async function getArticleById(id: string): Promise<ArticleRO | null> {
         'articles.content',
         'articles.excerpt',
         'articles.coverImageUrl',
-        'articles.images',
         'articles.categoryId',
         'articles.authorName',
         'articles.status',
@@ -47,36 +43,38 @@ export async function getArticleById(id: string): Promise<ArticleRO | null> {
       ])
       .select(() => [
         sql<string>`(
-                    SELECT json_agg(t.*)
+                    SELECT json_agg(json_build_object('id', t.id, 'name', t.name, 'slug', t.slug, 'color', t.color))
                     FROM tags t
-                    JOIN "article_tags" at ON t.id = at."tag_id"
-                    WHERE at."article_id" = articles.id
+                    JOIN "article_tags" at ON t.id = at.tag_id
+                    WHERE at.article_id = articles.id
                 )`.as('tags_json')
       ])
-      .where('articles.id', '=', id) // Filtre par ID ici
+      .where('articles.id', '=', id)
       .executeTakeFirst()
 
-    if (!result) {
-      return null
-    }
+    if (!result) return null
 
-    const article: Article = {
-      id: result.id,
-      title: result.title,
-      slug: result.slug,
-      content: result.content,
-      excerpt: result.excerpt,
-      coverImageUrl: result.coverImageUrl,
-      images: result.images || [],
-      categoryId: result.categoryId,
-      authorName: result.authorName,
-      status: result.status,
-      publishedAt: result.publishedAt,
-      createdAt: result.createdAt,
-      updatedAt: result.updatedAt,
-      category: null,
-      tags: []
-    }
+    const article: Partial<Article> = {}
+    const articleKeys: (keyof Omit<ArticlesTable, 'images'>)[] = [
+      'id',
+      'title',
+      'slug',
+      'content',
+      'excerpt',
+      'coverImageUrl',
+      'categoryId',
+      'authorName',
+      'status',
+      'publishedAt',
+      'createdAt',
+      'updatedAt'
+    ]
+    articleKeys.forEach((key) => {
+      if (result[key] !== undefined) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ;(article as any)[key] = result[key]
+      }
+    })
 
     if (result.category_id) {
       article.category = {
@@ -87,20 +85,25 @@ export async function getArticleById(id: string): Promise<ArticleRO | null> {
         createdAt: result.category_createdAt,
         updatedAt: result.category_updatedAt
       } as CategoryRO
+    } else {
+      article.category = null
     }
 
     if (result.tags_json) {
       try {
-        article.tags = result.tags_json
-          ? (JSON.parse(result.tags_json) as TagRO[])
-          : []
+        article.tags = JSON.parse(result.tags_json) as TagRO[]
       } catch (e) {
-        console.error(`Failed to parse tags JSON for article ${result.id}:`, e)
+        console.error(`Failed tags parse: ${result.id}`, e)
         article.tags = []
       }
     } else {
       article.tags = []
     }
+
+    article.content =
+      typeof result.content === 'object' && result.content !== null
+        ? (result.content as ArticleContentStructure)
+        : {}
 
     return article as ArticleRO
   } catch (error) {

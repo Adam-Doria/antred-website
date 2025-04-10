@@ -32,11 +32,24 @@ export const tagSchema = z.object({
 })
 export type TagFormValues = z.infer<typeof tagSchema>
 
+const articleContentSchema = z.object({
+  introduction: z.string().optional().nullable(),
+  part1: z.string().min(1, 'La partie 1 est requise.'),
+  quote: z.string().optional().nullable(),
+  part2: z.string().optional().nullable(),
+  images: z.array(z.string().url()).optional().nullable().default([]),
+  part3: z.string().optional().nullable(),
+
+  uploadedCarouselImages: z
+    .array(uploadedImageSchema)
+    .optional()
+    .nullable()
+    .default([])
+})
+
 export const articleSchema = z.object({
   title: z.string().min(3, 'Le titre doit contenir au moins 3 caractères.'),
-  content: z
-    .string()
-    .min(10, 'Le contenu doit contenir au moins 10 caractères.'),
+  content: articleContentSchema,
   excerpt: z
     .string()
     .max(300, `L'extrait ne doit pas dépasser 300 caractères.`)
@@ -53,8 +66,6 @@ export const articleSchema = z.object({
     .default([]),
   authorName: z.string().nullable().optional(),
   status: z.enum(['draft', 'published', 'archived']),
-
-  uploadedCoverImage: uploadedImageSchema.optional().nullable(),
-  uploadedImages: z.array(uploadedImageSchema).optional().default([])
+  uploadedCoverImage: uploadedImageSchema.optional().nullable()
 })
 export type ArticleFormValues = z.infer<typeof articleSchema>

@@ -7,7 +7,8 @@ import {
   useReactTable,
   SortingState,
   getSortedRowModel,
-  Updater
+  Updater,
+  Row
 } from '@tanstack/react-table'
 import {
   Table,
@@ -50,7 +51,8 @@ import {
 } from '@/components/ui/alert-dialog'
 import { Badge } from '@/components/ui/badge'
 import { EditArticleDialog } from './EditArticleDialog'
-import Image from 'next/image' // Importer le composant Image
+import Image from 'next/image'
+import { cn } from '@/lib/utils'
 
 const formatDate = (dateString: string | Date | null | undefined): string => {
   if (!dateString) return 'N/A'
@@ -192,9 +194,8 @@ export function ArticlesTable({
 
   const columns: ColumnDef<ArticleRO>[] = [
     {
-      // --- Nouvelle Colonne Image ---
       id: 'coverImage',
-      header: '', // Pas de titre
+      header: '',
       cell: ({ row }) => {
         const imageUrl = row.original.coverImageUrl
         return (
@@ -204,17 +205,16 @@ export function ArticlesTable({
                 src={imageUrl}
                 alt={`Couverture ${row.original.title}`}
                 fill
-                sizes="64px" // Taille de la miniature
                 className="object-cover"
               />
             ) : (
-              <ImageOff className="h-5 w-5 text-muted-foreground" /> // Icône placeholder
+              <ImageOff className="h-5 w-5 text-muted-foreground" />
             )}
           </div>
         )
       },
       enableSorting: false,
-      size: 80 // Taille fixe pour la colonne
+      size: 80
     },
     {
       accessorKey: 'title',
@@ -232,7 +232,6 @@ export function ArticlesTable({
       )
     },
     {
-      // --- Nouvelle Colonne Auteur ---
       accessorKey: 'authorName',
       header: ({ column }) => (
         <Button
@@ -260,19 +259,33 @@ export function ArticlesTable({
           Statut <ArrowUpDown className="ml-2 h-4 w-4" />{' '}
         </Button>
       ),
-      cell: ({ row }) => {
+      cell: ({ row }: { row: Row<ArticleRO> }) => {
         const status = row.getValue('status') as ArticleStatus
-        let variant: 'default' | 'secondary' | 'outline' = 'secondary'
-        if (status === 'published') variant = 'default'
-        if (status === 'archived') variant = 'outline'
-        const statusText =
-          status === 'draft'
-            ? 'Brouillon'
-            : status === 'published'
-              ? 'Publié'
-              : 'Archivé'
+        let statusText = 'Inconnu'
+        let colorClasses = 'bg-gray-100 text-gray-800 border-gray-300'
+        switch (status) {
+          case 'draft':
+            statusText = 'Brouillon'
+            colorClasses =
+              'bg-blue-100 text-blue-800 border-blue-300 dark:bg-blue-900/50 dark:text-blue-300 dark:border-blue-700'
+            break
+          case 'published':
+            statusText = 'Publié'
+            colorClasses =
+              'bg-green-100 text-green-800 border-green-300 dark:bg-green-900/50 dark:text-green-300 dark:border-green-700'
+            break
+          case 'archived':
+            statusText = 'Archivé'
+            colorClasses =
+              'bg-red-100 text-red-800 border-red-300 dark:bg-red-900/50 dark:text-red-300 dark:border-red-700'
+            break
+        }
+
         return (
-          <Badge variant={variant} className="capitalize">
+          <Badge
+            variant="outline"
+            className={cn('capitalize border', colorClasses)}
+          >
             {statusText}
           </Badge>
         )
@@ -290,10 +303,16 @@ export function ArticlesTable({
             {tags.map((tag: TagRO) => (
               <Badge
                 key={tag.id}
-                variant="outline"
-                style={{ borderColor: tag.color, color: tag.color }}
-                className="text-xs"
+                variant="secondary"
+                className="px-2 py-0.5 text-xs font-medium rounded-sm whitespace-nowrap"
               >
+                <span
+                  className="w-2 h-2 rounded-full mr-1.5 inline-block flex-shrink-0 border"
+                  style={{
+                    backgroundColor: tag.color || '#cccccc',
+                    borderColor: tag.color || 'hsl(var(--border))'
+                  }}
+                />
                 {tag.name}
               </Badge>
             ))}
@@ -315,7 +334,7 @@ export function ArticlesTable({
       ),
       cell: ({ row }) => (
         <span className="text-xs">{formatDate(row.getValue('updatedAt'))}</span>
-      ) // Taille texte réduite
+      )
     },
     {
       id: 'actions',
@@ -384,7 +403,7 @@ export function ArticlesTable({
                       : flexRender(
                           header.column.columnDef.header,
                           header.getContext()
-                        )}{' '}
+                        )}
                   </TableHead>
                 ))}
               </TableRow>

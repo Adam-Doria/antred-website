@@ -1,33 +1,22 @@
-// src/features/articles/components/MultiSelectTags.tsx
 'use client'
 
-import React, { useState, useCallback, useRef } from 'react'
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList
-} from '@/components/ui/command'
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger
-} from '@/components/ui/popover'
-import { Button } from '@/components/ui/button'
+import React, { useState, useRef, useMemo, useCallback, useEffect } from 'react'
+import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
-import { Check, X } from 'lucide-react'
+import { X, Check, ChevronDown, ChevronUp, Search } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { TagRO } from '../types/articles.type'
 
 interface MultiSelectTagsProps {
-  availableTags: TagRO[] // Tous les tags possibles
-  selectedTagIds: string[] // IDs des tags actuellement sélectionnés
-  onChange: (selectedIds: string[]) => void // Callback pour mettre à jour le formulaire parent
+  availableTags: TagRO[]
+  selectedTagIds: string[]
+  onChange: (selectedIds: string[]) => void
   placeholder?: string
+  searchPlaceholder?: string
   disabled?: boolean
   maxSelection?: number
+  className?: string
+  listHeight?: string
 }
 
 export function MultiSelectTags({
@@ -35,160 +24,233 @@ export function MultiSelectTags({
   selectedTagIds = [],
   onChange,
   placeholder = 'Sélectionner des tags...',
+  searchPlaceholder = 'Rechercher un tag...',
   disabled = false,
-  maxSelection
+  maxSelection,
+  className,
+  listHeight = 'max-h-48'
 }: MultiSelectTagsProps) {
-  const inputRef = useRef<HTMLInputElement>(null)
-  const [openPopover, setOpenPopover] = useState(false)
-  const [inputValue, setInputValue] = useState('') // Pour la recherche dans le CommandInput
+  const [isExpanded, setIsExpanded] = useState(false)
+  const [searchValue, setSearchValue] = useState('')
+  const containerRef = useRef<HTMLDivElement>(null)
+  const tagsMap = useMemo(
+    () => new Map(availableTags.map((tag) => [tag.id, tag])),
+    [availableTags]
+  )
 
-  // Obtenir les objets Tag complets pour les IDs sélectionnés
-  const selectedTags = React.useMemo(() => {
-    return availableTags.filter((tag) => selectedTagIds.includes(tag.id))
-  }, [availableTags, selectedTagIds])
+  const selectedTags = useMemo(
+    () =>
+      selectedTagIds
+        .map((id) => tagsMap.get(id))
+        .filter((tag): tag is TagRO => !!tag),
+    [selectedTagIds, tagsMap]
+  )
 
-  // Fonction pour ajouter/retirer un tag
-  const handleTagToggle = useCallback(
+  const filteredTags = useMemo(() => {
+    return availableTags.filter((tag) =>
+      tag.name.toLowerCase().includes(searchValue.toLowerCase())
+    )
+  }, [availableTags, searchValue])
+
+  const removeTag = useCallback(
+    (tagId: string, e?: React.MouseEvent | React.KeyboardEvent) => {
+      if (e) {
+        e.preventDefault()
+        e.stopPropagation()
+      }
+      onChange(selectedTagIds.filter((id) => id !== tagId))
+    },
+    [selectedTagIds, onChange]
+  )
+
+  const toggleTag = useCallback(
     (tagId: string) => {
+      if (disabled) return
+
+      const isSelected = selectedTagIds.includes(tagId)
       let newSelectedIds: string[]
-      if (selectedTagIds.includes(tagId)) {
-        // Retirer le tag
+
+      if (isSelected) {
         newSelectedIds = selectedTagIds.filter((id) => id !== tagId)
       } else {
-        // Ajouter le tag (si la limite n'est pas atteinte)
-        if (maxSelection && selectedTagIds.length >= maxSelection) {
-          return // Ne rien faire si max atteint
+        if (
+          maxSelection !== undefined &&
+          selectedTagIds.length >= maxSelection
+        ) {
+          console.warn('Limite de sélection atteinte') // Feedback optionnel
+          return
         }
         newSelectedIds = [...selectedTagIds, tagId]
       }
       onChange(newSelectedIds)
     },
-    [selectedTagIds, onChange, maxSelection]
+    [selectedTagIds, onChange, maxSelection, disabled]
   )
 
-  // Fermer le popover si on clique à l'extérieur
-  // (Simple exemple, pourrait être amélioré avec une lib comme react-popper)
-  /*
-    useEffect(() => {
-      const handleOutsideClick = (event: MouseEvent) => {
-        // Logique pour détecter clic extérieur
-      };
-      document.addEventListener('mousedown', handleOutsideClick);
-      return () => document.removeEventListener('mousedown', handleOutsideClick);
-    }, [openPopover]);
-    */
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node)
+      ) {
+        setIsExpanded(false)
+      }
+    }
+    if (isExpanded) {
+      document.addEventListener('mousedown', handleClickOutside)
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [isExpanded])
 
   return (
-    <Popover open={openPopover} onOpenChange={setOpenPopover}>
-      <PopoverTrigger asChild>
-        <Button
-          variant="outline"
-          role="combobox"
-          aria-expanded={openPopover}
-          className={cn(
-            'w-full justify-between h-auto min-h-10', // Ajuster hauteur auto
-            selectedTags.length > 0 ? 'h-auto' : 'h-10'
-          )}
-          onClick={() => setOpenPopover(!openPopover)}
-          disabled={disabled}
-        >
-          {/* Afficher les badges des tags sélectionnés ou le placeholder */}
-          {selectedTags.length > 0 ? (
-            <div className="flex gap-1 flex-wrap">
-              {selectedTags.map((tag) => (
-                <Badge
-                  key={tag.id}
-                  variant="outline"
-                  style={{ borderColor: tag.color, color: tag.color }}
-                  className="px-2 py-0.5"
-                >
-                  {tag.name}
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      handleTagToggle(tag.id)
-                    }}
-                    className="ml-1 ring-offset-background rounded-full outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
-                  >
-                    {' '}
-                    <X className="h-3 w-3 text-muted-foreground hover:text-foreground" />{' '}
-                  </button>
-                </Badge>
-              ))}
-            </div>
-          ) : (
-            <span className="text-muted-foreground">{placeholder}</span>
-          )}
-          {/* Icône Chevron ? (Optionnel) */}
-        </Button>
-      </PopoverTrigger>
-
-      <PopoverContent
-        className="w-[--radix-popover-trigger-width] p-0"
-        align="start"
+    <div
+      ref={containerRef}
+      className={cn('relative border rounded-md', className)}
+    >
+      <button
+        type="button"
+        className={cn(
+          'w-full flex flex-wrap gap-1 items-center p-2 min-h-[40px] text-left cursor-pointer',
+          disabled
+            ? 'bg-muted cursor-not-allowed opacity-50'
+            : 'bg-background hover:bg-muted/50'
+        )}
+        onClick={() => !disabled && setIsExpanded(!isExpanded)}
+        disabled={disabled}
+        aria-expanded={isExpanded}
+        aria-haspopup="listbox"
+        aria-controls="tag-listbox"
       >
-        <Command>
-          <CommandInput
-            ref={inputRef}
-            placeholder="Rechercher un tag..."
-            value={inputValue}
-            onValueChange={setInputValue}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') e.preventDefault()
-            }}
-          />
-          <CommandList>
-            <CommandEmpty>Aucun tag trouvé.</CommandEmpty>
-            <CommandGroup>
-              {availableTags.map((tag) => {
-                const isSelected = selectedTagIds.includes(tag.id)
-                // Filtrer basé sur inputValue (simple recherche sur le nom)
-                const matchesSearch = tag.name
-                  .toLowerCase()
-                  .includes(inputValue.toLowerCase())
+        <div className="flex-grow flex flex-wrap gap-1 items-center">
+          {selectedTags.length > 0 ? (
+            selectedTags.map((tag) => (
+              <Badge
+                key={tag.id}
+                variant="secondary"
+                className="px-2 py-0.5 text-xs font-medium rounded-sm whitespace-nowrap"
+              >
+                <span
+                  className="w-2 h-2 rounded-full mr-1.5 inline-block flex-shrink-0 border"
+                  style={{
+                    backgroundColor: tag.color || '#cccccc',
+                    borderColor: tag.color || 'hsl(var(--border))'
+                  }}
+                />
+                {tag.name}
+                <button
+                  type="button"
+                  aria-label={`Retirer ${tag.name}`}
+                  className={cn(
+                    'ml-1.5 ring-offset-background rounded-full outline-none focus:ring-1 focus:ring-ring focus:ring-offset-1 opacity-70 hover:opacity-100 transition-opacity',
+                    disabled && 'hidden'
+                  )}
+                  onClick={(e) => removeTag(tag.id, e)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') removeTag(tag.id, e)
+                  }}
+                  disabled={disabled}
+                  tabIndex={-1}
+                >
+                  <X className="h-3 w-3" />
+                </button>
+              </Badge>
+            ))
+          ) : (
+            <span className="text-sm text-muted-foreground">{placeholder}</span>
+          )}
+        </div>
+        <div className="ml-2 flex-shrink-0">
+          {isExpanded ? (
+            <ChevronUp className="h-4 w-4 text-muted-foreground" />
+          ) : (
+            <ChevronDown className="h-4 w-4 text-muted-foreground" />
+          )}
+        </div>
+      </button>
 
-                if (!matchesSearch) return null // Ne pas afficher si ne correspond pas à la recherche
+      {isExpanded && (
+        <div className="border-t p-2">
+          <div className="relative mb-2">
+            <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Input
+              type="text"
+              placeholder={searchPlaceholder}
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+              className="pl-8 h-9"
+              disabled={disabled}
+              aria-controls="tag-listbox"
+            />
+          </div>
+
+          <ul
+            id="tag-listbox"
+            role="listbox"
+            aria-multiselectable="true"
+            className={cn('space-y-1 overflow-y-auto', listHeight)}
+          >
+            {filteredTags.length === 0 ? (
+              <li className="py-2 px-1 text-sm text-center text-muted-foreground">
+                {searchValue ? 'Aucun tag trouvé.' : 'Aucun tag disponible.'}
+              </li>
+            ) : (
+              filteredTags.map((tag) => {
+                const isSelected = selectedTagIds.includes(tag.id)
+
+                const isDisabledItem =
+                  disabled ||
+                  (!isSelected &&
+                    maxSelection !== undefined &&
+                    selectedTagIds.length >= maxSelection)
 
                 return (
-                  <CommandItem
+                  <li
                     key={tag.id}
-                    value={tag.name} // Utiliser le nom pour la recherche/filtrage Command
-                    onSelect={() => {
-                      handleTagToggle(tag.id)
-                      // Optionnel: garder le popover ouvert après sélection
-                      setOpenPopover(true) // Ou false pour fermer après sélection
+                    role="option"
+                    aria-selected={isSelected}
+                    tabIndex={isDisabledItem ? -1 : 0}
+                    className={cn(
+                      'flex items-center justify-between gap-2 rounded-md px-2 py-1.5 text-sm outline-none',
+                      isDisabledItem
+                        ? 'opacity-50 cursor-not-allowed'
+                        : 'cursor-pointer hover:bg-accent focus-visible:bg-accent focus-visible:ring-1 focus-visible:ring-ring'
+                    )}
+                    onClick={() => !isDisabledItem && toggleTag(tag.id)}
+                    onKeyDown={(e) => {
+                      if (
+                        (e.key === 'Enter' || e.key === ' ') &&
+                        !isDisabledItem
+                      ) {
+                        toggleTag(tag.id)
+                      }
                     }}
-                    disabled={
-                      disabled ||
-                      (!isSelected &&
-                        !!maxSelection &&
-                        selectedTagIds.length >= maxSelection)
-                    }
-                    className="flex items-center justify-between cursor-pointer"
                   >
-                    <div className="flex items-center gap-2">
-                      {/* Pastille couleur */}
-                      <div
-                        className="h-3 w-3 rounded-full border flex-shrink-0"
+                    <div className="flex items-center gap-2 flex-grow truncate">
+                      <span
+                        className="h-3 w-3 rounded-full border inline-block flex-shrink-0"
                         style={{ backgroundColor: tag.color || '#cccccc' }}
+                        aria-hidden="true"
                       />
-                      <span>{tag.name}</span>
+                      <span className="truncate">{tag.name}</span>
                     </div>
 
-                    {/* Indicateur de sélection */}
-                    <Check
-                      className={cn(
-                        'ml-auto h-4 w-4',
-                        isSelected ? 'opacity-100' : 'opacity-0'
-                      )}
-                    />
-                  </CommandItem>
+                    {isSelected && (
+                      <Check
+                        className="h-4 w-4 text-primary flex-shrink-0"
+                        aria-hidden="true"
+                      />
+                    )}
+                  </li>
                 )
-              })}
-            </CommandGroup>
-          </CommandList>
-        </Command>
-      </PopoverContent>
-    </Popover>
+              })
+            )}
+          </ul>
+        </div>
+      )}
+    </div>
   )
 }

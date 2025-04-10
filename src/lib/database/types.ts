@@ -1,4 +1,4 @@
-import { ColumnType, Generated } from 'kysely'
+import { ColumnType, Generated, JSONColumnType } from 'kysely'
 
 export interface Database {
   missingPersons: MissingPersonsTable
@@ -60,17 +60,19 @@ export interface TagsTable extends BaseField {
   slug: string
 }
 
+export interface ArticleContentStructure {
+  introduction?: string | null
+  part1?: string
+  quote?: string | null
+  part2?: string | null
+  images?: string[] | null
+  part3?: string | null
+}
 export interface ArticlesTable extends BaseField {
   title: string
   slug: string
-  content: string
   excerpt: string | null
   coverImageUrl: string | null
-  images: ColumnType<
-    string[],
-    string[] | string | undefined,
-    string[] | string | undefined
-  >
   categoryId: string | null
   authorName: string | null
   status: 'draft' | 'published' | 'archived'
@@ -79,6 +81,7 @@ export interface ArticlesTable extends BaseField {
     Date | string | null | undefined,
     Date | string | null | undefined
   >
+  content: JSONColumnType<ArticleContentStructure>
 }
 
 export interface ArticleTagsTable {

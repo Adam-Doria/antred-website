@@ -1,20 +1,22 @@
-// src/features/articles/actions/mutations/updateArticle.ts
 'use server'
 
 import { revalidatePath } from 'next/cache'
 import { getDB } from '@/lib/database/db'
 import { generateUniqueSlug } from '@/lib/transformTextToSlug'
 import { articleSchema, ArticleFormValues } from '../../schema/articles.schema'
-import { ArticleRO, ArticleUpdate } from '../../types/articles.type'
 import {
   uploadFile,
   deleteFile,
   STORAGE_PRESETS,
   parseSupabaseUrl,
-  uploadMultipleFiles
+  uploadMultipleFiles,
+  UploadResult
 } from '@/lib/supabase/storage'
 import { z } from 'zod'
 import { handleTags } from '../../helpers/handleTags'
+import { ArticleContentStructure, Database } from '@/lib/database/types'
+import { UpdateObject } from 'kysely'
+import { getCategoryById as fetchCategoryById } from '../queries/getCategories'
 
 type ValidationErrors = z.inferFlattenedErrors<
   typeof articleSchema
@@ -23,10 +25,11 @@ type ValidationErrors = z.inferFlattenedErrors<
 export async function updateArticle(
   id: string,
   formData: ArticleFormValues
-): Promise<{ success: boolean; error?: string | ValidationErrors }> {
-  if (!id) {
-    return { success: false, error: 'Article ID is required.' }
-  }
+): Promise<{
+  success: boolean
+  error?: string | ValidationErrors
+}> {
+  if (!id) return { success: false, error: 'Article ID is required.' }
 
   const validation = articleSchema.safeParse(formData)
   if (!validation.success) {
@@ -43,160 +46,219 @@ export async function updateArticle(
     tagIds = [],
     authorName,
     status,
-    uploadedCoverImage,
-    uploadedImages = []
+    uploadedCoverImage
   } = validation.data
 
+  console.log(`[updateArticle] Received tagIds for article ${id}:`, tagIds)
+
   let newCoverImageUrl: string | null = null
-  let coverImageToDelete: string | null = null
-  let finalImageUrls: string[] = []
-  const imagePathsToCreate: string[] = []
-  const imagesToDelete: string[] = []
+  let newCoverImagePath: string | null = null
+  let coverImageToDeletePath: string | null = null
+  const carouselImagePathsToCreate: string[] = []
+  const carouselImageUrlsToDelete: string[] = []
+  let finalCarouselImageUrls: string[] = []
 
   try {
-    // 1. Récupérer l'article actuel
     const currentArticle = await db
       .selectFrom('articles')
-      .selectAll()
+      .select([
+        'title',
+        'slug',
+        'status',
+        'publishedAt',
+        'coverImageUrl',
+        'content',
+        'categoryId'
+      ])
       .where('id', '=', id)
       .executeTakeFirst()
 
-    if (!currentArticle) {
-      return { success: false, error: 'Article not found.' }
-    }
-    const currentArticleTyped = currentArticle as unknown as ArticleRO
+    if (!currentArticle) return { success: false, error: 'Article not found.' }
 
+    const currentContent =
+      (currentArticle.content as ArticleContentStructure) || {}
+    const currentCoverImageUrl = currentArticle.coverImageUrl
+    const currentCarouselImageUrls = currentContent.images || []
+
+    // --- Gestion Image Couverture ---
     if (uploadedCoverImage) {
       if (uploadedCoverImage.isNew && uploadedCoverImage.file) {
         const uploadResult = await uploadFile(
           uploadedCoverImage.file,
-          STORAGE_PRESETS.articles
+          STORAGE_PRESETS.articles,
+          id
         )
         newCoverImageUrl = uploadResult.url
-        imagePathsToCreate.push(uploadResult.path)
-        if (currentArticleTyped.coverImageUrl) {
-          coverImageToDelete = currentArticleTyped.coverImageUrl
+        newCoverImagePath = uploadResult.path
+        if (currentCoverImageUrl) {
+          const parsed = parseSupabaseUrl(currentCoverImageUrl)
+          if (parsed) coverImageToDeletePath = parsed.path
         }
-      } else if (!uploadedCoverImage.url && currentArticleTyped.coverImageUrl) {
-        coverImageToDelete = currentArticleTyped.coverImageUrl
-        newCoverImageUrl = null // S'assurer qu'elle est bien mise à null dans la DB
+      } else if (!uploadedCoverImage.url && currentCoverImageUrl) {
+        const parsed = parseSupabaseUrl(currentCoverImageUrl)
+        if (parsed) coverImageToDeletePath = parsed.path
+        newCoverImageUrl = null
       } else {
-        newCoverImageUrl =
-          uploadedCoverImage.url || currentArticleTyped.coverImageUrl
+        newCoverImageUrl = uploadedCoverImage.url || currentCoverImageUrl
       }
-    } else if (currentArticleTyped.coverImageUrl) {
-      coverImageToDelete = currentArticleTyped.coverImageUrl
+    } else if (currentCoverImageUrl) {
+      const parsed = parseSupabaseUrl(currentCoverImageUrl)
+      if (parsed) coverImageToDeletePath = parsed.path
       newCoverImageUrl = null
     } else {
-      newCoverImageUrl = currentArticleTyped.coverImageUrl
+      newCoverImageUrl = null
     }
 
-    const existingImageUrls = uploadedImages
-      .filter((img) => !img.isNew)
-      .map((img) => img.url)
-    const newImagesToUpload = uploadedImages.filter(
-      (img) => img.isNew && img.file
-    )
+    // --- Gestion Images Carrousel ---
+    const existingCarouselUrls =
+      content.uploadedCarouselImages
+        ?.filter((img) => !img.isNew && img.url)
+        .map((img) => img.url) || []
+    const newCarouselImagesToUpload =
+      content.uploadedCarouselImages?.filter((img) => img.isNew && img.file) ||
+      []
 
-    if (newImagesToUpload.length > 0) {
-      const files = newImagesToUpload.map((img) => img.file as File)
-      const uploadResults = await uploadMultipleFiles(
+    let newUploadedUrls: string[] = []
+    if (newCarouselImagesToUpload.length > 0) {
+      const files = newCarouselImagesToUpload.map((img) => img.file as File)
+      const uploadResults: UploadResult[] = await uploadMultipleFiles(
         files,
-        STORAGE_PRESETS.articles
+        STORAGE_PRESETS.articles,
+        id
       )
-      const newUploadedUrls = uploadResults.map((res) => res.url)
-      imagePathsToCreate.push(...uploadResults.map((res) => res.path))
-      finalImageUrls = [...existingImageUrls, ...newUploadedUrls]
-    } else {
-      finalImageUrls = existingImageUrls
+      newUploadedUrls = uploadResults.map((res) => res.url)
+      carouselImagePathsToCreate.push(...uploadResults.map((res) => res.path))
     }
-
-    const currentImages = currentArticleTyped.images || []
-    currentImages.forEach((imgUrl) => {
-      if (!finalImageUrls.includes(imgUrl)) {
-        imagesToDelete.push(imgUrl)
+    finalCarouselImageUrls = [...existingCarouselUrls, ...newUploadedUrls]
+    currentCarouselImageUrls.forEach((url) => {
+      if (!finalCarouselImageUrls.includes(url)) {
+        carouselImageUrlsToDelete.push(url)
       }
     })
+    const finalContentObject: ArticleContentStructure = {
+      introduction: content.introduction || null,
+      part1: content.part1 || '',
+      quote: content.quote || null,
+      part2: content.part2 || null,
+      images: finalCarouselImageUrls.length > 0 ? finalCarouselImageUrls : null,
+      part3: content.part3 || null
+    }
 
-    const articleUpdateData: ArticleUpdate & {
-      publishedAt: string | Date | null
-    } = {
+    const articleUpdateData: UpdateObject<Database, 'articles'> = {
       title,
-      content,
+      content: JSON.stringify(finalContentObject),
       excerpt: excerpt || null,
       coverImageUrl: newCoverImageUrl,
-      images: finalImageUrls,
       categoryId: categoryId || null,
       authorName: authorName || null,
       status,
-      // Mettre à jour publishedAt seulement si on passe à 'published' et qu'il n'y était pas
       publishedAt:
-        status === 'published' && currentArticleTyped.status !== 'published'
+        status === 'published' && currentArticle.status !== 'published'
           ? new Date()
           : status === 'published'
-            ? currentArticleTyped.publishedAt
+            ? currentArticle.publishedAt
             : null
     }
 
-    // 5. Générer un nouveau slug si le titre a changé
-    if (currentArticleTyped.title !== title) {
+    if (currentArticle.title !== title) {
       articleUpdateData.slug = await generateUniqueSlug(title, 'articles', id)
     }
 
+    // --- Transaction Database ---
     await db.transaction().execute(async (trx) => {
+      console.log(`[updateArticle TX] Updating article ${id}`)
       await trx
         .updateTable('articles')
         .set(articleUpdateData)
         .where('id', '=', id)
         .executeTakeFirstOrThrow()
 
+      console.log(
+        `[updateArticle TX] Calling handleTags for article ${id} with tagIds:`,
+        tagIds
+      )
       await handleTags(trx, id, tagIds)
+      console.log(`[updateArticle TX] handleTags completed for article ${id}`)
+    })
+    console.log(
+      `[updateArticle] Transaction finished successfully for article ${id}`
+    )
+
+    // --- Nettoyage des ANCIENNES images APRÈS succès DB ---
+    const pathsToDeleteAfterSuccess: { path: string; bucket: string }[] = []
+    if (coverImageToDeletePath) {
+      pathsToDeleteAfterSuccess.push({
+        path: coverImageToDeletePath,
+        bucket: STORAGE_PRESETS.articles.bucketName
+      })
+    }
+    carouselImageUrlsToDelete.forEach((url) => {
+      const parsed = parseSupabaseUrl(url)
+      if (parsed) pathsToDeleteAfterSuccess.push(parsed)
     })
 
-    if (coverImageToDelete) {
-      const urlInfo = parseSupabaseUrl(coverImageToDelete)
-      if (urlInfo) {
-        await deleteFile(urlInfo.path, urlInfo.bucket)
-      }
-    }
-    for (const imgUrl of imagesToDelete) {
-      const urlInfo = parseSupabaseUrl(imgUrl)
-      if (urlInfo) {
-        await deleteFile(urlInfo.path, urlInfo.bucket)
-      }
+    if (pathsToDeleteAfterSuccess.length > 0) {
+      console.log(
+        '[updateArticle] Deleting old images from storage:',
+        pathsToDeleteAfterSuccess
+      )
+      await Promise.all(
+        pathsToDeleteAfterSuccess.map((item) =>
+          deleteFile(item.path, item.bucket)
+        )
+      ).catch((err) => console.error('Error during old image cleanup:', err))
     }
 
-    revalidatePath('/admin/articles')
-    revalidatePath('/conseils-pratiques')
+    // --- Revalidation ---
+    console.log(`[updateArticle] Revalidating paths for article ${id}`)
+    const currentCategory = currentArticle.categoryId
+      ? await fetchCategoryById(currentArticle.categoryId)
+      : null
+    const newCategory = categoryId ? await fetchCategoryById(categoryId) : null
 
-    if (currentArticleTyped.slug !== articleUpdateData.slug) {
-      revalidatePath(`/conseils-pratiques/${currentArticleTyped.slug}`)
-      if (articleUpdateData.slug) {
-        revalidatePath(`/conseils-pratiques/${articleUpdateData.slug}`)
-      }
-    } else {
-      revalidatePath(`/conseils-pratiques/${currentArticleTyped.slug}`)
-    }
-    revalidatePath('/sitemap.ts')
+    const pathsToRevalidate = new Set<string>()
+    pathsToRevalidate.add('/admin/articles/settings')
+    if (currentCategory?.slug)
+      pathsToRevalidate.add(`/admin/articles/${currentCategory.slug}`)
+    if (newCategory?.slug && newCategory.slug !== currentCategory?.slug)
+      pathsToRevalidate.add(`/admin/articles/${newCategory.slug}`)
+
+    if (currentArticle.slug)
+      pathsToRevalidate.add(`/articles/${currentArticle.slug}`)
+    const finalSlug = articleUpdateData.slug || currentArticle.slug
+    if (finalSlug) pathsToRevalidate.add(`/articles/${finalSlug}`)
+
+    pathsToRevalidate.add('/conseils-pratiques')
+    pathsToRevalidate.add('/paroles-dexpert')
+    pathsToRevalidate.add('/actualites-de-lantred')
+    pathsToRevalidate.add('/sitemap.ts')
+
+    console.log(`[updateArticle] Revalidating:`, Array.from(pathsToRevalidate))
+    Array.from(pathsToRevalidate).forEach((path) => revalidatePath(path))
 
     return { success: true }
   } catch (error) {
-    console.error(`Error updating article ${id}:`, error)
+    console.error(`[updateArticle] Error updating article ${id}:`, error)
 
-    console.log(
-      'Attempting cleanup for newly created paths:',
-      imagePathsToCreate
-    )
-    for (const path of imagePathsToCreate) {
-      try {
-        console.log(`Deleting ${STORAGE_PRESETS.articles.bucketName}/${path}`)
-        await deleteFile(path, STORAGE_PRESETS.articles.bucketName)
-      } catch (cleanupError) {
+    const cleanupPathsOnError = [...carouselImagePathsToCreate]
+    if (newCoverImagePath) {
+      cleanupPathsOnError.push(newCoverImagePath)
+    }
+
+    if (cleanupPathsOnError.length > 0) {
+      console.log(
+        `[updateArticle Error Cleanup] Attempting to delete newly uploaded files:`,
+        cleanupPathsOnError
+      )
+      const bucket = STORAGE_PRESETS.articles.bucketName
+      await Promise.all(
+        cleanupPathsOnError.map((path) => deleteFile(path, bucket))
+      ).catch((err) =>
         console.error(
-          `Failed to cleanup newly uploaded file ${path}:`,
-          cleanupError
+          'Failed to cleanup newly uploaded files after error:',
+          err
         )
-      }
+      )
     }
 
     return {

@@ -1,4 +1,3 @@
-// src/features/articles/actions/queries/getCategories.ts
 'use server'
 
 import { getDB } from '@/lib/database/db'

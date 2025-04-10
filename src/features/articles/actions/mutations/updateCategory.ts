@@ -1,4 +1,3 @@
-// src/features/articles/actions/mutations/updateCategory.ts
 'use server'
 
 import { revalidatePath } from 'next/cache'
@@ -60,7 +59,7 @@ export async function updateCategory(
       console.log('No changes detected for category update.')
     }
 
-    revalidatePath('/admin/categories') // Chemin admin (à créer)
+    revalidatePath('/admin/categories')
 
     return { success: true }
   } catch (error) {

@@ -1,10 +1,9 @@
-// src/app/(auth)/admin/articles/[categorySlug]/page.tsx
 import { Suspense } from 'react'
 import { Skeleton } from '@/components/ui/skeleton'
 import { SearchBar } from '@/components/searchBar/SearchBar'
 import { ArticlesTable } from '@/features/articles/component/ArticleTable'
 import { CreateArticleButton } from '@/features/articles/component/CreateArticleButton'
-
+import { ArticleStatusFilter } from '@/features/articles/component/ArticleStatusFilter'
 import { notFound } from 'next/navigation'
 import {
   ArticleRO,
@@ -21,25 +20,30 @@ export const dynamic = 'force-dynamic'
 
 interface CategoryArticlesPageProps {
   params: { categorySlug: string }
-  searchParams?: {
+  searchParams: Promise<{
     q?: string
     page?: string
     limit?: string
     sort?: string
-    status?: ArticleStatus
-  }
+    status?: string
+  }>
 }
 
 async function CategoryArticlesPage({
   params,
-  searchParams
+  searchParams: searchParamsPromise
 }: CategoryArticlesPageProps) {
-  const { categorySlug } = params
-  const searchQuery = searchParams?.q || ''
-  const page = parseInt(searchParams?.page || '1', 10)
-  const limit = parseInt(searchParams?.limit || '15', 10)
-  const status = searchParams?.status
-  const sortParam = searchParams?.sort?.split(':')
+  const { categorySlug } = await params
+  const searchParams = await searchParamsPromise
+
+  const searchQuery = searchParams.q || ''
+  const page = parseInt(searchParams.page || '1', 10)
+  const limit = parseInt(searchParams.limit || '15', 10)
+  const statusParam = searchParams.status
+  const status = ['draft', 'published', 'archived'].includes(statusParam ?? '')
+    ? (statusParam as ArticleStatus)
+    : undefined
+  const sortParam = searchParams.sort?.split(':')
 
   const orderBy =
     (sortParam?.[0] as keyof Pick<
@@ -58,19 +62,18 @@ async function CategoryArticlesPage({
     notFound()
   }
 
-  // --- Appel à la fonction getArticles générique ---
   const { data: articles, pagination } = await getArticles({
     page,
     limit,
     search: searchQuery,
-    categoryId: category.id, // Toujours filtrer par la catégorie de la page
-    status: status ? status : undefined, // Appliquer le filtre de statut s'il existe
+    categoryId: category.id,
+    status: status,
     orderBy: orderBy,
     orderDirection: orderDirection,
-    includeCategory: false, // Pas besoin de recharger la catégorie ici
-    includeTags: true // Charger les tags pour l'affichage table
+    includeCategory: false,
+    includeTags: true
   })
-
+  console.log(articles)
   const basePath = `/admin/articles/${categorySlug}`
 
   return (
@@ -90,27 +93,13 @@ async function CategoryArticlesPage({
         />
       </div>
 
-      {/* --- Barre de recherche et Filtre Statut --- */}
       <div className="py-2 flex items-center justify-between gap-4">
         <SearchBar
           initialQuery={searchQuery}
           placeholder={`Rechercher dans "${category.name}"...`}
           className="w-full max-w-sm"
         />
-        {/* --- Sélecteur de Statut --- */}
-        {/* TODO: Implémenter ce composant qui met à jour le searchParam 'status' */}
-        {/* Exemple simple :
-                 <Select value={status || 'all'} onValueChange={(newStatus) => updateStatusFilter(newStatus === 'all' ? '' : newStatus)}>
-                      <SelectTrigger className="w-[180px]"> <SelectValue placeholder="Filtrer par statut..." /> </SelectTrigger>
-                      <SelectContent>
-                           <SelectItem value="all">Tous les statuts</SelectItem>
-                           <SelectItem value="published">Publié</SelectItem>
-                           <SelectItem value="draft">Brouillon</SelectItem>
-                           <SelectItem value="archived">Archivé</SelectItem>
-                      </SelectContent>
-                 </Select>
-                 */}
-        <div>[Filtre Statut Placeholder]</div>
+        <ArticleStatusFilter currentStatus={status} basePath={basePath} />
       </div>
 
       <Suspense fallback={<Skeleton className="h-[500px] w-full" />}>
@@ -118,8 +107,6 @@ async function CategoryArticlesPage({
           data={articles}
           pagination={pagination}
           basePath={basePath}
-          searchQuery={searchQuery}
-          statusFilter={status}
         />
       </Suspense>
     </div>

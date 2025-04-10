@@ -1,4 +1,3 @@
-// src/features/articles/actions/queries/getTags.ts
 'use server'
 
 import { getDB } from '@/lib/database/db'
@@ -18,7 +17,7 @@ export async function getTags(
 ): Promise<PaginationResult<TagRO>> {
   const {
     page = 1,
-    limit = 20, // Augmenté pour admin potentiellement
+    limit = 20,
     search = '',
     orderBy = 'name',
     orderDirection = 'asc'

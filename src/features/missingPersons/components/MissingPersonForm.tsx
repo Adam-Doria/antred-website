@@ -34,6 +34,8 @@ import {
   missingPersonSchema
 } from '../schemas/missingPerson'
 import { ImageDndUpload, UploadedImage } from '@/components/ui/image-uploader'
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
 
 // Props du composant
 interface MissingPersonFormProps {
@@ -48,14 +50,12 @@ export function MissingPersonForm({
   const [isLoading, setIsLoading] = useState(false)
   const isEditMode = !!initialData
 
-  // Convertir les URLs d'images initiales en objets UploadedImage
   const initialImages =
     initialData?.images?.map((imageUrl) => ({
       url: imageUrl,
       isNew: false
     })) || []
 
-  // Configuration du formulaire
   const form = useForm<MissingPersonFormValues>({
     resolver: zodResolver(missingPersonSchema),
     defaultValues: {
@@ -78,7 +78,6 @@ export function MissingPersonForm({
     form.setValue('images', images, { shouldValidate: true })
   }
 
-  // Soumission du formulaire
   const onSubmit = async (data: MissingPersonFormValues) => {
     setIsLoading(true)
     try {
@@ -116,197 +115,203 @@ export function MissingPersonForm({
   }
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {/* Prénom */}
-          <FormField
-            control={form.control}
-            name="firstName"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Prénom</FormLabel>
-                <FormControl>
-                  <Input placeholder="Prénom" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          {/* Nom */}
-          <FormField
-            control={form.control}
-            name="lastName"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Nom</FormLabel>
-                <FormControl>
-                  <Input placeholder="Nom" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          {/* Genre */}
-          <FormField
-            control={form.control}
-            name="gender"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Genre</FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
+    <DndProvider backend={HTML5Backend}>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Prénom */}
+            <FormField
+              control={form.control}
+              name="firstName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Prénom</FormLabel>
                   <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Sélectionner un genre" />
-                    </SelectTrigger>
+                    <Input placeholder="Prénom" {...field} />
                   </FormControl>
-                  <SelectContent>
-                    <SelectItem value="Masculin">Masculin</SelectItem>
-                    <SelectItem value="Féminin">Féminin</SelectItem>
-                    <SelectItem value="Autre">Autre</SelectItem>
-                  </SelectContent>
-                </Select>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-          {/* Date de disparition */}
+            {/* Nom */}
+            <FormField
+              control={form.control}
+              name="lastName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Nom</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Nom" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            {/* Genre */}
+            <FormField
+              control={form.control}
+              name="gender"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Genre</FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Sélectionner un genre" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="Masculin">Masculin</SelectItem>
+                      <SelectItem value="Féminin">Féminin</SelectItem>
+                      <SelectItem value="Autre">Autre</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            {/* Date de disparition */}
+            <FormField
+              control={form.control}
+              name="disappearanceDate"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Date de disparition</FormLabel>
+                  <FormControl>
+                    <Input type="date" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            {/* Lieu de disparition */}
+            <FormField
+              control={form.control}
+              name="disappearanceLocation"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Lieu de disparition</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Lieu de disparition" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            {/* Pays */}
+            <FormField
+              control={form.control}
+              name="country"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Pays</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Pays" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+
+          {/* Coordonnées */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <FormField
+              control={form.control}
+              name="latitude"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Latitude</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Latitude" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="longitude"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Longitude</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Longitude" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+
+          {/* Images */}
           <FormField
             control={form.control}
-            name="disappearanceDate"
+            name="images"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Date de disparition</FormLabel>
+                <FormLabel>Images</FormLabel>
                 <FormControl>
-                  <Input type="date" {...field} />
+                  <ImageDndUpload
+                    images={field.value || []}
+                    onImagesChange={handleImagesChange}
+                    disabled={isLoading}
+                    maxFiles={5}
+                    className="mt-2"
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
 
-          {/* Lieu de disparition */}
+          {/* Description */}
           <FormField
             control={form.control}
-            name="disappearanceLocation"
+            name="description"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Lieu de disparition</FormLabel>
+                <FormLabel>Description</FormLabel>
                 <FormControl>
-                  <Input placeholder="Lieu de disparition" {...field} />
+                  <Textarea
+                    placeholder="Informations sur la disparition"
+                    className="min-h-[100px]"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
 
-          {/* Pays */}
-          <FormField
-            control={form.control}
-            name="country"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Pays</FormLabel>
-                <FormControl>
-                  <Input placeholder="Pays" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
-
-        {/* Coordonnées */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <FormField
-            control={form.control}
-            name="latitude"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Latitude</FormLabel>
-                <FormControl>
-                  <Input placeholder="Latitude" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="longitude"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Longitude</FormLabel>
-                <FormControl>
-                  <Input placeholder="Longitude" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
-
-        {/* Images */}
-        <FormField
-          control={form.control}
-          name="images"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Images</FormLabel>
-              <FormControl>
-                <ImageDndUpload
-                  images={field.value || []}
-                  onImagesChange={handleImagesChange}
-                  disabled={isLoading}
-                  maxFiles={5}
-                  className="mt-2"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        {/* Description */}
-        <FormField
-          control={form.control}
-          name="description"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Description</FormLabel>
-              <FormControl>
-                <Textarea
-                  placeholder="Informations sur la disparition"
-                  className="min-h-[100px]"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        {/* Boutons d'action */}
-        <div className="flex justify-end space-x-2">
-          <Button type="button" variant="outline" onClick={() => onSuccess?.()}>
-            Annuler
-          </Button>
-          <Button type="submit" disabled={isLoading}>
-            {isLoading
-              ? 'Chargement...'
-              : isEditMode
-                ? 'Mettre à jour'
-                : 'Ajouter'}
-          </Button>
-        </div>
-      </form>
-    </Form>
+          {/* Boutons d'action */}
+          <div className="flex justify-end space-x-2">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => onSuccess?.()}
+            >
+              Annuler
+            </Button>
+            <Button type="submit" disabled={isLoading}>
+              {isLoading
+                ? 'Chargement...'
+                : isEditMode
+                  ? 'Mettre à jour'
+                  : 'Ajouter'}
+            </Button>
+          </div>
+        </form>
+      </Form>
+    </DndProvider>
   )
 }

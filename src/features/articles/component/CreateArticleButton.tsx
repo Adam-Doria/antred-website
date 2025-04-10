@@ -1,4 +1,3 @@
-// src/features/articles/components/CreateArticleButton.tsx
 'use client'
 
 import { useState } from 'react'
@@ -40,7 +39,7 @@ export function CreateArticleButton({
           <Plus className="mr-2 h-4 w-4" /> Ajouter un article ({categoryName})
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-4xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-[80vw] max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>Créer un nouvel article dans {categoryName}</DialogTitle>
         </DialogHeader>
