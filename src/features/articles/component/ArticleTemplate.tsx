@@ -13,7 +13,6 @@ import {
   CarouselPrevious,
   CarouselNext
 } from '@/components/ui/carousel'
-import { AspectRatio } from '@/components/ui/aspect-ratio'
 
 interface ArticleTemplateProps {
   article: ArticleRO
@@ -136,22 +135,25 @@ const ArticleTemplate: React.FC<ArticleTemplateProps> = ({ article }) => {
 
         {article.content?.images && article.content.images.length > 0 && (
           <section className="my-12 w-full">
-            <Carousel className="w-full max-w-full max-h-[600px]">
-              <CarouselContent className="w-full pb-4 ">
+            <Carousel className="w-full max-w-full">
+              <CarouselContent className="w-full pb-4">
                 {article.content.images.map((imageUrl, index) => (
                   <CarouselItem
-                    className="max-h-[600px] w-full overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-all duration-300 ring-1 ring-black/5"
+                    className="w-full h-[550px] overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-all duration-300 ring-1 ring-black/5"
                     key={index}
                   >
-                    <AspectRatio>
-                      <Image
-                        src={imageUrl}
-                        alt={`Image ${index + 1} de l'article: ${article.title}`}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      />
-                    </AspectRatio>
+                    <div className="relative w-full h-full flex items-center justify-center p-2">
+                      <div className="relative w-full h-full max-w-full max-h-full]">
+                        <Image
+                          src={imageUrl}
+                          alt={`Image ${index + 1} de l'article: ${article.title}`}
+                          fill
+                          className="object-contain"
+                          sizes="(max-width: 768px) 100vw, 1200px"
+                          priority={index === 0}
+                        />
+                      </div>
+                    </div>
                   </CarouselItem>
                 ))}
               </CarouselContent>
