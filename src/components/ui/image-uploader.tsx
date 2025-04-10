@@ -5,8 +5,7 @@ import Image from 'next/image'
 import { X, Image as ImageIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-import { DndProvider, useDrag, useDrop } from 'react-dnd'
-import { HTML5Backend } from 'react-dnd-html5-backend'
+import { useDrag, useDrop } from 'react-dnd'
 
 export interface UploadedImage {
   url: string
@@ -75,12 +74,8 @@ function DraggableImage({
       // Glissement vers la droite
       if (dragIndex < hoverIndex && hoverClientX < hoverMiddleX) return
 
-      // Effectuer l'action
       moveImage(dragIndex, hoverIndex)
 
-      // Remarque: nous mutons l'élément de surveillance ici!
-      // En général, c'est mieux d'éviter les mutations,
-      // mais c'est utile ici pour la performance pour éviter les calculs coûteux de React DnD.
       item.index = hoverIndex
     }
   })
@@ -131,7 +126,7 @@ interface ImageDndUploadProps {
   disabled?: boolean
 }
 
-function ImageDndUploadContent({
+export function ImageDndUpload({
   images = [],
   onImagesChange,
   maxFiles = 5,
@@ -146,15 +141,12 @@ function ImageDndUploadContent({
     const newImages = [...images]
     const draggedImage = newImages[dragIndex]
 
-    // Retirer l'élément glissé du tableau
     newImages.splice(dragIndex, 1)
-    // Insérer l'élément à la nouvelle position
     newImages.splice(hoverIndex, 0, draggedImage)
 
     onImagesChange(newImages)
   }
 
-  // Gestion de la sélection de fichier
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files || e.target.files.length === 0) return
 
@@ -163,7 +155,6 @@ function ImageDndUploadContent({
 
     if (filesToAdd.length === 0) return
 
-    // Créer des URLs pour prévisualiser les nouvelles images
     const newImages = filesToAdd.map((file) => ({
       url: URL.createObjectURL(file),
       file,
@@ -179,10 +170,9 @@ function ImageDndUploadContent({
     }
   }
 
-  // Supprimer une image
   const removeImage = (index: number) => {
     const newImages = [...images]
-    // Si c'est une image nouvellement uploadée, on révoque son URL pour éviter les fuites mémoire
+
     if (newImages[index].isNew && newImages[index].url) {
       URL.revokeObjectURL(newImages[index].url)
     }
@@ -190,7 +180,6 @@ function ImageDndUploadContent({
     onImagesChange(newImages)
   }
 
-  // Gérer le glisser-déposer de fichiers
   const handleFileDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault()
     setIsDragOver(false)
@@ -209,7 +198,6 @@ function ImageDndUploadContent({
 
       if (filesToAdd.length === 0) return
 
-      // Créer des URLs pour prévisualiser les nouvelles images
       const newImages = filesToAdd.map((file) => ({
         url: URL.createObjectURL(file),
         file,
@@ -261,12 +249,12 @@ function ImageDndUploadContent({
               onChange={handleFileSelect}
               disabled={disabled || images.length >= maxFiles}
             />
-            <ImageIcon className="mb-2 h-10 w-10 text-muted-foreground" />
+            <ImageIcon className="mb-2 h-10 w-10 text-gray-500" />
             <div className="space-y-1">
               <p className="text-sm font-medium text-foreground">
                 Déposer une image ici
               </p>
-              <p className="text-xs text-muted-foreground">
+              <p className="text-xs text-gray-400">
                 ou cliquez pour en sélectionner
               </p>
             </div>
@@ -274,18 +262,9 @@ function ImageDndUploadContent({
         )}
       </div>
 
-      <div className="text-xs text-muted-foreground">
+      <div className="text-xs text-gray-400">
         {images.length} sur {maxFiles} images ajoutées
       </div>
     </div>
-  )
-}
-
-// Composant wrapper avec DndProvider
-export function ImageDndUpload(props: ImageDndUploadProps) {
-  return (
-    <DndProvider backend={HTML5Backend}>
-      <ImageDndUploadContent {...props} />
-    </DndProvider>
   )
 }
