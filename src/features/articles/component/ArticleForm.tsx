@@ -18,8 +18,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
-  FormDescription
+  FormMessage
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
@@ -39,6 +38,7 @@ import { createArticle } from '../actions/mutations/createArticle'
 import { updateArticle } from '../actions/mutations/updateArticle'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
+import ArticlePreview from './ArticlePreview'
 
 interface ArticleFormProps {
   initialData?: ArticleRO | null
@@ -65,11 +65,12 @@ export function ArticleForm({
   const [error, setError] = useState<string | null>(null)
   const isEditMode = !!initialData
   const router = useRouter()
+  // --- Ajout du state isPreview ---
+  const [isPreview, setIsPreview] = useState<boolean>(false)
 
   const initialCoverImage = initialData?.coverImageUrl
     ? [{ url: initialData.coverImageUrl, isNew: false }]
     : []
-  // --- CORRECTION: Lire les images du carrousel depuis content.images ---
   const initialCarouselImages: UploadedImage[] =
     initialData?.content?.images?.map((url) => ({ url, isNew: false })) || []
   const initialContent = initialData?.content || {}
@@ -79,13 +80,12 @@ export function ArticleForm({
     defaultValues: {
       title: initialData?.title || '',
       content: {
-        introduction: initialContent.introduction || '', // Utiliser '' au lieu de '<p></p>'
+        introduction: initialContent.introduction || '',
         part1: initialContent.part1 || '',
         quote: initialContent.quote || '',
         part2: initialContent.part2 || '',
-        images: [], // Ce champ reste vide, géré par uploadedCarouselImages
+        images: [],
         part3: initialContent.part3 || '',
-        // Initialiser l'uploader avec les images existantes
         uploadedCarouselImages: initialCarouselImages
       },
       excerpt: initialData?.excerpt || '',
@@ -106,7 +106,6 @@ export function ArticleForm({
     })
   }
   const handleCarouselImagesChange = (images: UploadedImage[]) => {
-    // --- CORRECTION: Utiliser le bon nom de champ ---
     form.setValue('content.uploadedCarouselImages', images, {
       shouldValidate: true
     })
@@ -151,134 +150,155 @@ export function ArticleForm({
   return (
     <DndProvider backend={HTML5Backend}>
       <Form {...form}>
-        <form
-          id={`article-form-${initialData?.id || 'new'}`}
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-6"
-        >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Toggle Edition / Preview */}
+        <div className="mb-4 flex justify-end space-x-2">
+          <Button
+            type="button"
+            variant={!isPreview ? 'default' : 'outline'}
+            onClick={() => setIsPreview(false)}
+          >
+            Édition
+          </Button>
+          <Button
+            type="button"
+            variant={isPreview ? 'default' : 'outline'}
+            onClick={() => setIsPreview(true)}
+          >
+            Prévisualisation
+          </Button>
+        </div>
+
+        {/* Affichage conditionnel: Formulaire ou Prévisualisation */}
+        {!isPreview ? (
+          // --- Formulaire d'édition ---
+          <form
+            id={`article-form-${initialData?.id || 'new'}`}
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="space-y-6"
+          >
+            {/* ... Champs du formulaire (identiques à avant) ... */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <FormField
+                control={form.control}
+                name="title"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Titre*</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Titre..." {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="authorName"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Auteur</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="(Optionnel)"
+                        {...field}
+                        value={field.value ?? ''}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+
+            {/* ... Champs Contenu Structuré (RichTextEditor, Textarea) ... */}
             <FormField
               control={form.control}
-              name="title"
+              name="content.introduction"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Titre*</FormLabel>
+                  <FormLabel>Introduction</FormLabel>
                   <FormControl>
-                    <Input placeholder="Titre..." {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="authorName"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Auteur</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="(Optionnel)"
-                      {...field}
-                      value={field.value ?? ''}
+                    <RichTextEditor
+                      content={field.value ?? ''}
+                      onChange={field.onChange}
+                      disabled={isLoading}
                     />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-          </div>
+            <FormField
+              control={form.control}
+              name="content.part1"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Partie 1*</FormLabel>
+                  <FormControl>
+                    <RichTextEditor
+                      content={field.value ?? ''}
+                      onChange={field.onChange}
+                      disabled={isLoading}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="content.quote"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Citation</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      placeholder="Citation..."
+                      {...field}
+                      value={field.value ?? ''}
+                      rows={2}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="content.part2"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Partie 2</FormLabel>
+                  <FormControl>
+                    <RichTextEditor
+                      content={field.value ?? ''}
+                      onChange={field.onChange}
+                      disabled={isLoading}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="content.part3"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Partie 3</FormLabel>
+                  <FormControl>
+                    <RichTextEditor
+                      content={field.value ?? ''}
+                      onChange={field.onChange}
+                      disabled={isLoading}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-          <FormField
-            control={form.control}
-            name="content.introduction"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Introduction</FormLabel>
-                <FormControl>
-                  <RichTextEditor
-                    content={field.value ?? ''}
-                    onChange={field.onChange}
-                    disabled={isLoading}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="content.part1"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Partie 1*</FormLabel>
-                <FormControl>
-                  <RichTextEditor
-                    content={field.value ?? ''}
-                    onChange={field.onChange}
-                    disabled={isLoading}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="content.quote"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Citation</FormLabel>
-                <FormControl>
-                  <Textarea
-                    placeholder="Citation..."
-                    {...field}
-                    value={field.value ?? ''}
-                    rows={2}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="content.part2"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Partie 2</FormLabel>
-                <FormControl>
-                  <RichTextEditor
-                    content={field.value ?? ''}
-                    onChange={field.onChange}
-                    disabled={isLoading}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="content.part3"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Partie 3</FormLabel>
-                <FormControl>
-                  <RichTextEditor
-                    content={field.value ?? ''}
-                    onChange={field.onChange}
-                    disabled={isLoading}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          {/* Métadonnées */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* ... Champs Catégorie, Tags, Statut (Select, MultiSelectTags) ...*/}
             <FormField
               control={form.control}
               name="categoryId"
@@ -288,15 +308,15 @@ export function ArticleForm({
                   <FormControl>
                     <Select
                       onValueChange={field.onChange}
-                      value={field.value ?? ''}
+                      defaultValue={field.value}
                     >
                       <SelectTrigger>
-                        <SelectValue placeholder="Choisir..." />
+                        <SelectValue placeholder="Choisir une catégorie" />
                       </SelectTrigger>
                       <SelectContent>
-                        {availableCategories.map((cat) => (
-                          <SelectItem key={cat.id} value={cat.id}>
-                            {cat.name}
+                        {availableCategories.map((category) => (
+                          <SelectItem key={category.id} value={category.id}>
+                            {category.name}
                           </SelectItem>
                         ))}
                       </SelectContent>
@@ -306,7 +326,7 @@ export function ArticleForm({
                 </FormItem>
               )}
             />
-            {/* --- Tags (sans FormControl) --- */}
+
             <FormField
               control={form.control}
               name="tagIds"
@@ -315,33 +335,32 @@ export function ArticleForm({
                   <FormLabel>Tags</FormLabel>
                   <MultiSelectTags
                     availableTags={availableTags}
-                    selectedTagIds={field.value || []}
+                    selectedTagIds={field.value}
                     onChange={field.onChange}
-                    disabled={isLoading}
-                    className="mt-2"
                   />
                   <FormMessage />
                 </FormItem>
               )}
             />
+
             <FormField
               control={form.control}
               name="status"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Statut*</FormLabel>
+                  <FormLabel>Status*</FormLabel>
                   <FormControl>
                     <Select
                       onValueChange={field.onChange}
                       defaultValue={field.value}
                     >
                       <SelectTrigger>
-                        <SelectValue placeholder="Choisir..." />
+                        <SelectValue placeholder="Choisir un status" />
                       </SelectTrigger>
                       <SelectContent>
-                        {statusOptions.map((opt) => (
-                          <SelectItem key={opt.value} value={opt.value}>
-                            {opt.label}
+                        {statusOptions.map((status) => (
+                          <SelectItem key={status.value} value={status.value}>
+                            {status.label}
                           </SelectItem>
                         ))}
                       </SelectContent>
@@ -351,90 +370,84 @@ export function ArticleForm({
                 </FormItem>
               )}
             />
-          </div>
 
-          {/* Images */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* ... Champs Image Couverture, Carrousel, Extrait, Boutons ... */}
             <FormField
               control={form.control}
               name="uploadedCoverImage"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Image Couverture</FormLabel>
+                  <FormLabel>Image de couverture</FormLabel>
                   <FormControl>
                     <ImageDndUpload
                       images={field.value ? [field.value] : []}
                       onImagesChange={handleCoverImageChange}
                       maxFiles={1}
-                      disabled={isLoading}
-                      className="mt-2"
                     />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
+
             <FormField
               control={form.control}
               name="content.uploadedCarouselImages"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Images Carrousel</FormLabel>
+                  <FormLabel>Images carrousel</FormLabel>
                   <FormControl>
                     <ImageDndUpload
                       images={field.value || []}
                       onImagesChange={handleCarouselImagesChange}
                       maxFiles={10}
-                      disabled={isLoading}
-                      className="mt-2"
                     />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-          </div>
 
-          {/* Extrait */}
-          <FormField
-            control={form.control}
-            name="excerpt"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Extrait</FormLabel>
-                <FormControl>
-                  <Textarea
-                    placeholder="Court résumé..."
-                    className="min-h-[80px]"
-                    {...field}
-                    value={field.value ?? ''}
-                  />
-                </FormControl>
-                <FormDescription>Pour SEO et aperçus.</FormDescription>
-                <FormMessage />
-              </FormItem>
+            <FormField
+              control={form.control}
+              name="excerpt"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Extrait</FormLabel>
+                  <FormControl>
+                    <Textarea placeholder="Extrait..." {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            {/* Boutons Annuler/Soumettre */}
+            {error && (
+              <p className="text-sm font-medium text-destructive">{error}</p>
             )}
-          />
-
-          {/* Erreur Générale et Boutons */}
-          {error && (
-            <p className="text-sm font-medium text-destructive">{error}</p>
-          )}
-          <div className="flex justify-end space-x-2 pt-4">
-            <Button
-              type="button"
-              variant="outline"
-              onClick={() => onSuccess?.()}
-              disabled={isLoading}
-            >
-              Annuler
-            </Button>
-            <Button type="submit" disabled={isLoading}>
-              {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              {isEditMode ? 'Mettre à jour' : 'Créer'}
-            </Button>
-          </div>
-        </form>
+            <div className="flex justify-end space-x-2 pt-4">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => onSuccess?.()}
+                disabled={isLoading}
+              >
+                Annuler
+              </Button>
+              <Button type="submit" disabled={isLoading}>
+                {!isLoading ? (
+                  'Soumettre'
+                ) : (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                )}
+              </Button>
+            </div>
+          </form>
+        ) : (
+          // --- Prévisualisation de l'article ---
+          <ArticlePreview article={form.getValues()} />
+        )}
       </Form>
     </DndProvider>
   )

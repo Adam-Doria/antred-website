@@ -34,7 +34,7 @@ export const MobileNavbar: React.FC = () => {
             <SheetContent side="left" className="w-[300px] sm:w-[400px]">
               <nav className="flex flex-col gap-4">
                 <Link
-                  href="/public"
+                  href="/"
                   className="text-md font-semibold"
                   onClick={closeMenu}
                 >
@@ -75,7 +75,7 @@ export const MobileNavbar: React.FC = () => {
               </nav>
             </SheetContent>
           </Sheet>
-          <Link href={'/public'}>
+          <Link href={'/'}>
             <Logo />
           </Link>
         </div>
